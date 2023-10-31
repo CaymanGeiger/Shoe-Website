@@ -1,0 +1,573 @@
+.products {
+    width: 100%;
+    height: 140vh;
+    padding: 0 4em 1em 4em;
+    margin-top: 0;
+}
+
+.productsText {
+    white-space: nowrap;
+    padding: 0;
+}
+
+.products h1 {
+    margin: 35px 0;
+    font-size: 50px;
+    display: flex;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    background: linear-gradient(to top, #070707, #393939d7, rgb(0, 0, 0), rgb(77, 77, 77));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border: 8px solid;
+    padding: 10px;
+    border-image: repeating-linear-gradient(to bottom right,
+        #ffffff,
+        #ffffff,
+        rgb(255, 255, 255),
+        rgb(255, 255, 255),
+        rgb(255, 255, 255)) 15;
+}
+
+.h1Container {
+    background-color: rgb(227, 227, 227);
+
+}
+
+
+.products .box {
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px 0;
+    padding: 1em 0 1em 1em;
+}
+
+
+.products .box .card{
+    width: 100%;
+    height: 10vh;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 2em;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.topCard {
+    z-index: 1000;
+    background: linear-gradient(to bottom,
+        #3e3e3eae,
+        #4b4b4bbc,
+        #3b3b3ba0,
+        #5d5d5daa,
+        #858585d0,
+        #a9a9a9,
+        #b1b1b1,
+        #c2c2c2,
+        #d0d0d0,
+        #dcdcdc);
+    padding-left: .2em;
+    padding-bottom: 1em;
+    height: 35vh;
+}
+
+.products .box .topCard:hover {
+    background-color: rgb(224, 224, 224);
+}
+
+
+.image {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 20vh;
+    overflow: hidden;
+    margin-top: 1em;
+}
+
+
+.img {
+    transition: .3s;
+}
+.products .box .topCard:hover .image img {
+    transform: scale(1.1);
+}
+
+
+.small_card {
+    display: flex;
+    flex-flow: row;
+    justify-content: left;
+    position: relative;
+    transition: 0.3s;
+    margin-top: 1em;
+    opacity: 0;
+    z-index: 1;
+}
+
+
+.products .box .topCard:hover .small_card {
+    transform: translateY(8px);
+    cursor: pointer;
+    opacity: 1;
+    z-index: 1;
+}
+
+
+.iconHeart {
+    padding: .15em;
+    width: 30px;
+    height: 30px;
+    margin: 2px 0;
+    color: rgba(0, 0, 0, 0.442);
+}
+
+
+.iconHeartFavorited {
+    padding: .15em;
+    width: 30px;
+    height: 30px;
+    margin: 2px 0;
+    opacity: 1;
+    z-index: 1;
+    color: rgb(255, 0, 0) !important;
+}
+
+.iconShare {
+    padding: .15em;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 18px;
+    margin: 2px 0;
+    line-height: 50px;
+    transition: 0.2s;
+    color: rgba(0, 0, 0, 0.442);
+}
+
+
+.iconHeart:hover {
+    color: rgb(255, 0, 0);
+}
+
+.iconHeart.small_card.show {
+    color: rgb(255, 0, 0) !important;
+    transform: scale(0.7) !important;
+}
+
+
+
+
+.products_star {
+    display: flex;
+    justify-content: left;
+}
+
+
+
+.starIcon {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    font-size: 1.4em;
+    margin-bottom: 1em;
+}
+
+
+.starIcon1 {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    font-size: 1.4em;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+
+.shoeBranDiv {
+    display: flex;
+    justify-content: left;
+}
+
+
+.shoeBrand{
+    font-size: 1em;
+    color: rgb(124, 124, 124);
+    margin-bottom: .4em;
+}
+
+
+.card {
+    border: 1px solid rgba(255, 255, 255, 0);
+}
+
+.products .box .topCard .small_card .iconShare:hover {
+    color: rgb(30, 0, 255);
+    transform: perspective(500px) translate3d(0, 0, 20px);
+    cursor: pointer;
+    opacity: 1;
+    z-index: 1;
+}
+
+
+
+.descriptionList {
+    color: rgb(106, 105, 105);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.addButton {
+    text-decoration: none;
+    padding: 6px 12px;
+    background: rgb(123, 123, 123);
+    color: white;
+    transition: 0.3s;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-top: 1em;
+}
+
+.addButton:hover {
+    color:rgb(115, 166, 255);
+    cursor: pointer;
+
+}
+
+.addBtnContainer {
+    display: flex;
+    margin-bottom: .5em;
+    justify-content: center;
+}
+
+.shoeNameContainer {
+    display: flex;
+    justify-content: left;
+
+}
+
+.shoeName {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: .7em;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.shoeNameH2{
+    margin-bottom: 0;
+}
+
+.shoeName:hover{
+    color: rgb(0, 0, 0);
+    border-bottom: 3px solid;
+    border-image: repeating-linear-gradient(to bottom right, #3a3a3a,
+    #343434d7,
+    rgb(60, 60, 60),
+    rgb(48, 48, 48),
+    rgb(64, 64, 64)) 20;
+}
+
+.shoePrice {
+    font-family:'Times New Roman', Times, serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: rgb(34, 34, 34);
+    margin-top: .3em;
+}
+
+.shoePriceDiv {
+    display: flex;
+    justify-content: left;
+}
+
+.ratingModel {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    padding: 20px;
+    background-color: #eeeeee;
+    z-index: 100;
+    width: 30vw;
+    transition: transform .4s, opacity 0.3s;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.ratingModel.show {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 100;
+    box-shadow: 0 0 5px rgb(189, 189, 189);
+    padding: 1em;
+}
+
+
+.newReviewForm{
+    padding-left: 0;
+    margin-bottom: 1em;
+}
+.newReviewForm{
+    border-bottom: 1px solid black;
+}
+.topSection {
+    background-color: #f2f2f2;
+    padding: 5px 0 5px 2px;
+    border-bottom: 1px solid #ccc;
+    align-items: center;
+}
+
+.ratingContent {
+    padding: 15px, 20px 0 20px;
+}
+
+
+textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.modelWindowXAndRate {
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+}
+
+.rateStars {
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+
+}
+
+.ratingDesc {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+
+.ratingDescDiv {
+    display: flex;
+    justify-content: center;
+}
+
+
+.rateStarsDiv {
+    display: flex;
+    justify-content: left;
+}
+
+.exitButton {
+    display: flex;
+    margin-top: .3em;
+    margin-right: .5em;
+    justify-content: right;
+    font-weight: bold;
+    width: 1em;
+    height: 1em;
+}
+
+.exitButtonDiv {
+    display: flex;
+    justify-content: right;
+
+}
+
+.submitRating {
+    color: #000000;
+    border: 1px solid black;
+    padding: 5px 16px;
+    margin-bottom: 0;
+    font-size: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.submitRatingDiv {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0;
+
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+}
+
+
+.yyy {
+    margin-top: .8em;
+
+    color: rgb(98, 98, 98);
+}
+
+.filterSideWindow {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    background-color: transparent;
+
+}
+
+
+.products .filterSideWindowDiv {
+    min-height: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 250px;
+    min-width: 250px;
+    max-width: 250px;
+    height: auto;
+    margin-top: 2em;
+}
+
+
+.filterList {
+    list-style-type: none;
+    padding: 0;
+    height: 0 auto;
+    margin-right: 1em;
+    background-color: transparent;
+}
+
+
+
+.filterSelects {
+    background-color: transparent;
+
+}
+
+
+/* .filterSelects:hover {
+    background-color: transparent;
+    transform: rotate(-45deg);
+    transform-origin: center;
+} */
+
+
+.filterListItem {
+    width: 100%;
+    margin-bottom: 1em;
+    box-shadow: 0 0 5px rgb(255, 255, 255);
+    background-color: transparent;
+}
+
+
+.shoePageColumns {
+    width: 100%;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+}
+
+
+.filterHeader {
+    color: rgb(0, 0, 0);
+    margin-top: .3em;
+    font-size: 1.8em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.filterHeaderDiv {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+    width: 100%;
+    background-color: rgb(224, 224, 224);
+}
+
+
+.App {
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    padding: 1.8em;
+    width: 100%;
+    border-bottom: 1px solid rgb(191, 191, 191);
+    margin-bottom:  0;
+    background-color: #ededed;
+}
+
+
+.products .topCard .div3 {
+    padding-right: 0;
+}
+
+
+.textBarButton {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    flex: 0 0 auto;
+}
+
+
+.textBarSpan {
+    flex: 1;
+    font-size: 15px;
+    text-align: center;
+    white-space: nowrap;
+    width: 100px;
+
+}
+
+.textBarSpanDiv {
+    width: 380px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.shoePageStarsDiv {
+    display: flex;
+    justify-content: right;
+    margin-top: .8em;
+}
+
+
+.nameReviewDiv {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+.shoePageStars {
+
+}
+
+.favoritesTitle {
+    color: rgb(72, 72, 72);
+    border-bottom: 2px solid black;
+}
+
+.favoritesTitleDiv{
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+}

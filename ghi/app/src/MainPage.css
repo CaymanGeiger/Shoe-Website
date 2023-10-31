@@ -1,0 +1,125 @@
+.image-section {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.image-section img {
+    max-width: 100%;
+    height: auto;
+}
+
+.mainPageImg  {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin: 0;
+    padding: 0;
+}
+
+
+.image-container {
+    overflow: hidden;
+    width: 100%;
+    margin-top: -200px;
+    position: relative;
+    z-index: -1;
+}
+
+
+.image-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    z-index: -1;
+}
+
+
+.image-container::before,
+.image-container::after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background-color: white;
+    z-index: 1;
+}
+
+.image-container::before {
+    top: 0;
+}
+
+.image-container::after {
+    bottom: 0;
+}
+
+.mainPageBelowImage {
+    overflow: hidden;
+    width: 100%;
+    margin-top: -140px;
+    position: relative;
+    z-index: 1;
+}
+
+
+.mainPageTitle {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.shop-button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.1s;
+}
+
+.shop-button:hover {
+    background-color: #333333c3;
+}
+
+.shopButtonLink {
+    color: white;
+    text-decoration: none;
+}
+
+.shopButtonLink:hover {
+    color: white;
+    text-decoration: none;
+}
+
+
+.App {
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    padding: 1.8em;
+    width: 100%;
+    border-bottom: 1px solid rgb(191, 191, 191);
+    margin-bottom: 0;
+    background-color: #ededed;
+    z-index: 3;
+}
+
+button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+span {
+    margin: 0 20px;
+}
