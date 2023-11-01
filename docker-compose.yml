@@ -17,7 +17,7 @@ services:
       - two-shot-pgdata:/var/lib/postgresql/data
       - ./db:/docker-entrypoint-initdb.d
     environment:
-      - POSTGRES_MULTIPLE_DATABASES=shoes,accounts
+      - POSTGRES_MULTIPLE_DATABASES=shoes,accounts,sneaks
       - POSTGRES_PASSWORD=test-databases
     ports:
       - 15432:5432
@@ -33,6 +33,20 @@ services:
       - database
     environment:
       DATABASE_URL: postgres://accounts:password@database:5432/accounts
+      WAIT_HOSTS: database:5432
+      WAIT_TIMEOUT: 240
+  sneaks-api:
+    build:
+      context: ./sneaks/api
+      dockerfile: ./Dockerfile.dev
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./sneaks/api:/app
+    depends_on:
+      - database
+    environment:
+      DATABASE_URL: postgres://sneaks:password@database:5432/sneaks
       WAIT_HOSTS: database:5432
       WAIT_TIMEOUT: 240
   shoes-api:

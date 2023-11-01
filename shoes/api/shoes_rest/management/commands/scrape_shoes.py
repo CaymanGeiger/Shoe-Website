@@ -4,6 +4,7 @@ from shoes_rest.models import Shoe
 
 BASE_URL = 'http://localhost:3001/products/'
 
+
 class Command(BaseCommand):
     help = 'Scrapes data from sneaks API and populates the Shoe model'
 

@@ -28,7 +28,7 @@ function MainPage() {
                 <button onClick={goNext}>&gt;</button>
             </div>
       <div className="image-container">
-      <img className="mainPageImg" src={'/images/mainimg.jpg'}/>
+      <img src={'/images/mainimg.jpg'}/>
       </div>
       <div className='mainPageBelowImage'>
       <h1 className="display-5 fw-bold mainPageTitle">WARDROBIFY!</h1>
@@ -38,7 +38,9 @@ function MainPage() {
           the solution for you!
         </p>
         <div>
-          <button className="shop-button"><Link className='shopButtonLink' to="/shoes/page">Shop</Link></button>
+          <Link className='shopButtonLink' to="/shoes/page">
+              <button className="shop-button">Shop</button>
+          </Link>
         </div>
       </div>
       </div>

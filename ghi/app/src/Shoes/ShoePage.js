@@ -35,7 +35,7 @@ function ShoePage(){
 
 
     async function loadApiShoes() {
-        const keyword = encodeURIComponent('Yeezy Cinder');
+        const keyword = encodeURIComponent('Nike Dunk');
         const limit = 10;
         const response = await fetch(`http://localhost:3001/products/${keyword}?limit=${limit}`);
         console.log(response)
@@ -50,10 +50,6 @@ function ShoePage(){
             console.error("Error parsing server response:", err);
         }
     }
-    useEffect(() => {
-        loadApiShoes();
-    }, []);
-
 
     async function loadShoes() {
         const response = await fetch('http://localhost:8080/api/shoes/');
@@ -69,6 +65,7 @@ function ShoePage(){
     console.log("favorites", userFavorites)
     useEffect(() => {
         loadFavorites();
+        loadApiShoes();
         loadShoes();
     }, []);
 
@@ -232,6 +229,9 @@ function ShoePage(){
 
     return (
         <>
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        </head>
             <div className="App h1Container">
                 <button className="textBarButton" onClick={goPrevious}>&lt;</button>
                 <div className="textBarSpanDiv">
@@ -262,7 +262,7 @@ function ShoePage(){
                 const isFavorited = userFavorites.some(favorite => favorite.shoe_id === shoe.id);
                 console.log(`Shoe ID: ${shoe.id}, Is Favorited: ${isFavorited}`);
             return (
-                <div key={shoe.id}>
+                <div key={shoe.id} className="mainCard">
                 <div className="topCard">
                     <div className="hoverItems">
                         <div className="small_card">
