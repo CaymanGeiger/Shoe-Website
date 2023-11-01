@@ -58,24 +58,14 @@
 
 .topCard {
     z-index: 1000;
-    background: linear-gradient(to bottom,
-        #3e3e3eae,
-        #4b4b4bbc,
-        #3b3b3ba0,
-        #5d5d5daa,
-        #858585d0,
-        #a9a9a9,
-        #b1b1b1,
-        #c2c2c2,
-        #d0d0d0,
-        #dcdcdc);
+    background: rgb(255, 255, 255);
     padding-left: .2em;
     padding-bottom: 1em;
     height: 35vh;
 }
 
 .products .box .topCard:hover {
-    background-color: rgb(224, 224, 224);
+    background-color: rgb(255, 255, 255);
 }
 
 

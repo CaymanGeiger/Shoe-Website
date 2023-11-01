@@ -32,11 +32,14 @@ import './ShoeForm1.css';  // Assuming you'll add some CSS
             const response = await fetch(accountUrl, fetchConfig);
                 if (response.ok) {
                     setFormData({
-                        username: '',
-                        first_name: '',
-                        last_name: '',
-                        email: '',
-                        password: '',
+                        name: "",
+                        brand: "",
+                        categoryr: "",
+                        price: "",
+                        size: "",
+                        color: "",
+                        sku: "",
+                        bin: ""
                     });
                     setPasswordConfirm('')
                 }

@@ -21,6 +21,16 @@ function ShoePage(){
     const { userId } = useAuth();
     const showToast = useToast();
     const { openModal } = useModal();
+    const [formData, setFormData] = useState({
+                name: "",
+                brand: "",
+                categoryr: "",
+                price: "",
+                size: "",
+                color: "",
+                sku: "",
+                bin: ""
+        });
     console.log(apiShoes)
 
 
@@ -28,9 +38,17 @@ function ShoePage(){
         const keyword = encodeURIComponent('Yeezy Cinder');
         const limit = 10;
         const response = await fetch(`http://localhost:3001/products/${keyword}?limit=${limit}`);
-        const data = await response.json();
-        setApiShoes(data);
-
+        console.log(response)
+        if (!response.ok) {
+        console.error("Server responded with error:", response.statusText);
+        return;
+        }
+        try {
+            const data = await response.json();
+            setApiShoes(data);
+        } catch (err) {
+            console.error("Error parsing server response:", err);
+        }
     }
     useEffect(() => {
         loadApiShoes();
@@ -54,6 +72,48 @@ function ShoePage(){
         loadShoes();
     }, []);
 
+
+
+    // const handleSubmit = async (event) => {
+    //     event.preventDefault();
+    //     const accountUrl = 'http://localhost:8070/api/accounts/';
+    //     const fetchConfig = {
+    //         method: "post",
+    //         body: JSON.stringify(formData),
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         }
+
+    //     if (formData.password === passwordConfirm){
+    //         const response = await fetch(accountUrl, fetchConfig);
+    //             if (response.ok) {
+    //                 setFormData({
+    //                     name: "",
+    //                     brand: "",
+    //                     categoryr: "",
+    //                     price: "",
+    //                     size: "",
+    //                     color: "",
+    //                     sku: "",
+    //                     bin: ""
+    //                 });
+    //                 setPasswordConfirm('')
+    //             }
+    //     } else {
+    //         alert("Passwords Do Not Match")
+    //     }
+    // }
+
+
+    //     const handleFormChange = (e) => {
+    //     const value = e.target.value;
+    //     const inputName = e.target.name;
+    //     setFormData({
+    //         ...formData,
+    //         [inputName]: value
+    //     });
+    // }
 
 
     const handleBrandFilter = (brand) => {
@@ -92,6 +152,8 @@ function ShoePage(){
             openModal(true)
             showToast("Please log in first!", "error");
         } else {
+
+
         if (!(isFavorited)){
         showToast("Added To Favorites!", "success");
         const response = await fetch (`http://localhost:8080/api/favorites/${shoeId}/${userId}/`, {
@@ -196,7 +258,7 @@ function ShoePage(){
                 </div>
             </div>
             <div className="box gap-3 div3 ">
-                {shoes.map((shoe, index) => {
+                {apiShoes.map((shoe, index) => {
                 const isFavorited = userFavorites.some(favorite => favorite.shoe_id === shoe.id);
                 console.log(`Shoe ID: ${shoe.id}, Is Favorited: ${isFavorited}`);
             return (
@@ -211,7 +273,7 @@ function ShoePage(){
                             <FontAwesomeIcon  className="iconShare" icon={faShare} />
                         </div>
                         <div className="image">
-                            <img key={index} className="img" src={`/images/img${index + 1}.png`}/>
+                            <img key={index} className="img" src={shoe.thumbnail}/>
                         </div>
                     </div>
                 </div>
@@ -219,7 +281,7 @@ function ShoePage(){
                     <div className="productsText">
                         <div className="nameReviewDiv">
                         <div className="shoeNameContainer">
-                            <h2 className="shoeNameH2"><Link className="shoeName" to={`/shoes/${shoe.id}`}>{ shoe.name }</Link></h2>
+                            <h2 className="shoeNameH2"><Link className="shoeName" to={`/shoes/${shoe.id}`}>{ shoe.silhoutte }</Link></h2>
                         </div>
                         <div className="shoePageStarsDiv">
                             <StarRating shoeID={shoe.id} starStyle={{ fontSize: '1.5em', width: '20px', height: '20px',color: "grey" }}  ratingValue="average" />
@@ -230,7 +292,7 @@ function ShoePage(){
                             <h3 className="shoeBrand">{shoe.brand}</h3>
                         </div>
                         <div className="shoePriceDiv">
-                            <h3 className="shoePrice">${shoe.price}</h3>
+                            <h3 className="shoePrice">${shoe.retailPrice}</h3>
                         </div>
                 </div>
                 </div>

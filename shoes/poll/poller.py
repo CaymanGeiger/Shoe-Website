@@ -11,17 +11,6 @@ django.setup()
 
 
 from shoes_rest.models import AccountVO
-from shoes_rest.models import BinVO
-
-
-def get_bins():
-    response = requests.get("http://wardrobe-api:8000/api/bins/")
-    content = json.loads(response.content)
-    for bin in content["bins"]:
-        BinVO.objects.update_or_create(
-            import_href=bin["href"],
-            defaults={"id": bin["id"], "name": bin["closet_name"]},
-        )
 
 
 def get_accounts():
@@ -44,7 +33,6 @@ def poll():
     while True:
         print("Shoes poller polling for data")
         try:
-            get_bins()
             get_accounts()
         except Exception as e:
             print(e, file=sys.stderr)
