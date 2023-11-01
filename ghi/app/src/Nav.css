@@ -1,0 +1,218 @@
+.navbar.navApp {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem;
+    margin-right: 2em;
+    margin-left: 2em;
+    z-index: 2;
+    position: relative;
+
+}
+
+.navLinks {
+    color: rgb(104, 104, 104);
+    padding: .5em 0 .5em .5em;
+}
+
+.navLinksDiv {
+    padding: 0;
+    margin: 0;
+}
+
+
+a {
+    color: rgb(42, 42, 42);
+}
+
+
+
+.pageLinks {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 4.5em;
+}
+
+
+.divNav2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.navMainDiv {
+
+}
+
+
+.websiteTitle{
+    margin-right: 0;
+    color: black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.menu {
+    margin: 0 1rem;
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+}
+
+
+.menu-item {
+    position: relative;
+    margin: 0 0.5rem;
+    cursor: pointer;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.submenu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.submenu li {
+    padding: 0;
+}
+
+.menu-item:hover .submenu {
+    display: block;
+    width: 12vw;
+}
+
+.accountLinks {
+    display: flex;
+    justify-content: right;
+}
+
+.navTop {
+    z-index: 2;
+    position: relative;
+    padding: 0 0 0 0;
+    margin: 0;
+    height: 3vh auto;
+    display:flex;
+    justify-content: right;
+    background-color: #ededed;
+
+}
+
+.heartIcon {
+    height: 100%;
+    color: rgb(117, 117, 117);
+}
+
+.heartIcon:hover {
+    color: red;
+}
+.heartIconDiv {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.divNav2 {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.accountBarDiv {
+    display: flex;
+    justify-content: right;
+
+}
+
+.nav-link {
+    text-decoration: none;
+    padding: 0.5rem;
+    display: block;
+}
+
+.nav-link:hover {
+    color: #000000;
+}
+
+.cartIcon {
+    margin-top: 2px;
+    margin-left: .5em;
+    height: 100%;
+    color: rgb(115, 115, 115);
+}
+
+.cartIcon:hover {
+    color: rgb(0, 17, 255);
+}
+
+
+.accountBarUL {
+    display: flex;
+    justify-content: flex-end;
+    list-style-type: none;
+    padding: 0;
+    margin: 0 2em 0 2em;
+}
+
+.accountButtons {
+    font-size: .8em;
+    padding: 0;
+    margin-bottom: .2em;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    transition: 0.001s;
+    outline: none;
+    box-shadow: none;
+}
+
+.accountButtons:hover {
+    color: rgb(15, 15, 15);
+    border-bottom: 2px solid;
+    border-radius: 0;
+    outline: none;
+    box-shadow: none;
+}
+
+
+.accountButtons:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+
+ul.menu {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0rem;
+}
+
+
+.navButtons {
+    display: flex;
+    align-items: center;
+    height: .9em;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+}

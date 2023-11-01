@@ -1,0 +1,221 @@
+
+.formHeader {
+    text-align: center;
+    width: 100%;
+    color: black;
+}
+
+.formHeaderContainer {
+    display: flex;
+    justify-content: center;
+}
+
+
+.formHeader2 {
+    width: 100%;
+    color: black;
+}
+
+.formHeader2Container {
+
+}
+.form1 {
+    height: auto;
+    width: 100% auto;
+    border-radius: 1em 1em;
+}
+
+.form2 {
+    display: flex;
+        justify-content: center;
+        height: auto;
+        width: 60vh;
+        border-radius: 1em 1em;
+        background-color: rgb(222, 222, 222);
+}
+
+.inputField1 {
+    padding-right: .4em;
+}
+
+.inputField2 {
+    padding-left: .4em;
+}
+
+.mainDiv1 {
+    display: flex;
+    justify-content: center;
+}
+
+
+.mainDivSignIn {
+    display: flex;
+    justify-content: center;
+    padding-top: 0;
+}
+
+.mainDivSignIn1 {
+    padding-top: 0;
+}
+
+
+.inputFields {
+    width: 100%;
+    display: grid;
+    justify-content: center;
+}
+
+
+.createButton {
+    color: #000000;
+    border: 1px solid black;
+    padding: 5px 16px;
+    margin-bottom: 0;
+    font-size: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+
+
+.createButtonDiv {
+        display: flex;
+        justify-content: center;
+}
+
+
+.createButtonDiv2{
+    display: flex;
+    justify-content: center;
+}
+
+
+.baseButton {
+    height: 3.9vh;
+    padding: 5px 16px;
+    margin: 5px;
+    border: 1px solid black;
+    color: #000000;
+    font-size: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+}
+
+
+.createButton1 {
+    width: auto;
+}
+
+.signUpButton {
+    background-color: transparent;
+    width: auto;
+    margin-bottom: 0;
+}
+
+.signUpLink {
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+
+.buttonDiv8 {
+    display: flex;
+    justify-content: center;
+}
+
+.centeredContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-bottom: 1em;
+}
+
+.centeredContainer .row {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.signUpButtonDiv {
+    display: flex;
+    justify-content: center;
+}
+
+.signUpLink {
+    text-decoration: none;
+    color: black;
+}
+
+
+.exitButton1 {
+    display: flex;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    width: 29px;
+    height: 30px;
+    color: rgb(44, 44, 44);
+    border-radius: 20%;
+
+}
+
+.exitButtonDiv1 {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-100%);
+    margin-right: 1em;
+}
+
+.signInXDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.signInModel {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    background-color: #eeeeee;
+    border: 1px solid rgba(0, 0, 0, 0.318);
+    z-index: 100;
+    min-width: 325px;
+    max-width: 500px;
+    transition: transform .4s, opacity 0.3s;
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+.signInModel.show {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    max-width: 25vw;
+    pointer-events: auto;
+    padding: 0;
+    box-shadow: 0 0 5px rgb(189, 189, 189);
+}
+
+
+.closeButton {
+
+}
+
+.closeButtonDiv {
+    display: flex;
+    justify-content: right;
+}

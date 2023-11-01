@@ -1,0 +1,36 @@
+.formShoe {
+    background-color: rgb(255, 255, 255);
+    border-radius: 1em 1em;
+}
+
+.formHeaderShoeForm {
+    font-size: 3em;
+    color: rgb(72, 72, 72);
+    margin-bottom: .4em;
+
+}
+
+.formHeaderContainer {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid black;
+}
+
+.inputBoxes {
+    border:1px solid black;
+}
+
+.createButtonShoe {
+    background-color: rgb(84, 84, 84);
+    color: white;
+}
+
+.createButtonShoe:hover {
+    background-color: rgb(128, 127, 127);
+    color: rgb(0, 0, 0);
+}
+
+.createButtonShoeDiv {
+    display: flex;
+    justify-content: center;
+}
