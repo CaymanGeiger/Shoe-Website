@@ -27,35 +27,7 @@ export function FilterBrands({ shoes, onBrandSelected }) {
     );
 }
 
-
-export function FilterCategory({ shoes, onCategorySelected }) {
-    const [selectedCategory, setSelectedCategory] = useState("");
-
-    const handleCategoryChange = (e) => {
-        setSelectedCategory(e.target.value);
-        onCategorySelected(e.target.value);
-    };
-
-    let uniqueCategories = new Set();
-    shoes.forEach(shoe => uniqueCategories.add(shoe.category));
-    let categoriesArray = [...uniqueCategories];
-
-    return (
-        <div>
-            <select value={selectedCategory} onChange={handleCategoryChange} required name="category" id="category" className="form-select filterSelects">
-                <option className="text-center">Category</option>
-                {categoriesArray.map(category => (
-                    <option className="text-center" key={category} value={category}>
-                        {category}
-                    </option>
-                ))}
-            </select>
-        </div>
-    );
-}
-
-
-export function FilterPrice({  onPriceSelected }) {
+export function FilterPrice({  shoes, onPriceSelected }) {
     const [selectedRange, setSelectedRange] = useState("");
 
     const priceRanges = [

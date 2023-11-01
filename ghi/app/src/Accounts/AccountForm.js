@@ -89,13 +89,13 @@ function AccountForm() {
     }
 
     return (
-            <div className="mt-4 p-4 mainDivSignIn" >
-                <div className="shadow p-5 mt-2 form2">
-                    <form onSubmit={handleSubmit} id="create-account-form">
+            <div className="mt-4 p-4 pt-3 mainDivSignIn" >
+                <div className="p-5 mt-2 form2">
+                    <form onSubmit={handleSubmit} id="create-account-form" className='formDiv'>
                         <div className="mb-3 mt-0 pt-0 formHeaderContainer" >
                             <h1 className='text-center mb-3 formHeader'>Create an Account With Us</h1>
                         </div>
-                        <div className="row" >
+                        <div className="row inputs" >
                         <div className="col-12 mb-2">
                             <input placeholder="Username..." className="text-center form-control" onChange={handleFormChange} value={formData.username} required type="text" name="username" id="username"/>
                         </div>
@@ -114,8 +114,8 @@ function AccountForm() {
                         <div className="col-6 mt-4 mb-2 inputField2">
                             <input placeholder="Password Confirmation..." className="text-center form-control" onChange={handlePasswordConfirmChange} value={passwordConfirm} required type="text" name="passwordConfirm" id="passwordConfirm"/>
                         </div>
-                        <div className="col">
-                        <button className="btn col-12 btn-primary mt-4 createButton">Create</button>
+                        <div className="col" style={{display: "flex", justifyContent: "center"}}>
+                        <button className="btn col-6 btn-primary mt-4 createButton">Create</button>
                         </div>
                         </div>
                     </form>

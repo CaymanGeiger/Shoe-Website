@@ -7,6 +7,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: hwb(0 100% 0%);
+  width: 100%;
 }
 
 code {
@@ -15,5 +16,6 @@ code {
 }
 
 html{
+  display: grid;
   width: 100%;
 }

@@ -2,15 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from decimal import Decimal
-
-
-class BinVO(models.Model):
-    import_href = models.CharField(max_length=200, unique=True)
-    name = models.CharField(max_length=200, null=True)
-    id = models.IntegerField(primary_key=True)
-
-    def __str__(self):
-        return self.name
+from django.contrib.postgres.fields import ArrayField
 
 
 class AccountVO(models.Model):
@@ -39,37 +31,24 @@ class AccountVO(models.Model):
 
 class Shoe(models.Model):
     name = models.CharField(max_length=100, null=True)
-    category = models.CharField(max_length=100, null=True)
     price = models.FloatField(null=True)
-    size = models.FloatField(null=True)
+    sizes = ArrayField(models.FloatField(), null=True, blank=True)
     color = models.CharField(max_length=100, null=True)
-    sku = models.PositiveBigIntegerField(null=True)
-    gender = models.CharField(max_length=100, null=True)
     brand = models.CharField(max_length=100, null=True)
     picture_url = models.URLField(max_length=5000, null=True)
     description = models.TextField(max_length=1000, null=True)
-    bin = models.ForeignKey(
-        BinVO,
-        related_name="shoes",
-        on_delete=models.CASCADE,
-        null=True,
-    )
 
     @property
     def serialized_shoe(self):
         return {
             "name": self.name,
             "id": self.id,
-            "category": self.category,
             "price": self.price,
-            "size": self.size,
+            "sizes": self.sizes,
             "color": self.color,
-            "sku": self.sku,
-            "gender": self.gender,
             "brand": self.brand,
             "picture_url": self.picture_url,
             "description": self.description,
-            "bin_id": self.bin_id,
             "serialized_ratings": self.serialized_ratings
         }
 
@@ -99,7 +78,7 @@ class Shoe(models.Model):
         }
 
     def __str__(self):
-        return self.name
+        return self.name or "Unknown Shoe"
 
     def get_api_url(self):
         return reverse("ShoeDetail", kwargs={"pk": self.pk})

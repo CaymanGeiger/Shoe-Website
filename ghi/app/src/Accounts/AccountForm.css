@@ -27,13 +27,19 @@
 
 .form2 {
     display: flex;
-        justify-content: center;
-        height: auto;
-        width: 60vh;
-        border-radius: 1em 1em;
-        background-color: rgb(222, 222, 222);
+    justify-content: center;
+    max-height: 80vh;
+    height: 1200px;
+    width: 60vh;
+    border-radius: 1em 1em;
+    background-color: rgb(255, 255, 255);
 }
 
+
+.inputs{
+    max-width: 400px;
+    min-width: 600px;
+}
 .inputField1 {
     padding-right: .4em;
 }
@@ -43,15 +49,20 @@
 }
 
 .mainDiv1 {
+
     display: flex;
     justify-content: center;
 }
 
+.formDiv{
+    height: 600px;
+}
 
 .mainDivSignIn {
     display: flex;
     justify-content: center;
     padding-top: 0;
+    height: 600px;
 }
 
 .mainDivSignIn1 {
@@ -67,7 +78,8 @@
 
 
 .createButton {
-    color: #000000;
+    background-color: rgb(84, 84, 84);
+    color: white;
     border: 1px solid black;
     padding: 5px 16px;
     margin-bottom: 0;
@@ -92,7 +104,7 @@
 
 
 .baseButton {
-    height: 3.9vh;
+    height: 35px;
     padding: 5px 16px;
     margin: 5px;
     border: 1px solid black;

@@ -1,13 +1,8 @@
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
-from .models import Shoe, BinVO, Rating, AccountVO, Favorite
+from .models import Shoe, Rating, AccountVO, Favorite
 from common.json import ModelEncoder
 import json
-
-
-class BinVODetailEncoder(ModelEncoder):
-    model = BinVO
-    properties = ["name", "id", "import_href"]
 
 
 class AccountEncoder(ModelEncoder):
@@ -30,20 +25,13 @@ class ShoeListEncoder(ModelEncoder):
         "name",
         "id",
         "brand",
-        "category",
         "price",
-        "size",
+        "sizes",
         "color",
-        "sku",
         "picture_url",
-        "gender",
         "description",
-        "bin",
         "serialized_ratings",
     ]
-    encoders = {
-        "bin": BinVODetailEncoder(),
-    }
 
 
 class ShoeDetailEncoder(ModelEncoder):
@@ -52,21 +40,13 @@ class ShoeDetailEncoder(ModelEncoder):
         "name",
         "id",
         "brand",
-        "category",
         "price",
-        "size",
+        "sizes",
         "color",
-        "sku",
         "picture_url",
-        "gender",
         "description",
-        "bin",
         "serialized_ratings",
-
     ]
-    encoders = {
-        "bin": BinVODetailEncoder(),
-    }
 
 
 class FavoriteEncoder(ModelEncoder):
@@ -92,15 +72,6 @@ def ShoeList(request, bin_vo_id=None):
         return JsonResponse({"shoes": shoes}, encoder=ShoeListEncoder, safe=False)
     else:
         content = json.loads(request.body)
-        try:
-            bin_href = content["bin"]
-            bin = BinVO.objects.get(import_href=bin_href)
-            content["bin"] = bin
-        except BinVO.DoesNotExist:
-            return JsonResponse(
-                {"message": "Invalid bin id"},
-                status=400,
-            )
         shoe = Shoe.objects.create(**content)
         return JsonResponse(
             shoe,

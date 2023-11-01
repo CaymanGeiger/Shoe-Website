@@ -13,6 +13,15 @@ function ShoeDetail() {
     const [activeTab, setActiveTab] = useState('details');
     const [showReviewModel, setShowReviewModel] = useState(false);
     const [showCreateReviewModel, setShowCreateReviewModel] = useState(false);
+    // const sizesArray = shoe.sizes.split(',').map(Number);
+    // const formatSizes = sizesArray.join(', ');
+
+
+    // useEffect(() => {
+    //     const sizesArray = shoe.sizes.split(',').map(Number);
+    //     const formatSizes = sizesArray.join(', ');
+    // }, [shoe.sizes]);
+
 
     const { id } = useParams();
 
@@ -54,6 +63,7 @@ function ShoeDetail() {
         setShowCreateReviewModel(!showCreateReviewModel)
     };
 
+
 return (
     <div className='detailMainDiv'>
     <div className='product'>
@@ -61,7 +71,7 @@ return (
             <div className='col-md-10 col-sm-12 card'>
                 <div className="imgContainer">
                     <div className='image1Div'>
-                    <img className="image1 img-fluid" src={`/images/img${randomNumber}.png`}/>
+                    <img className="image1 img-fluid" src={shoe.picture_url}/>
                     </div>
                 </div>
             </div>
@@ -88,23 +98,14 @@ return (
                         <hr></hr>
                     </div>
                     <div>
-                        <h5>Size</h5>
-                        <p className='tableData'>{shoe.size}</p>
+                        <h5>Sizes</h5>
+                        <p className='tableData'>{shoe.price}</p>
                         <hr></hr>
                     </div>
                     <div>
                         <h5>Color</h5>
                         <p className='tableData'>{shoe.color}</p>
                         <hr></hr>
-                    </div>
-                    <div>
-                        <h5>Sku</h5>
-                        <p className='tableData'>{shoe.sku}</p>
-                        <hr></hr>
-                    </div>
-                    <div>
-                        <h5>Gender</h5>
-                        <p className='tableData'>{shoe.gender}</p>
                     </div>
                 </div>
                 </div>

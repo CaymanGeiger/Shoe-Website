@@ -121,7 +121,7 @@ function FavoriteList(){
                             <FontAwesomeIcon  className="iconShare" icon={faShare} />
                         </div>
                         <div className="image">
-                            <img key={index} className="img" src={`/images/img${index + 1}.png`}/>
+                            <img key={index} className="img" src={item.shoe.picture_url}/>
                         </div>
                     </div>
                 </div>
@@ -132,7 +132,7 @@ function FavoriteList(){
                             <h2 className="shoeNameH2"><Link className="shoeName" to={`/shoes/${item.shoe.id}`}>{ item.shoe.name }</Link></h2>
                         </div>
                         <div className="shoePageStarsDiv">
-                            <StarRating shoeID={item.shoe.id} starStyle={{ fontSize: '1.5em', width: '20px', height: '20px',color: "grey" }}  ratingValue="average" />
+                            <StarRating shoeID={item.shoe.id} starStyle={{ fontSize: '2em', width: '28px', height: '25px',color: "grey"}}  ratingValue="average" />
                         </div>
                         </div>
                         </div>

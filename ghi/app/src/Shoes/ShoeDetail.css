@@ -63,13 +63,13 @@
     font-size: 2em;
     border-bottom: 3px solid grey;
     margin-bottom: 20px;
+
 }
 
 
 .nameDiv {
     display: flex;
     justify-content: center;
-    border-bottom: 1px solid rgb(255, 255, 255);
     margin-bottom: 1.4em;
     margin-top: 2em;
 
@@ -145,7 +145,7 @@
     grid-template-columns: 6fr 4fr;
     grid-gap: 0 1em;
     padding: 1em;
-    background-color: rgb(225, 225, 225);
+    background-color: rgb(255, 255, 255);
 }
 
 
@@ -170,6 +170,9 @@
 
 .shoeInfo {
     float: center;
+    background-color: rgba(237, 237, 237, 0.799);
+    padding: 20px;
+    height: 100%;
 }
 
 .product .boxesDiv {

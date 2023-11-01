@@ -120,8 +120,8 @@
 
 .iconHeart {
     padding: .15em;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     margin: 2px 0;
     color: rgba(0, 0, 0, 0.442);
 }
@@ -129,8 +129,8 @@
 
 .iconHeartFavorited {
     padding: .15em;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     margin: 2px 0;
     opacity: 1;
     z-index: 1;
@@ -139,8 +139,8 @@
 
 .iconShare {
     padding: .15em;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     border-radius: 5px;
     font-size: 18px;
     margin: 2px 0;
@@ -191,6 +191,8 @@
 .shoeBranDiv {
     display: flex;
     justify-content: left;
+    margin-top: -10px;
+    padding-top: 0;
 }
 
 
@@ -249,7 +251,6 @@
 .shoeNameContainer {
     display: flex;
     justify-content: left;
-
 }
 
 .shoeName {
@@ -261,7 +262,6 @@
 }
 
 .shoeNameH2{
-    margin-bottom: 0;
 }
 
 .shoeName:hover{
@@ -557,6 +557,7 @@ textarea {
     display: flex;
     justify-content: right;
     margin-top: .8em;
+    margin-right: 3em;
 }
 
 

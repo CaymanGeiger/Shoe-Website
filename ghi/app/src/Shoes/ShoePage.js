@@ -14,42 +14,21 @@ import { useModal } from '../Accounts/SignInModal';
 
 function ShoePage(){
     const [shoes, setShoes] = useState([]);
-    const [apiShoes, setApiShoes] = useState([]);
     const [userFavorites, setUserFavorites] = useState([]);
     const [filteredShoes, setFilteredShoes] = useState(shoes);
     const [lastFavoritedShoeId, setLastFavoritedShoeId] = useState(null);
+    const [brandSearched, setBrandSearched] = useState(false);
+    const [priceSearched, setPriceSearched] = useState(false);
+    const [nameSearched, setNameSearched] = useState(false);
+    const [nameSearch, setNameSearch] = useState("");
+    const [brandSearch, setBrandSearch] = useState("");
+    const [priceSearch, setPriceSearch] = useState("");
     const { userId } = useAuth();
     const showToast = useToast();
     const { openModal } = useModal();
-    const [formData, setFormData] = useState({
-                name: "",
-                brand: "",
-                categoryr: "",
-                price: "",
-                size: "",
-                color: "",
-                sku: "",
-                bin: ""
-        });
-    console.log(apiShoes)
+    const [selectedBrand, setSelectedBrand] = useState("Brand");
 
 
-    async function loadApiShoes() {
-        const keyword = encodeURIComponent('Nike Dunk');
-        const limit = 10;
-        const response = await fetch(`http://localhost:3001/products/${keyword}?limit=${limit}`);
-        console.log(response)
-        if (!response.ok) {
-        console.error("Server responded with error:", response.statusText);
-        return;
-        }
-        try {
-            const data = await response.json();
-            setApiShoes(data);
-        } catch (err) {
-            console.error("Error parsing server response:", err);
-        }
-    }
 
     async function loadShoes() {
         const response = await fetch('http://localhost:8080/api/shoes/');
@@ -65,7 +44,6 @@ function ShoePage(){
     console.log("favorites", userFavorites)
     useEffect(() => {
         loadFavorites();
-        loadApiShoes();
         loadShoes();
     }, []);
 
@@ -113,34 +91,83 @@ function ShoePage(){
     // }
 
 
-    const handleBrandFilter = (brand) => {
-        if (brand === "Brand") {
-            setFilteredShoes(shoes);
-        } else {
-            setFilteredShoes(shoes.filter(shoe => shoe.brand === brand));
+    function HandleBrandSearch(e) {
+        setBrandSearch(e.target.value)
+    }
+
+    function HandlePriceSearch(e) {
+        setPriceSearch(e.target.value)
+    }
+
+    function HandleNameSearch(e) {
+        setNameSearch(e.target.value)
+    }
+
+    function HandleNameSearchClick() {
+        setNameSearched(true)
+    }
+
+    function HandleBrandSearchClick() {
+        setBrandSearched(true)
+    }
+
+    function HandlePriceSearchClick() {
+        setPriceSearched(true)
+    }
+
+    useEffect(() => {
+    async function filterBrands() {
+        if (brandSearched !== "") {
+            const response = await fetch('http://localhost:8080/api/shoes/');
+            const data = await response.json();
+            const filteredBrands = data.shoes.filter(shoe =>
+                shoe.brand.toLowerCase().includes(brandSearch.toLowerCase())
+            );
+            setShoes(filteredBrands);
         }
-    };
+    }
+        filterBrands();
+        setPriceSearch("")
+        setNameSearch("")
+        setBrandSearched(false)
+    }, [brandSearched]);
 
 
-    const handleCategoryFilter = (category) => {
-        if (category === "Category") {
-            setFilteredShoes(shoes);
-        } else {
-            setFilteredShoes(shoes.filter(shoe => shoe.category === category));
+    useEffect(() => {
+    async function filterPrice() {
+        if (priceSearch !== ""){
+            const response = await fetch('http://localhost:8080/api/shoes/');
+            const data = await response.json();
+            const filteredBrands = data.shoes.filter(shoe =>
+                String(shoe.price).includes(priceSearch)
+            );
+            setShoes(filteredBrands);
         }
-    };
+    }
+        filterPrice();
+        setBrandSearch("")
+        setNameSearch("")
+        setPriceSearched(false)
+    }, [priceSearched]);
 
 
-    const handlePriceFilter = (selectedLabel) => {
-        if (selectedLabel === "Price Range") {
-            setFilteredShoes(shoes);
-        } else {
-            const range = priceRanges.find(r => r.label === selectedLabel);
-            if (range) {
-                setFilteredShoes(shoes.filter(shoe => shoe.price >= range.min && shoe.price <= range.max));
-            }
+    useEffect(() => {
+    async function filterName() {
+        if (nameSearch !== ""){
+            const response = await fetch('http://localhost:8080/api/shoes/');
+            const data = await response.json();
+            const filteredBrands = data.shoes.filter(shoe =>
+                shoe.name.toLowerCase().includes(nameSearch.toLowerCase())
+            );
+            setShoes(filteredBrands);
         }
-    };
+    }
+        filterName();
+        setBrandSearch("")
+        setPriceSearch("")
+        setNameSearched(false)
+    }, [nameSearched]);
+
 
     async function handleHeartClick(shoeId) {
         setLastFavoritedShoeId(shoeId);
@@ -220,18 +247,8 @@ function ShoePage(){
     };
 
 
-    const priceRanges = [
-        { label: '$1 - $50', min: 1, max: 50 },
-        { label: '$50 - $100', min: 50, max: 100 },
-        { label: '$100 - $150', min: 100, max: 150 },
-        { label: '$150 - $200', min: 150, max: 200 }
-    ];
-
     return (
         <>
-        <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        </head>
             <div className="App h1Container">
                 <button className="textBarButton" onClick={goPrevious}>&lt;</button>
                 <div className="textBarSpanDiv">
@@ -245,20 +262,23 @@ function ShoePage(){
             <div className="filterSideWindowDiv">
                 <div className="filterSideWindow">
                     <ul className="filterList">
-                    <li className="filterListItem">
-                        <FilterBrands shoes={shoes} onBrandSelected={handleBrandFilter} />
-                    </li>
-                    <li className="filterListItem">
-                        <FilterCategory shoes={shoes} onCategorySelected={handleCategoryFilter} />
-                    </li>
-                    <li className="filterListItem">
-                        <FilterPrice shoes={shoes} onPriceSelected={handlePriceFilter} />
-                    </li>
+                        <div className="col-12 mt-0 d-flex align-items-center">
+                            <input placeholder="Search by name.." className="form-control" onChange={HandleNameSearch} value={nameSearch} required type="text" name="nameSearch" id="nameSearch"/>
+                            <button onClick={HandleNameSearchClick}className="btn btn-light ml-2 mb-2">Search</button>
+                        </div>
+                        <div className="col-12 mt-0 d-flex align-items-center">
+                            <input placeholder="Search by brand.." className="form-control" onChange={HandleBrandSearch} value={brandSearch} required type="text" name="brandSearch" id="brandSearch"/>
+                            <button onClick={HandleBrandSearchClick}className="btn btn-light ml-2 mb-2">Search</button>
+                        </div>
+                        <div className="col-12 mt-0 d-flex align-items-center">
+                            <input placeholder="Search by price.." className="form-control" onChange={HandlePriceSearch} value={priceSearch} required type="number" name="priceSearch" id="priceSearch"/>
+                            <button onClick={HandlePriceSearchClick}className="btn btn-light ml-2 mb-2">Search</button>
+                        </div>
                     </ul>
                 </div>
             </div>
             <div className="box gap-3 div3 ">
-                {apiShoes.map((shoe, index) => {
+                {shoes.map((shoe, index) => {
                 const isFavorited = userFavorites.some(favorite => favorite.shoe_id === shoe.id);
                 console.log(`Shoe ID: ${shoe.id}, Is Favorited: ${isFavorited}`);
             return (
@@ -273,7 +293,7 @@ function ShoePage(){
                             <FontAwesomeIcon  className="iconShare" icon={faShare} />
                         </div>
                         <div className="image">
-                            <img key={index} className="img" src={shoe.thumbnail}/>
+                            <img key={index} className="img" src={shoe.picture_url}/>
                         </div>
                     </div>
                 </div>
@@ -281,10 +301,10 @@ function ShoePage(){
                     <div className="productsText">
                         <div className="nameReviewDiv">
                         <div className="shoeNameContainer">
-                            <h2 className="shoeNameH2"><Link className="shoeName" to={`/shoes/${shoe.id}`}>{ shoe.silhoutte }</Link></h2>
+                            <h2 className="shoeNameH2"><Link className="shoeName" to={`/shoes/${shoe.id}`}>{ shoe.name }</Link></h2>
                         </div>
                         <div className="shoePageStarsDiv">
-                            <StarRating shoeID={shoe.id} starStyle={{ fontSize: '1.5em', width: '20px', height: '20px',color: "grey" }}  ratingValue="average" />
+                            <StarRating shoeID={shoe.id} starStyle={{ fontSize: '2em', width: '28px', height: '25px',color: "grey"}}  ratingValue="average" />
                         </div>
                         </div>
                         </div>
@@ -292,7 +312,7 @@ function ShoePage(){
                             <h3 className="shoeBrand">{shoe.brand}</h3>
                         </div>
                         <div className="shoePriceDiv">
-                            <h3 className="shoePrice">${shoe.retailPrice}</h3>
+                            <h3 className="shoePrice">${shoe.price}</h3>
                         </div>
                 </div>
                 </div>
