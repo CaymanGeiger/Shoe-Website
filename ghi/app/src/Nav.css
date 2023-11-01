@@ -34,22 +34,20 @@ a {
     justify-content: center;
     align-items: center;
     margin-right: 4.5em;
+
 }
 
 
-.divNav2{
+.divNav2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 
-.navMainDiv {
+.navMainDiv {}
 
-}
-
-
-.websiteTitle{
+.websiteTitle {
     margin-right: 0;
     color: black;
     font-weight: bold;
@@ -62,6 +60,7 @@ a {
     list-style-type: none;
     padding: 0;
     display: flex;
+
 }
 
 
@@ -110,7 +109,7 @@ a {
     padding: 0 0 0 0;
     margin: 0;
     height: 3vh auto;
-    display:flex;
+    display: flex;
     justify-content: right;
     background-color: #ededed;
 
@@ -124,6 +123,7 @@ a {
 .heartIcon:hover {
     color: red;
 }
+
 .heartIconDiv {
     display: flex;
     align-items: center;
@@ -136,6 +136,7 @@ a {
     justify-content: space-between;
     align-items: center;
 }
+
 .accountBarDiv {
     display: flex;
     justify-content: right;
