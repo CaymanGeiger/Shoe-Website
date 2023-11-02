@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ShoeForm1.css';  // Assuming you'll add some CSS
+import './ShoeForm1.css';
 
 
     function ShoeForm1() {
@@ -8,55 +8,52 @@ import './ShoeForm1.css';  // Assuming you'll add some CSS
         const [formData, setFormData] = useState({
                 name: "",
                 brand: "",
-                categoryr: "",
                 price: "",
-                size: "",
+                sizes: "",
                 color: "",
-                sku: "",
-                bin: ""
+                picture_url: "",
+                description: "",
         });
 
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const accountUrl = 'http://localhost:8070/api/accounts/';
+        let sizesArray = formData.sizes.split(' ').filter(size => size.trim() !== "").map(size => parseFloat(size));
+        const shoeUrl = 'http://localhost:8080/api/shoes/';
+        let sendData = {...formData, sizes: sizesArray};
         const fetchConfig = {
             method: "post",
-            body: JSON.stringify(formData),
+            body: JSON.stringify(sendData),
             headers: {
                 'Content-Type': 'application/json',
             },
             }
 
-        if (formData.password === passwordConfirm){
-            const response = await fetch(accountUrl, fetchConfig);
-                if (response.ok) {
-                    setFormData({
-                        name: "",
-                        brand: "",
-                        categoryr: "",
-                        price: "",
-                        size: "",
-                        color: "",
-                        sku: "",
-                        bin: ""
-                    });
-                    setPasswordConfirm('')
-                }
-        } else {
-            alert("Passwords Do Not Match")
-        }
+        const response = await fetch(shoeUrl, fetchConfig);
+            if (response.ok) {
+                setFormData({
+                    name: "",
+                    brand: "",
+                    price: "",
+                    sizes: "",
+                    color: "",
+                    picture_url: "",
+                    description: "",
+                });
+            }
     }
 
 
         const handleFormChange = (e) => {
-        const value = e.target.value;
-        const inputName = e.target.name;
-        setFormData({
-            ...formData,
-            [inputName]: value
-        });
-    }
+            const value = e.target.value;
+            const inputName = e.target.name;
+            setFormData({
+                ...formData,
+                [inputName]: value
+            });
+        }
+
+
 
     const nextStep = () => setCurrentStep(currentStep + 1);
     const prevStep = () => setCurrentStep(currentStep - 1);
@@ -112,10 +109,10 @@ const StepContent =  ({ currentStep, formData, handleFormChange }) => {
                             <input placeholder="Brand..." className="text-center inputDiv form-control" onChange={handleFormChange} value={formData.brand} required type="text" name="brand" id="brand"/>
                         </div>
                         <div className="col-12">
-                            <input placeholder="Category..." className="text-center inputDiv form-control" onChange={handleFormChange} value={formData.category} required type="text" name="category" id="category"/>
+                            <input placeholder="Color..." className="text-center inputDiv form-control" onChange={handleFormChange} value={formData.color} required type="text" name="color" id="color"/>
                         </div>
                         <div className="col-12">
-                            <input placeholder="Color..." className="text-center inputDiv form-control" onChange={handleFormChange} value={formData.color} required type="text" name="color" id="username"/>
+                            <input placeholder="Picture Url..." className="text-center inputDiv form-control" onChange={handleFormChange} value={formData.picture_url} required type="text" name="picture_url" id="picture_url"/>
                         </div>
                     </div>
                 </>
@@ -131,13 +128,10 @@ const StepContent =  ({ currentStep, formData, handleFormChange }) => {
                         <input placeholder="Price..." className="text-center inputDiv form-control" onChange={handleFormChange} value={formData.price} type="number" step="0.01" name="price" id="price"/>
                     </div>
                     <div className="col-12 mb-2">
-                        <input placeholder="Size..." className="text-center inputDiv form-control" onChange={handleFormChange} value={formData.size} type="number" step="0.01" name="size" id="size"/>
+                        <input placeholder="Sizes..." className="text-center inputDiv form-control" onChange={handleFormChange} value={formData.sizes} type="text" step="0.01" name="sizes" id="sizes"/>
                     </div>
-                        <div className="col-12">
-                            <input placeholder="Sku..." className="text-center inputDiv form-control" onChange={handleFormChange} value={formData.sku} required type="number" name="sku" id="sku"/>
-                        </div>
                     <div className="col-12">
-                        <input placeholder="Store..." className="text-center inputDiv form-control" onChange={handleFormChange} value={formData.bin} required type="text" name="bin" id="bin"/>
+                            <textarea placeholder="Description..." className="text-center inputDiv form-control" onChange={handleFormChange} value={formData.description} required type="text" name="description" id="description"/>
                     </div>
                 </div>
                 </>

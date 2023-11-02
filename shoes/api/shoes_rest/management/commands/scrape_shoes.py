@@ -26,8 +26,8 @@ class Command(BaseCommand):
         parser.add_argument('--limit', type=int, default=50, help='The number of products to fetch')
 
     def handle(self, *args, **kwargs):
-        keywords = " ".join(kwargs['keywords'])  # This will join the keywords with spaces
-        encoded_keywords = quote(keywords)  # URL-encode the keywords string
+        keywords = " ".join(kwargs['keywords'])
+        encoded_keywords = quote(keywords)
 
         limit = kwargs['limit']
         params = {'limit': limit}
