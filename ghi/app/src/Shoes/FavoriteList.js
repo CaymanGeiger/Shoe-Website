@@ -81,7 +81,7 @@ function FavoriteList(){
     const messages = [
         "MEMBERS: NEW FEATURES ADDED SOON+",
         "YOUR FAVORITE SHOES ALL IN ONE PLACE",
-        "NEW ARRIVALS: CHECK OUT OUR LATEST COLLECTION"
+        "NEW ARRIVALS: CHECK OUT OUR COLLECTION"
     ];
 
     const goNext = () => {
@@ -97,9 +97,11 @@ function FavoriteList(){
     return (
         <>
             <div className="App h1Container">
-                <button onClick={goPrevious}>&lt;</button>
-                <span>{messages[currentIndex]}</span>
-                <button onClick={goNext}>&gt;</button>
+                <button className="textBarButton" onClick={goPrevious}>&lt;</button>
+                <div className="textBarSpanDiv">
+                <span className="textBarSpan">{messages[currentIndex]}</span>
+                </div>
+                <button className="textBarButton"  onClick={goNext}>&gt;</button>
             </div>
             <div className="products">
             <div className="favoritesTitleDiv">

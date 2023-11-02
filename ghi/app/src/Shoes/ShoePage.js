@@ -264,15 +264,21 @@ function ShoePage(){
                     <ul className="filterList">
                         <div className="col-12 mt-0 d-flex align-items-center">
                             <input placeholder="Search by name.." className="form-control" onChange={HandleNameSearch} value={nameSearch} required type="text" name="nameSearch" id="nameSearch"/>
-                            <button onClick={HandleNameSearchClick}className="btn btn-light ml-2 mb-2">Search</button>
+                            <div className="btn23Div">
+                                <button onClick={HandleNameSearchClick}className="btn btn-light ml-2 mb-2 btn23">Search</button>
+                            </div>
                         </div>
                         <div className="col-12 mt-0 d-flex align-items-center">
                             <input placeholder="Search by brand.." className="form-control" onChange={HandleBrandSearch} value={brandSearch} required type="text" name="brandSearch" id="brandSearch"/>
-                            <button onClick={HandleBrandSearchClick}className="btn btn-light ml-2 mb-2">Search</button>
+                            <div className="btn23Div">
+                                <button onClick={HandleBrandSearchClick}className="btn btn-light ml-2 mb-2 btn23">Search</button>
+                            </div>
                         </div>
                         <div className="col-12 mt-0 d-flex align-items-center">
                             <input placeholder="Search by price.." className="form-control" onChange={HandlePriceSearch} value={priceSearch} required type="number" name="priceSearch" id="priceSearch"/>
-                            <button onClick={HandlePriceSearchClick}className="btn btn-light ml-2 mb-2">Search</button>
+                            <div className="btn23Div">
+                                <button onClick={HandlePriceSearchClick}className="btn btn-light ml-2 mb-2 btn23">Search</button>
+                            </div>
                         </div>
                     </ul>
                 </div>

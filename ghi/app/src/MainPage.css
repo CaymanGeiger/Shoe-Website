@@ -48,8 +48,8 @@
 
 .image-container::after {
     bottom: 0;
-    max-height: 20vh;
-    height: 60vh;
+    min-height: 200px;
+    max-height: 250px;
 }
 
 .mainPageBelowImage {
@@ -116,6 +116,17 @@ button {
 }
 
 
-span {
-    margin: 0 20px;
+.textBarSpan {
+    flex: 1;
+    font-size: 15px;
+    text-align: center;
+    white-space: nowrap;
+    width: 100px;
+
+}
+
+.textBarSpanDiv {
+    width: 380px;
+    display: flex;
+    justify-content: center;
 }

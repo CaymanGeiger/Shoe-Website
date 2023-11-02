@@ -172,7 +172,7 @@
     float: center;
     background-color: rgba(237, 237, 237, 0.799);
     padding: 20px;
-    height: 100%;
+    height: fit-content;
 }
 
 .product .boxesDiv {
@@ -339,9 +339,13 @@ hr {
     margin-left: 0;
 }
 
+.newReviewForm {
+    font-size: 20px;
+    border-bottom: 1px solid white;
+}
 .reviewsShoe {
     padding: .5em;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.157);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.162);
     margin-bottom: .5em;
 }
 
@@ -355,7 +359,32 @@ hr {
 }
 
 .reviewsShoeDescriptionDiv {
-    box-shadow: 0px 0px 10px rgba(52, 52, 52, 0.1);
+    border: 1px solid rgba(198, 198, 198, 0.413);
+    box-shadow: 0px 0px 10px rgba(147, 147, 147, 0.1);
     height: 10vh;
     width: 100%;
+}
+
+.tableData {
+    font-size: 15px;
+    color: rgb(65, 65, 65);
+}
+
+.hr {
+    margin-bottom: 10px;
+}
+.tableDataHeader {
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.258);
+    font-size: 22px;
+
+}
+.tableDataDiv {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.tableDataHeaderDiv {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
 }

@@ -13,20 +13,12 @@ function ShoeDetail() {
     const [activeTab, setActiveTab] = useState('details');
     const [showReviewModel, setShowReviewModel] = useState(false);
     const [showCreateReviewModel, setShowCreateReviewModel] = useState(false);
-    // const sizesArray = shoe.sizes.split(',').map(Number);
-    // const formatSizes = sizesArray.join(', ');
-
-
-    // useEffect(() => {
-    //     const sizesArray = shoe.sizes.split(',').map(Number);
-    //     const formatSizes = sizesArray.join(', ');
-    // }, [shoe.sizes]);
 
 
     const { id } = useParams();
 
     const handleTouchMove = (event) => {
-        // Convert website to mobile using these after features are done
+
     };
 
     useEffect(() => {
@@ -80,32 +72,27 @@ return (
                     <div className='nameDiv'>
                     <h5 className='name'>{shoe.name}</h5>
                     </div>
-                <hr></hr>
-                <div>
-                    <div>
-                        <h5>Brand</h5>
+                <hr className='hr'></hr>
+                <div className='tableDataDiv'>
+                    <div className='tableDataHeaderDiv'>
+                        <h5 className='tableDataHeader'>Brand</h5>
                         <p className='tableData'>{shoe.brand}</p>
-                        <hr></hr>
+                        <hr className='hr'></hr>
                     </div>
-                    <div>
-                        <h5>Category</h5>
-                        <p className='tableData'>{shoe.category}</p>
-                        <hr></hr>
-                    </div>
-                    <div>
-                        <h5>Price</h5>
+                    <div className='tableDataHeaderDiv'>
+                        <h5 className='tableDataHeader'>Price</h5>
                         <p className='tableData'>{shoe.price}</p>
-                        <hr></hr>
+                        <hr className='hr'></hr>
                     </div>
-                    <div>
-                        <h5>Sizes</h5>
-                        <p className='tableData'>{shoe.price}</p>
-                        <hr></hr>
+                    <div className='tableDataHeaderDiv'>
+                        <h5 className='tableDataHeader'>Sizes</h5>
+                        <p className='tableData'>6.5 | 7.0 | 7.5</p>
+                        <hr className='hr'></hr>
                     </div>
-                    <div>
-                        <h5>Color</h5>
+                    <div className='tableDataHeaderDiv'>
+                        <h5 className='tableDataHeader'>Color</h5>
                         <p className='tableData'>{shoe.color}</p>
-                        <hr></hr>
+                        <hr className='hr'></hr>
                     </div>
                 </div>
                 </div>

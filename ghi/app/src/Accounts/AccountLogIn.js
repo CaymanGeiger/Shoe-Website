@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import "./AccountForm.css"
-import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Auth/AuthContext';
 import { useModal } from './SignInModal';
 import { Link } from 'react-router-dom';
@@ -14,7 +13,6 @@ function AccountLogIn() {
         username: '',
         password: '',
     });
-    const navigate = useNavigate();
     const { login } = useAuth();
     const [csrfToken, setCsrfToken] = useState('');
     const { closeModal } = useModal();
@@ -62,13 +60,15 @@ function AccountLogIn() {
             if (response.ok) {
 
                 login();
-                // showToast(`Welcome, ${userFirstName}!`, "success");
-                showToast("Welcome!", "success");
+                if (userFirstName){
+                    showToast(`Welcome, ${userFirstName}!`, "success");
+                } else {
+                    showToast("Welcome!", "success");
+                }
                 setFormData({
                     username: '',
                     password: '',
                 });
-                navigate("/")
                 closeModal()
             } else {
                 console.error('Login failed');
