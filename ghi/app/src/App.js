@@ -1,10 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ShoeList from './Shoes/ShoeList';
 import ShoeForm from './Shoes/ShoeForm';
 import ShoeDetail from './Shoes/ShoeDetail';
 import ShoePage from './Shoes/ShoePage';
 import FavoriteList from './Shoes/FavoriteList';
-import BinForm from './Bins/BinForm';
 import AccountList from './Accounts/AccountList';
 import AccountForm from './Accounts/AccountForm';
 import AccountLogIn from './Accounts/AccountLogIn';
@@ -15,7 +13,6 @@ import { ModalProvider } from './Accounts/SignInModal';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastProvider } from './ToastContext';
-import SignUpScreen from './Shoes/ShoeForm1';
 import Nav from './Nav';
 import "./App.css"
 
@@ -37,15 +34,10 @@ function App() {
                     <Route index element={<MainPage />} />
                 </Route>
                 <Route path="shoes">
-                    <Route index element={<ShoeList />} />
+                    <Route index element={<ShoePage />} />
                     <Route path="create" element={<ShoeForm />} />
                     <Route path=":id" element={<ShoeDetail />} />
-                    <Route path="page" element={<ShoePage />} />
                     <Route path="favorites" element={<FavoriteList />} />
-                    <Route path="new" element={<SignUpScreen />} />
-                </Route>
-                <Route path="bins">
-                    <Route index element ={<BinForm />} />
                 </Route>
                 <Route path="accounts">
                     <Route index element ={<AccountList />} />

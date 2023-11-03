@@ -57,20 +57,11 @@ function Nav() {
               <div className="submenu">
                   <ul>
                       <li className="nav-item">
-                        <NavLink className="nav-link navLinks" to="/shoes/page">Catalog</NavLink>
+                        <NavLink className="nav-link navLinks" to="/shoes">Catalog</NavLink>
                       </li>
                         <li className="nav-item navLinksDiv">
                           <NavLink className="nav-link navLinks" to="/shoes/create">Create Shoe</NavLink>
                         </li>
-                        <li className="nav-item navLinksDiv">
-                          <NavLink className="nav-link navLinks" to="/shoes/new">New Create Shoe</NavLink>
-                        </li>
-                        <li className="nav-item">
-                          <NavLink className="nav-link navLinks" to="/bins">Create Store</NavLink>
-                        </li>
-                      <li className="nav-item">
-                        <NavLink className="nav-link navLinks" to="/shoes">Shoes List</NavLink>
-                      </li>
                   </ul>
               </div>
           </li>

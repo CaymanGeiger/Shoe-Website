@@ -3,7 +3,6 @@ import {useState, useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faShare, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { Link } from "react-router-dom"
-import { FilterBrands, FilterCategory, FilterPrice } from "./ShoePageFilter";
 import StarRating from "./Reviews/Stars"
 import { useAuth } from '../Auth/AuthContext';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,7 +14,6 @@ import { useModal } from '../Accounts/SignInModal';
 function ShoePage(){
     const [shoes, setShoes] = useState([]);
     const [userFavorites, setUserFavorites] = useState([]);
-    const [filteredShoes, setFilteredShoes] = useState(shoes);
     const [lastFavoritedShoeId, setLastFavoritedShoeId] = useState(null);
     const [brandSearched, setBrandSearched] = useState(false);
     const [priceSearched, setPriceSearched] = useState(false);
@@ -26,8 +24,7 @@ function ShoePage(){
     const { userId } = useAuth();
     const showToast = useToast();
     const { openModal } = useModal();
-    const [selectedBrand, setSelectedBrand] = useState("Brand");
-
+    console.log(lastFavoritedShoeId)
 
 
     async function loadShoes() {
@@ -47,48 +44,6 @@ function ShoePage(){
         loadShoes();
     }, []);
 
-
-
-    // const handleSubmit = async (event) => {
-    //     event.preventDefault();
-    //     const accountUrl = 'http://localhost:8070/api/accounts/';
-    //     const fetchConfig = {
-    //         method: "post",
-    //         body: JSON.stringify(formData),
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         }
-
-    //     if (formData.password === passwordConfirm){
-    //         const response = await fetch(accountUrl, fetchConfig);
-    //             if (response.ok) {
-    //                 setFormData({
-    //                     name: "",
-    //                     brand: "",
-    //                     categoryr: "",
-    //                     price: "",
-    //                     size: "",
-    //                     color: "",
-    //                     sku: "",
-    //                     bin: ""
-    //                 });
-    //                 setPasswordConfirm('')
-    //             }
-    //     } else {
-    //         alert("Passwords Do Not Match")
-    //     }
-    // }
-
-
-    //     const handleFormChange = (e) => {
-    //     const value = e.target.value;
-    //     const inputName = e.target.name;
-    //     setFormData({
-    //         ...formData,
-    //         [inputName]: value
-    //     });
-    // }
 
 
     function HandleBrandSearch(e) {
@@ -177,7 +132,6 @@ function ShoePage(){
             showToast("Please log in first!", "error");
         } else {
 
-
         if (!(isFavorited)){
         showToast("Added To Favorites!", "success");
         const response = await fetch (`http://localhost:8080/api/favorites/${shoeId}/${userId}/`, {
@@ -186,6 +140,7 @@ function ShoePage(){
             },
             method: "POST"
         });
+
         if (response.ok) {
             await loadFavorites();
             const isAlreadyFavorited = userFavorites.some(favorite => favorite.shoe_id === shoeId);
@@ -197,7 +152,6 @@ function ShoePage(){
                 };
                 setUserFavorites(prevFavorites => [...prevFavorites, newFavorite]);
             }
-
         } else {
             alert("Not Added!");
         }
@@ -206,16 +160,14 @@ function ShoePage(){
             showToast("Removed From Favorites!", "error");
             const favoritedItem = userFavorites.find(favorite => favorite.shoe_id === shoeId);
             const favoriteId = favoritedItem.favorite_id;
-            console.log(favoritedItem)
             const response = await fetch (`http://localhost:8080/api/favorite/${favoriteId}/`, {
             method: "DELETE"
         });
-
-        if (response.ok){
-        setUserFavorites(prevFavorites => prevFavorites.filter(favorite => favorite.shoe_id !== shoeId));
-        } else {
-            alert("Not Deleted!")
-        }
+            if (response.ok){
+                setUserFavorites(prevFavorites => prevFavorites.filter(favorite => favorite.shoe_id !== shoeId));
+            } else {
+                alert("Not Deleted!")
+            }
         }
         }
     }

@@ -556,6 +556,10 @@ textarea {
     width: 100%;
 }
 
+.mainCard:hover {
+
+}
+
 .textBarButton {
     background: none;
     border: none;

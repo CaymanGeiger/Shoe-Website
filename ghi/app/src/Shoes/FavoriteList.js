@@ -3,7 +3,6 @@ import {useState, useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShare, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { Link } from "react-router-dom"
-import { FilterBrands, FilterCategory, FilterPrice } from "./ShoePageFilter";
 import StarRating from "./Reviews/Stars"
 import { useAuth } from '../Auth/AuthContext';
 

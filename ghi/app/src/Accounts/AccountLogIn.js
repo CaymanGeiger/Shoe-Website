@@ -58,7 +58,6 @@ function AccountLogIn() {
             const response = await fetch(accountUrl, fetchConfig);
 
             if (response.ok) {
-
                 login();
                 if (userFirstName){
                     showToast(`Welcome, ${userFirstName}!`, "success");
