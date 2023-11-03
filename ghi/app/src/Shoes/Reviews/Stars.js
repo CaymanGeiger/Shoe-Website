@@ -9,7 +9,6 @@ import "../ShoePage.css"
 function StarRating({  starStyle = {}, shoeID, ratingValue = null, forceRatingValue = null }) {
     const [shoeRating, setShoeRating] = useState(ratingValue || null);
     const [shoeRatingAverage, setShoeRatingAverage] = useState(null);
-    console.log(shoeID)
 
     async function loadRating() {
         try {

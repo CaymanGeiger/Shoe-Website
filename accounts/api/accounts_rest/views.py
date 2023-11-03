@@ -8,6 +8,11 @@ from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
 from django.utils.decorators import method_decorator
 from django.middleware.csrf import get_token
 from django.views import View
+from django.contrib.auth.hashers import make_password
+from django.core.exceptions import ValidationError
+from django.contrib.auth.hashers import make_password
+
+
 
 
 class AccountEncoder(ModelEncoder):
@@ -55,20 +60,15 @@ def accountLogIn(request):
         content = json.loads(request.body)
         username = content.get('username')
         password = content.get('password')
-        user = authenticate(
-            request,
-            username=username,
-            password=password,
-        )
+        user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
             return JsonResponse({'message': 'User logged in successfully'})
         else:
-            return JsonResponse({'error': 'User login failed'}, status=400)
+            return JsonResponse({'error': 'Invalid username or password'}, status=400)
     return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 
-@csrf_protect
 @require_http_methods(["GET", "POST"])
 def accountList(request):
     if request.method == "GET":
@@ -78,14 +78,35 @@ def accountList(request):
             encoder=AccountEncoder,
             safe=False
             )
-    else:
+    elif request.method == "POST":
         content = json.loads(request.body)
-        account = Account.objects.create(**content)
-        return JsonResponse(
-            account,
-            encoder=AccountEncoder,
-            safe=False,
-        )
+        username = content.get('username')
+        password = content.get('password')
+        email = content.get('email')
+        first_name = content.get('first_name')
+        last_name = content.get('last_name')
+
+        try:
+            user = Account.objects.create_user(
+                username=username,
+                email=email,
+                password=password,
+                first_name=first_name,
+                last_name=last_name
+            )
+
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return JsonResponse({'message': 'User created and logged in successfully'})
+            else:
+                return JsonResponse({'error': 'Authentication failed after user creation'}, status=400)
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+
+    return JsonResponse({'error': 'Invalid request method'}, status=400)
+
+
 
 
 @require_http_methods(["GET", "DELETE"])

@@ -24,7 +24,6 @@ function ShoePage(){
     const { userId } = useAuth();
     const showToast = useToast();
     const { openModal } = useModal();
-    console.log(lastFavoritedShoeId)
 
 
     async function loadShoes() {
@@ -38,7 +37,6 @@ function ShoePage(){
         const data = await response.json();
         setUserFavorites(data.favorites);
     }
-    console.log("favorites", userFavorites)
     useEffect(() => {
         loadFavorites();
         loadShoes();
@@ -238,7 +236,6 @@ function ShoePage(){
             <div className="box gap-3 div3 ">
                 {shoes.map((shoe, index) => {
                 const isFavorited = userFavorites.some(favorite => favorite.shoe_id === shoe.id);
-                console.log(`Shoe ID: ${shoe.id}, Is Favorited: ${isFavorited}`);
             return (
                 <div key={shoe.id} className="mainCard">
                 <div className="topCard">

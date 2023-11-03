@@ -8,16 +8,19 @@ import { faStar, faX } from '@fortawesome/free-solid-svg-icons';
 import { useToast } from '../ToastContext';
 
 
+
 function AccountLogIn() {
     const [formData, setFormData] = useState({
         username: '',
         password: '',
     });
     const { login } = useAuth();
-    const [csrfToken, setCsrfToken] = useState('');
     const { closeModal } = useModal();
     const showToast = useToast();
-    const { userFirstName } = useAuth();
+    const { userFirstName, isAuthenticated } = useAuth();
+    const [loginCompleted, setLoginCompleted] = useState(false);
+    const [csrfToken, setCsrfToken] = useState('');
+
 
 
     useEffect(() => {
@@ -40,7 +43,6 @@ function AccountLogIn() {
 
         fetchCsrfToken();
     }, []);
-
     const handleSubmit = async (event) => {
 
         event.preventDefault();
@@ -53,22 +55,20 @@ function AccountLogIn() {
                 'X-CSRFToken': csrfToken,
             },
             credentials: 'include',
+
             }
         try {
             const response = await fetch(accountUrl, fetchConfig);
 
             if (response.ok) {
-                login();
-                if (userFirstName){
-                    showToast(`Welcome, ${userFirstName}!`, "success");
-                } else {
-                    showToast("Welcome!", "success");
-                }
-                setFormData({
+                login().then(() => {
+                    setLoginCompleted(true);
+                    setFormData({
                     username: '',
                     password: '',
+                    });
+                    closeModal();
                 });
-                closeModal()
             } else {
                 console.error('Login failed');
             }
@@ -76,6 +76,15 @@ function AccountLogIn() {
             console.error('Error during Login:', error);
         }
     }
+    useEffect(() => {
+        if (loginCompleted && userFirstName) {
+            showToast(`Welcome, ${userFirstName}!`, "success");
+        } else if (loginCompleted) {
+            showToast("Welcome!", "success");
+        }
+        setLoginCompleted(false);
+    }, [userFirstName, loginCompleted]);
+
 
 
 

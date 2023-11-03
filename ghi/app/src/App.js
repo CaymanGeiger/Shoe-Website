@@ -6,6 +6,7 @@ import FavoriteList from './Shoes/FavoriteList';
 import AccountList from './Accounts/AccountList';
 import AccountForm from './Accounts/AccountForm';
 import AccountLogIn from './Accounts/AccountLogIn';
+import AccountDetail from './Accounts/AccountDetail';
 import LogoutButton from './Accounts/AccountLogOut';
 import MainPage from './MainPage';
 import { useAuth } from './Auth/AuthContext';
@@ -15,6 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastProvider } from './ToastContext';
 import Nav from './Nav';
 import "./App.css"
+
 
 
 
@@ -41,6 +43,7 @@ function App() {
                 </Route>
                 <Route path="accounts">
                     <Route index element ={<AccountList />} />
+                    <Route path="detail" element={<AccountDetail />} />
                     <Route path="form" element={<AccountForm />} />
                     <Route path="login" element={<AccountLogIn />} />
                     <Route path="logout" element={<LogoutButton />} />

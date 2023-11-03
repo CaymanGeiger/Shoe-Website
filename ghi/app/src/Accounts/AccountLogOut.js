@@ -1,11 +1,11 @@
-import { useAuth } from '../Auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import { useAuth } from '../Auth/AuthContext';
 
 
 export const useLogout = () => {
     const navigate = useNavigate();
-    const { logout } = useAuth();
+    const { checkAuthStatus, logout } = useAuth();
     const [csrfToken, setCsrfToken] = useState('');
 
 
@@ -45,6 +45,7 @@ export const useLogout = () => {
 
             if (response.ok) {
                 logout();
+                checkAuthStatus()
                 navigate('/');
             } else {
                 console.error('Logout failed');
