@@ -66,9 +66,9 @@ import './ShoeForm.css';
                         <StepContent currentStep={currentStep} formData={formData} handleFormChange={handleFormChange} />
                     </div>
                     <div className="navigation-buttons">
-                        {currentStep > 1 && <button type="button" onClick={prevStep}>Back</button>}
-                        {currentStep < 2 && <button type="button" onClick={nextStep}>Next</button>}
-                        {currentStep === 2 && <button type="submit">Submit</button>}
+                        {currentStep > 1 && <button className="buttonText" type="button" onClick={prevStep}>Back</button>}
+                        {currentStep < 2 && <button  className="buttonText" type="button" onClick={nextStep}>Next</button>}
+                        {currentStep === 2 && <button  className="buttonText" type="submit">Submit</button>}
                     </div>
                 </form>
             </div>
@@ -81,8 +81,8 @@ const Stepper = ({ currentStep }) => {
     return (
         <div className="stepper">
             <div className='shoeFormStepperDiv'>
-                <div className={`dot ${currentStep === 1 ? 'filled' : ''}`}></div>
-                <div className={`dot ${currentStep === 2 ? 'filled' : ''}`}></div>
+                <div className={`dot1 ${currentStep === 1 ? 'filled' : ''}`}></div>
+                <div className={`dot1 ${currentStep === 2 ? 'filled' : ''}`}></div>
             </div>
         </div>
     );
@@ -95,7 +95,7 @@ const StepContent =  ({ currentStep, formData, handleFormChange }) => {
                 <>
                     <div className='caseOneDiv'>
                         <div className='formCaseDiv'>
-                            <h2>Shoe Details</h2>
+                            <h2 className='shoeDetailsHeader'>Shoe Details</h2>
                             <Stepper currentStep={currentStep} />
                         </div>
                         <div className='inputsDiv'>
@@ -120,7 +120,7 @@ const StepContent =  ({ currentStep, formData, handleFormChange }) => {
                 <>
                 <div className='caseOneDiv'>
                     <div className='formCaseDiv'>
-                            <h2>Shoe Details</h2>
+                            <h2 className='shoeDetailsHeader'>Shoe Details</h2>
                             <Stepper currentStep={currentStep} />
                     </div>
                     <div className='inputsDiv'>

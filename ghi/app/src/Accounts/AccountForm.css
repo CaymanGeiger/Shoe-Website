@@ -38,7 +38,7 @@
 
 .inputs{
     max-width: 400px;
-    min-width: 600px;
+    min-width: 440px;
 }
 .inputField1 {
     padding-right: .4em;
@@ -88,8 +88,13 @@
     white-space: nowrap;
 }
 
-
-
+.createButton:hover{
+    background-color: rgb(129, 129, 129);
+    color: black;
+}
+.filled {
+    background-color: green;
+}
 
 .createButtonDiv {
         display: flex;
@@ -113,6 +118,13 @@
     overflow: hidden;
     white-space: nowrap;
     transition: background-color 0.3s ease;
+    background-color: rgb(219, 219, 219);
+}
+
+.baseButton:focus {
+    outline: none;
+    box-shadow: none;
+    background-color: white;
 }
 
 
@@ -133,6 +145,12 @@
     width: 100%;
     height: 100%;
 }
+
+.signUpLink:focus {
+    outline: none;
+    box-shadow: none;
+}
+
 
 
 .buttonDiv8 {

@@ -36,11 +36,11 @@ function MainPage() {
       <h1 className="display-5 fw-bold mainPageTitle">WARDROBIFY!</h1>
       <div className="col-lg-6 mx-auto">
         <p className="lead mb-4">
-          Need to keep track of your shoes and hats? We have
+          Need to sell of your shoes? We have
           the solution for you!
         </p>
         <div>
-          <Link className='shopButtonLink' to="/shoes/page">
+          <Link className='shopButtonLink' to="/shoes">
               <button className="shop-button">Shop</button>
           </Link>
         </div>

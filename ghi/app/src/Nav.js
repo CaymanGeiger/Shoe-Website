@@ -7,8 +7,11 @@ import LogoutButton from './Accounts/AccountLogOut';
 import { useNavigate } from 'react-router-dom';
 import { useModal } from './Accounts/SignInModal';
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
-import { faStar, faCartShopping, faShop } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faCartShopping, faShop, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import 'react-toastify/dist/ReactToastify.css';
+import { useToast } from './ToastContext';
+
 
 
 
@@ -17,10 +20,27 @@ function Nav() {
     const handleLogout = useLogout();
     const navigate = useNavigate();
     const { openModal } = useModal();
+    const { isActive } = useAuth();
+    const { userId } = useAuth();
+    const showToast = useToast();
 
 
     function handleFavoritesClick(){
+      if (!(userId)) {
+            openModal(true)
+            showToast("Please log in first!", "error");
+        } else {
         navigate('/shoes/favorites')
+        }
+    }
+
+    function handlePersonClick() {
+      if (!(userId)) {
+            openModal(true)
+            showToast("Please log in first!", "error");
+        } else {
+        navigate('/accounts/detail')
+        }
     }
 
 
@@ -39,6 +59,9 @@ function Nav() {
             )}
             {isAuthenticated &&(
               <>
+              <div className='dotDiv'>
+              <div className={`dot ${isActive === true ? 'filled' : ''}`}></div>
+              </div>
                 <li className="nav-item">
                     <LogoutButton/>
                 </li>
@@ -81,11 +104,14 @@ function Nav() {
         </div>
       </div>
           <div className="heartIconDiv">
-            <button className='navButtons'>
-          <FontAwesomeIcon onClick={handleFavoritesClick} className="heartIcon" icon={faHeart}/>
+            <button>
+                <FontAwesomeIcon onClick={handlePersonClick} className="personIcon"  icon={faUser} />
             </button>
             <button className='navButtons'>
-          <FontAwesomeIcon className="cartIcon" icon={faCartShopping} />
+                <FontAwesomeIcon onClick={handleFavoritesClick} className="heartIcon" icon={faHeart}/>
+            </button>
+            <button className='navButtons'>
+                <FontAwesomeIcon className="cartIcon" icon={faCartShopping} />
             </button>
         </div>
     </nav>

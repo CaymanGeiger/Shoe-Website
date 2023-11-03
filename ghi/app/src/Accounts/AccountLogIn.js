@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faX } from '@fortawesome/free-solid-svg-icons';
 import { useToast } from '../ToastContext';
-
+import { useNavigate } from 'react-router-dom';
 
 
 function AccountLogIn() {
@@ -20,6 +20,7 @@ function AccountLogIn() {
     const { userFirstName, isAuthenticated } = useAuth();
     const [loginCompleted, setLoginCompleted] = useState(false);
     const [csrfToken, setCsrfToken] = useState('');
+    const navigate = useNavigate();
 
 
 
@@ -86,8 +87,6 @@ function AccountLogIn() {
     }, [userFirstName, loginCompleted]);
 
 
-
-
     const handleFormChange = (e) => {
         const value = e.target.value;
         const inputName = e.target.name;
@@ -96,6 +95,14 @@ function AccountLogIn() {
             [inputName]: value
         });
     }
+
+
+
+    function handleSignUpClick(){
+            closeModal(false)
+            navigate('/accounts/form')
+        }
+
 
     return (
             <div className='mainDivSignIn1'>
@@ -121,9 +128,7 @@ function AccountLogIn() {
                         <div className='row'>
                             <div className='col buttonDiv8'>
                                 <button className="btn mt-2 baseButton createButton1 ">Login</button>
-                                <button onClick={closeModal} className='baseButton signUpButton btn mt-2'>
-                                    <Link to='/accounts/form' className="signUpLink">Sign Up</Link>
-                                </button>
+                                <button onClick={handleSignUpClick} className='baseButton createButton1 btn mt-2'>Signup</button>
                             </div>
                         </div>
                     </div>

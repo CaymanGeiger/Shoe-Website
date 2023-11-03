@@ -23,6 +23,7 @@ class AccountEncoder(ModelEncoder):
         "first_name",
         "last_name",
         "date_joined",
+        "is_active",
         "email",
         "user_level",
         "profile_picture",
@@ -38,11 +39,13 @@ class CheckAuthStatusView(View):
     @method_decorator(ensure_csrf_cookie)
     def get(self, request):
         user_id = request.user.id if request.user.is_authenticated else None
+        is_active = request.user.is_active if request.user.is_authenticated else None
         user_first_name = request.user.first_name if request.user.is_authenticated else None
         return JsonResponse({
             'isAuthenticated': request.user.is_authenticated,
             "id": user_id,
-            "first_name": user_first_name
+            "first_name": user_first_name,
+            "is_active": is_active
         })
 
 

@@ -14,7 +14,7 @@ function AccountDetail() {
     });
 
 
-    
+
 
     useEffect(() => {
 
@@ -29,7 +29,6 @@ function AccountDetail() {
 
 return (
     <div className='accountDetailMainDiv'>
-        {account.is_active ? "yes" : "no"}
         <div className='accountCardBox'>
                 <div className='accountNameImageDiv'>
                         <div className='accountImageDiv'>
@@ -43,7 +42,6 @@ return (
                         </div>
                 </div>
                 <div className='accountInfo'>
-                    <h5 className='accountDetailsHeader'>Account Info:</h5>
                 <div className='accountDetails'>
                     <div className='accountDetailsDiv'>
                         <h5 className='accountDetailsHeader'>Username:</h5>
