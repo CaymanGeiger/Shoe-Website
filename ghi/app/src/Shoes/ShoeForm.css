@@ -37,6 +37,11 @@
     background: #494949;
 }
 
+.filled1 {
+    background: #850a0a;
+}
+
+
 .navigation-buttons {
     display: flex;
     justify-content: left;

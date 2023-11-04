@@ -81,8 +81,8 @@ const Stepper = ({ currentStep }) => {
     return (
         <div className="stepper">
             <div className='shoeFormStepperDiv'>
-                <div className={`dot1 ${currentStep === 1 ? 'filled' : ''}`}></div>
-                <div className={`dot1 ${currentStep === 2 ? 'filled' : ''}`}></div>
+                <div className={`dot1 ${currentStep === 1 ? 'filled1' : ''}`}></div>
+                <div className={`dot1 ${currentStep === 2 ? 'filled1' : ''}`}></div>
             </div>
         </div>
     );

@@ -142,6 +142,10 @@ a {
 }
 
 
+.personIcon:hover {
+    color: rgb(0, 0, 0);
+}
+
 .heartIcon {
     height: 100%;
     color: rgb(117, 117, 117);

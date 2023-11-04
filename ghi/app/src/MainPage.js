@@ -36,7 +36,7 @@ function MainPage() {
       <h1 className="display-5 fw-bold mainPageTitle">WARDROBIFY!</h1>
       <div className="col-lg-6 mx-auto">
         <p className="lead mb-4">
-          Need to sell of your shoes? We have
+          Need to buy or sell shoes? We have
           the solution for you!
         </p>
         <div>

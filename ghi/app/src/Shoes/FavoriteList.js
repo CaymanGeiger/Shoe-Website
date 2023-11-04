@@ -10,6 +10,7 @@ import { useAuth } from '../Auth/AuthContext';
 function FavoriteList(){
     const [userFavorites, setUserFavorites] = useState([]);
     const [lastFavoritedShoeId, setLastFavoritedShoeId] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
     const { userId } = useAuth();
     console.log(userFavorites)
 
@@ -36,6 +37,7 @@ function FavoriteList(){
         });
         if (response.ok) {
             await loadFavorites();
+            setIsLoading(true)
             const isAlreadyFavorited = userFavorites.some(favorite => favorite.shoe_id === shoeId);
             if (isAlreadyFavorited) {
                 setUserFavorites(prevFavorites => prevFavorites.filter(favorite => favorite.shoe_id !== shoeId));
@@ -103,7 +105,7 @@ function FavoriteList(){
                 <button className="textBarButton"  onClick={goNext}>&gt;</button>
             </div>
             <div className="products">
-            {userFavorites.length === 0 ? (
+            {isLoading && userFavorites.length === 0 ? (
                 <div className="noFavortiesDiv">
                     <h2 className="noFavorites">No Favorites Added!</h2>
                         <div className='shopButtonLinkDiv' >

@@ -66,14 +66,6 @@ function ShoeList() {
     }
 
 
-    // function onToggleNameDirection(){
-
-    // }
-
-    // function onToggleBrandDirection(){
-
-    // }
-
     const sortedList = shoes.sort((shoeA, shoeB) => {
         if (nameIsUp === true) {
             return shoeA.name.localeCompare(shoeB.name);
