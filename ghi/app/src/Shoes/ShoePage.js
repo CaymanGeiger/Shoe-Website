@@ -199,7 +199,7 @@ function ShoePage(){
 
     return (
         <>
-            <div className="App h1Container">
+            <div className="App1 h1Container">
                 <button className="textBarButton" onClick={goPrevious}>&lt;</button>
                 <div className="textBarSpanDiv">
                 <span className="textBarSpan">{messages[currentIndex]}</span>
@@ -212,20 +212,20 @@ function ShoePage(){
             <div className="filterSideWindowDiv">
                 <div className="filterSideWindow">
                     <ul className="filterList">
-                        <div className="col-12 mt-0 d-flex align-items-center">
-                            <input placeholder="Search by name.." className="form-control" onChange={HandleNameSearch} value={nameSearch} required type="text" name="nameSearch" id="nameSearch"/>
+                        <div className="col-12 mt-0 d-flex align-items-center filterInputs">
+                            <input placeholder="Name" className="form-control" onChange={HandleNameSearch} value={nameSearch} required type="text" name="nameSearch" id="nameSearch"/>
                             <div className="btn23Div">
                                 <button onClick={HandleNameSearchClick}className="btn btn-light ml-2 mb-2 btn23">Search</button>
                             </div>
                         </div>
-                        <div className="col-12 mt-0 d-flex align-items-center">
-                            <input placeholder="Search by brand.." className="form-control" onChange={HandleBrandSearch} value={brandSearch} required type="text" name="brandSearch" id="brandSearch"/>
+                        <div className="col-12 mt-0 d-flex align-items-center filterInputs">
+                            <input placeholder="Brand.." className="form-control" onChange={HandleBrandSearch} value={brandSearch} required type="text" name="brandSearch" id="brandSearch"/>
                             <div className="btn23Div">
                                 <button onClick={HandleBrandSearchClick}className="btn btn-light ml-2 mb-2 btn23">Search</button>
                             </div>
                         </div>
-                        <div className="col-12 mt-0 d-flex align-items-center">
-                            <input placeholder="Search by price.." className="form-control" onChange={HandlePriceSearch} value={priceSearch} required type="number" name="priceSearch" id="priceSearch"/>
+                        <div className="col-12 mt-0 d-flex align-items-center filterInputs">
+                            <input placeholder="Price" className="form-control" onChange={HandlePriceSearch} value={priceSearch} required type="number" name="priceSearch" id="priceSearch"/>
                             <div className="btn23Div">
                                 <button onClick={HandlePriceSearchClick}className="btn btn-light ml-2 mb-2 btn23">Search</button>
                             </div>

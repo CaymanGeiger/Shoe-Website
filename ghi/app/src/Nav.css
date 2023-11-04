@@ -132,8 +132,7 @@ a {
     height: 3vh auto;
     display:flex;
     justify-content: right;
-    background-color: #ededed;
-
+    background-color: rgb(245, 245, 245);
 }
 
 

@@ -18,7 +18,7 @@
 }
 
 .accountImage {
-    width: calc(88px + (100 - 52) * ((100vw - 320px) / (1600 - 320)));
+    width: calc(80px + (100 - 52) * ((100vw - 320px) / (1600 - 320)));
     height: calc(80px + (90 - 50) * ((100vw - 320px) / (1600 - 320)));
     border-radius: 50%;
 }

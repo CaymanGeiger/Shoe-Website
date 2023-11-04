@@ -16,6 +16,10 @@ code {
 }
 
 html{
-  display: grid;
-  width: 100%;
+
+  width: auto;
+}
+
+#root {
+  width: auto;
 }

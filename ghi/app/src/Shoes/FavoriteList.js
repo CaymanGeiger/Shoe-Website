@@ -95,7 +95,7 @@ function FavoriteList(){
 
     return (
         <>
-            <div className="App h1Container">
+            <div className="App1 h1Container">
                 <button className="textBarButton" onClick={goPrevious}>&lt;</button>
                 <div className="textBarSpanDiv">
                 <span className="textBarSpan">{messages[currentIndex]}</span>
@@ -125,8 +125,8 @@ function FavoriteList(){
                     const isFavorited = userFavorites.some(favorite => favorite.shoe_id === item.shoe.id);
                     console.log(`Shoe ID: ${item.shoe.id}, Is Favorited: ${isFavorited}`);
                     return (
-                        <div key={item.shoe.id} className="topCard">
-                        <div className="hoverItems">
+                        <div key={item.shoe.id} className="mainCard">
+                        <div className="topCard">
                             <div className="small_card">
                             {isFavorited ? (
                                 <FontAwesomeIcon onClick={() => handleHeartClick(item.shoe.id)} className="iconHeartFavorited" icon={faHeart} />

@@ -38,7 +38,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     user_level = models.CharField(max_length=20, choices=STATUS_CHOICES, default='basic')
-    profile_picture = models.URLField(default="https://www.alleycat.org/wp-content/uploads/2019/03/FELV-cat.jpg")
+    profile_picture = models.URLField(default="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREPvmzUnSZWU_AQX3YpiUS5kpMldREZhYKMQ&usqp=CAU")
 
     objects = CustomUserManager()
 

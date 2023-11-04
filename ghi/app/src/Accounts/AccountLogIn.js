@@ -128,7 +128,7 @@ function AccountLogIn() {
                         <div className='row'>
                             <div className='col buttonDiv8'>
                                 <button className="btn mt-2 baseButton createButton1 ">Login</button>
-                                <button onClick={handleSignUpClick} className='baseButton createButton1 btn mt-2'>Signup</button>
+                                <button onClick={handleSignUpClick} className='baseButton signUpButton btn mt-2'>Signup</button>
                             </div>
                         </div>
                     </div>
