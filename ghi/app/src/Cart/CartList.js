@@ -10,6 +10,7 @@ import { faTrash} from '@fortawesome/free-solid-svg-icons'
 
 function CartList(){
     const [userCart, setUserCart] = useState([]);
+    const [userCartTotal, setUserCartTotal] = useState("");
     const [cartItem, setCartItem] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const { userId } = useAuth();
@@ -21,6 +22,7 @@ function CartList(){
         const response = await fetch(`http://localhost:8080/api/items/${userId}/`);
         const data = await response.json();
         setUserCart(data.items);
+        setUserCartTotal(data.total_cost)
         setIsLoading(false);
     }
     useEffect(() => {
@@ -57,10 +59,12 @@ function CartList(){
             </div>
         ) : (
         <>
-            <div className="div3CartHeaderDiv">
-                <h1 className="div3CartHeader">Checkout</h1>
-            </div>
-            <div className="gap-3 div3Cart">
+            <div className="cartMainDiv">
+            <div className="shoeCartAndCheckoutInfoDiv">
+            <div className="div3Cart">
+                <div className="div3CartHeaderDiv">
+                    <h1 className="div3CartHeader">Cart</h1>
+                </div>
                 <div className="div3CartChild">
                     {userCart.map((item) => (
                         <div key={item.item_id} className="mainCardCart">
@@ -75,7 +79,6 @@ function CartList(){
                                     </div>
                                     <div className="topCardCartDiv">
                                         <div className="cardCart">
-                                            <div className="productsTextCart">
                                                 <div className="namePriceCartDiv">
                                                     <div className="shoeNameCartContainer">
                                                         <h2 className="shoeNameH2">
@@ -91,24 +94,74 @@ function CartList(){
                                                         <h3 className="shoePriceCart">${item.shoe.price}</h3>
                                                     </div>
                                                 </div>
-                                                <div className="shoeBrandCartDiv">
-                                                    <h3 className="shoeBrand">Quantity: {item.quantity}</h3>
+                                                <div className="shoeBrandQuantityDeleteDiv">
+                                                    <div className="shoeBrandQuantityDiv">
+                                                        <div className="shoeBrandCartDiv">
+                                                            <h3 className="shoeBrand">Quantity: {item.quantity}</h3>
+                                                        </div>
+                                                        <div className="shoeBrandCartDiv">
+                                                            <h3 className="shoeBrand">{item.shoe.brand}</h3>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                    <button onClick={() => itemDelete(item.cart_id, item.item_id)}>
+                                                        <FontAwesomeIcon icon={faTrash} />
+                                                    </button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="shoeBrandCartDiv">
-                                                <h3 className="shoeBrand">{item.shoe.brand}</h3>
-                                            </div>
-                                            <div>
-                                                <button onClick={() => itemDelete(item.cart_id, item.item_id)}>
-                                                    <FontAwesomeIcon icon={faTrash} />
-                                                </button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </div>
                     ))}
+                </div>
+            </div>
+                <div className="checkoutBottomInfoDivParent">
+                    <div className="checkoutSummaryTitleDiv">
+                        <h1 className="checkoutSummaryTitle">
+                            Summary
+                        </h1>
+                    </div>
+                    <div className="checkoutBottomInfoDivChild">
+                            <div className="checkOutSubTotalDiv">
+                                <h4 className="checkOutSubtotal">
+                                    Subtotal: ${userCartTotal}
+                                </h4>
+                            </div>
+                            <div className="checkOutEstimatedDiv">
+                                <h4 className="checkOutEstimated">
+                                    Estimated Tax: --
+                                </h4>
+                            </div>
+                            <div className="checkOutEstimatedDiv">
+                                <h4 className="checkOutEstimated">
+                                    Estimated Shipping: --
+                                </h4>
+                            </div>
+                            <div className="checkoutButtonDiv">
+                            <hr style={{width: "100%"}}></hr>
+                            <div className="checkOutPriceTotalDiv">
+                                <div className="checkOutTotalDiv">
+                                    <h1 className="checkOutTotal">
+                                        Total:
+                                    </h1>
+                                </div>
+                                <div className="checkOutPriceDiv">
+                                    <h1 className="checkOutPrice">
+                                        ${userCartTotal}
+                                    </h1>
+                                </div>
+                            </div>
+                            <hr style={{width: "100%"}}></hr>
+                            </div>
+                        </div>
+                        <div className="buttonCheckoutDiv">
+                            <button className="buttonCheckout">
+                                Checkout
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

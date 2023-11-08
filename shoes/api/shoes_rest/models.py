@@ -144,20 +144,21 @@ class Cart(models.Model):
     @property
     def serialized_items(self):
         cart_items = self.cart_set.all()
-
         serialized_items_list = [
             {
                 "item_id": item.id,
                 "quantity": item.quantity,
                 "cart_id": item.cart.id,
                 "shoe_id": item.shoe.id if item.shoe else None,
-                "total_cost": item.get_cost(),
+                "total_cost_item": item.get_cost(),
                 "shoe": item.shoe.serialized_shoe if item.shoe else None
             }
             for item in cart_items
         ]
+        total_cost = sum(item["total_cost_item"] for item in serialized_items_list)
         return {
-            "items": serialized_items_list,
+            "total_cost": total_cost,
+            "items": serialized_items_list
         }
 
 

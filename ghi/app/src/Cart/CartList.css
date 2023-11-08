@@ -7,10 +7,7 @@
     margin-top: 0;
 }
 
-.productsTextCart {
-    white-space: nowrap;
-    padding: 0;
-}
+
 
 .productsCart h1 {
     margin: 35px 0;
@@ -50,6 +47,7 @@
 .productsCart  .cardCart {
     width: 100%;
     height: 10vh;
+
     border-radius: 5px;
     margin-bottom: 2em;
     background-color: rgba(255, 255, 255, 0);
@@ -58,7 +56,7 @@
 
 .topCardImgDiv{
     display: grid;
-    grid-template-columns: 45% 52%;
+    grid-template-columns: 160px auto;
 
 }
 
@@ -86,8 +84,7 @@
 
 .imageCart {
     display: flex;
-    justify-content: left;
-    min-width: 100px;
+    width: auto;
     height: 100px;
     overflow: hidden;
 
@@ -167,13 +164,16 @@
 }
 
 .div3CartChild {
-    box-shadow: 0 0 10px rgb(168, 168, 168);
     background-color: rgb(255, 255, 255);
-    min-width: 550px;
+    min-width: auto;
     min-height: 200px;
-    padding: 55px 25px 0 25px;
+    padding: 0 25px 0 0;
 }
 
+.shoeBrandQuantityDeleteDiv{
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+}
 
 .shoeBrandCart {
     font-size: 1em;
@@ -184,6 +184,8 @@
 
 .cardCart {
     border: 1px solid rgba(255, 255, 255, 0);
+    white-space: nowrap;
+        padding: 0;
 }
 
 
@@ -191,6 +193,7 @@
 .shoeNameCartContainer {
     display: flex;
     justify-content: left;
+    align-items: start;
 }
 
 .shoeNameCart {
@@ -236,12 +239,16 @@
 }
 
 .div3CartHeaderDiv {
-    display: flex;
-    justify-content: center;
-
+    grid-column: 1;
+        /* This ensures that the header is in the first column */
+        /* Ensure there's no additional margin or padding throwing off the alignment */
+        margin: 0;
+        padding: 0;
 }
 
+
 .div3CartHeader {
+    font-size: 30px;
     margin: 40px 0 15px 0;
     padding: 5px;
 
@@ -254,15 +261,14 @@
 
 .div3Cart {
     display: grid;
-    justify-content: center;
+    justify-content: right;
     padding-left: 0;
     background-color: rgba(255, 255, 255, 0.448);
-    width: 100%;
+    width: auto;
 }
 
 .mainCardCart {
-    width: 500px;
-
+    width: auto;
 }
 
 .mainCardCartParent{
@@ -283,4 +289,124 @@
 .nameReviewDiv {
     display: grid;
     grid-template-columns: 1fr 1fr;
+}
+
+.checkoutBottomInfoDivParent {
+    width: 100%;
+    display: grid;
+    grid-template-rows: 18% auto;
+    grid-template-columns: auto;
+    justify-content: left;
+}
+
+.checkoutSummaryTitleDiv{
+    display: flex;
+    align-items: end;
+    padding: 0 0 0 15px;
+
+}
+.checkoutSummaryTitle {
+    font-size: 35px;
+    margin: 0;
+}
+
+hr {
+    margin: 0;
+}
+
+.checkoutBottomInfoDivChild {
+    display: grid;
+    padding: 15px 0 0 15px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 40px 40px 30px 10px;
+    width: auto;
+}
+
+
+.cartMainDiv{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    padding: 30px 400px 0 400px;
+    width: 100%;
+    /* This will create two rows, one fitting to content and one taking the remaining space */
+}
+
+.shoeCartAndCheckoutInfoDiv{
+    display: grid;
+    grid-template-columns: auto 400px;
+    justify-content: center;
+    width: 100%;
+}
+
+.checkOutEstimatedDiv{
+    display: flex;
+        align-items: top;
+        height: auto;
+}
+.checkOutEstimated{
+    font-size: 18px;
+}
+
+.checkOutSubtotalDiv {
+    display: flex;
+    align-items: top;
+    height: auto;
+}
+
+.checkOutSubtotal {
+    font-size: 18px;
+}
+
+.checkOutPrice {
+    font-size: 22px;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+.checkoutButtonDiv{
+    margin-top: 30px;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+}
+.checkOutPriceTotalDiv{
+    display: flex;
+    align-items: end;
+    height: 100%;
+}
+
+.checkOutTotal {
+    font-size: 22px;
+    font-weight: bold;
+    margin-right: 7px;
+    margin-bottom: 0;
+}
+
+.checkOutPriceDiv {
+    margin-top: 2px;
+}
+
+.checkOutTotalDiv {
+}
+
+.buttonCheckoutDiv {
+    display: flex;
+    justify-content: left;
+    align-items: start;
+}
+
+.buttonCheckout {
+    background-color: #000;
+    color: #fff;
+    padding: 16px 80px;
+    border-radius: 25px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.1s;
 }
