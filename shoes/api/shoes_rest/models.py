@@ -128,3 +128,53 @@ class Favorite(models.Model):
     def __str__(self):
         return str(self.shoe)
 
+
+class Cart(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    account = models.OneToOneField(
+        AccountVO,
+        on_delete=models.CASCADE,
+        related_name="account_cart"
+        )
+
+    def __str__(self):
+        return str(self.account)
+
+    @property
+    def serialized_items(self):
+        cart_items = self.cart_set.all()
+
+        serialized_items_list = [
+            {
+                "item_id": item.id,
+                "quantity": item.quantity,
+                "cart_id": item.cart.id,
+                "shoe_id": item.shoe.id if item.shoe else None,
+                "total_cost": item.get_cost(),
+                "shoe": item.shoe.serialized_shoe if item.shoe else None
+            }
+            for item in cart_items
+        ]
+        return {
+            "items": serialized_items_list,
+        }
+
+
+class CartItem(models.Model):
+    quantity = models.PositiveIntegerField(default=1)
+    cart = models.ForeignKey(
+        Cart, on_delete=models.CASCADE,
+        related_name='cart_set'
+        )
+    shoe = models.ForeignKey(
+        Shoe,
+        on_delete=models.SET_NULL,
+        null=True
+        )
+
+    def __str__(self):
+        return str(self.shoe)
+
+    def get_cost(self):
+        return self.quantity * self.shoe.price

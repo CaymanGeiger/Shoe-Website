@@ -34,6 +34,16 @@ function Nav() {
         }
     }
 
+    function handleCartClick(){
+      if (!(userId)) {
+            openModal(true)
+            showToast("Please log in first!", "error");
+        } else {
+        navigate('/cart')
+        }
+    }
+
+
     function handlePersonClick() {
       if (!(userId)) {
             openModal(true)
@@ -111,7 +121,7 @@ function Nav() {
                 <FontAwesomeIcon onClick={handleFavoritesClick} className="heartIcon" icon={faHeart}/>
             </button>
             <button className='navButtons'>
-                <FontAwesomeIcon className="cartIcon" icon={faCartShopping} />
+                <FontAwesomeIcon onClick={handleCartClick} className="cartIcon" icon={faCartShopping} />
             </button>
         </div>
     </nav>

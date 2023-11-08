@@ -8,6 +8,7 @@ import AccountForm from './Accounts/AccountForm';
 import AccountLogIn from './Accounts/AccountLogIn';
 import AccountDetail from './Accounts/AccountDetail';
 import LogoutButton from './Accounts/AccountLogOut';
+import CartList from './Cart/CartList';
 import MainPage from './MainPage';
 import { useAuth } from './Auth/AuthContext';
 import { ModalProvider } from './Accounts/SignInModal';
@@ -47,6 +48,9 @@ function App() {
                     <Route path="form" element={<AccountForm />} />
                     <Route path="login" element={<AccountLogIn />} />
                     <Route path="logout" element={<LogoutButton />} />
+                </Route>
+                <Route path="cart">
+                    <Route index element={<CartList />} />
                 </Route>
             </Routes>
             <ToastContainer />

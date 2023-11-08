@@ -78,7 +78,7 @@
 
 
 .createButton {
-    background-color: rgb(84, 84, 84);
+    background-color: rgb(255, 255, 255);
     color: white;
     border: 1px solid black;
     padding: 5px 16px;
@@ -118,7 +118,7 @@
     overflow: hidden;
     white-space: nowrap;
     transition: background-color 0.3s ease;
-    background-color: rgb(219, 219, 219);
+    background-color: rgb(234, 234, 234);
 }
 
 .baseButton:focus {
@@ -133,7 +133,7 @@
 }
 
 .signUpButton {
-    background-color: transparent;
+    
     width: auto;
     margin-bottom: 0;
 }

@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
-from .models import Shoe, Rating, AccountVO, Favorite
+from .models import Shoe, Rating, AccountVO, Favorite, Cart, CartItem
 from common.json import ModelEncoder
 import json
 
@@ -47,6 +47,26 @@ class ShoeDetailEncoder(ModelEncoder):
         "description",
         "serialized_ratings",
     ]
+
+
+class CartEncoder(ModelEncoder):
+    model = Cart
+    properties = [
+        "id",
+    ]
+
+
+class CartItemsEncoder(ModelEncoder):
+    model = CartItem
+    properties = [
+        "quantity",
+        "cart",
+        "shoe",
+    ]
+    encoders = {
+        "shoe": ShoeListEncoder(),
+        "cart": CartEncoder(),
+    }
 
 
 class FavoriteEncoder(ModelEncoder):
@@ -193,7 +213,6 @@ def FavoriteList(request, user_id=None, shoe_id=None):
 
 
 
-
 @require_http_methods(["DELETE"])
 def FavoriteDelete(request, favorite_id=None):
     if request.method == "DELETE":
@@ -204,4 +223,58 @@ def FavoriteDelete(request, favorite_id=None):
         except Favorite.DoesNotExist:
             return JsonResponse({"message": "Favorite not found"}, status=404)
         count, _ = Favorite.objects.filter(id=favorite_id).delete()
+        return JsonResponse({"deleted": count > 0})
+
+
+@require_http_methods(["GET", "POST"])
+def CartList(request, user_id=None, shoe_id=None, cart_id=None):
+    if request.method == "GET":
+        if shoe_id is not None:
+            pass
+        if user_id is None:
+            return JsonResponse({"message": "User id is required"}, status=400)
+        try:
+            user = Cart.objects.get(account=user_id)
+        except Cart.DoesNotExist:
+            return JsonResponse({"message": "User not found"}, status=404)
+        cart_items = user.serialized_items
+        return JsonResponse(cart_items, safe=False)
+    else:
+        content = json.loads(request.body)
+        try:
+            shoeID = f"{shoe_id}"
+            shoe = Shoe.objects.get(id=shoeID)
+            content["shoe"] = shoe
+        except Shoe.DoesNotExist:
+            return JsonResponse(
+                {"message": "Invalid shoe id"},
+                status=400,
+            )
+        try:
+            cartID = f"{cart_id}"
+            cart = Cart.objects.get(id=cartID)
+            content["cart"] = cart
+        except Cart.DoesNotExist:
+            return JsonResponse(
+                {"message": "Invalid cart id"},
+                status=400,
+            )
+        cart_item = CartItem.objects.create(**content)
+        return JsonResponse(
+            cart_item,
+            CartItemsEncoder,
+            safe=False
+        )
+
+
+@require_http_methods(["DELETE"])
+def CartItemDelete(request, cart_item_id=None, cart_id=None):
+    if request.method == "DELETE":
+        if cart_id is None:
+            return JsonResponse({"message": "Cart id is required"}, status=400)
+        try:
+            Cart.objects.get(id=cart_id)
+        except CartItem.DoesNotExist:
+            return JsonResponse({"message": "Cart not found"}, status=404)
+        count, _ = CartItem.objects.filter(id=cart_item_id).delete()
         return JsonResponse({"deleted": count > 0})
