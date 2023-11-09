@@ -16,8 +16,8 @@ code {
 }
 
 html{
-
-  width: auto;
+  max-width: 1920px;
+  
 }
 
 #root {

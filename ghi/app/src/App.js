@@ -15,6 +15,7 @@ import { ModalProvider } from './Accounts/SignInModal';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastProvider } from './ToastContext';
+import { Helmet } from 'react-helmet';
 import Nav from './Nav';
 import "./App.css"
 
@@ -30,6 +31,9 @@ function App() {
     <BrowserRouter>
       <ToastProvider>
         <ModalProvider>
+          <Helmet>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+          </Helmet>
           <Nav />
           <div className=" appBody">
             <Routes>

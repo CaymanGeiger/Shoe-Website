@@ -11,7 +11,6 @@ export function useModal() {
 }
 
 function SignInModal({ isModalOpen, closeModal }) {
-    console.log(isModalOpen)
 
     return (
         <div className={isModalOpen ? "signInModel show" : "signInModel"}>

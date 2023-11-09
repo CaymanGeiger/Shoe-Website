@@ -1,14 +1,5 @@
 
 
-.productsCart {
-    width: 100%;
-    height: 140vh;
-    padding: 40px;
-    margin-top: 0;
-}
-
-
-
 .productsCart h1 {
     margin: 35px 0;
     font-size: 50px;
@@ -33,38 +24,16 @@
 
 
 
-.productsCart  {
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 18px;
-}
-
-
-
-.productsCart  .cardCart {
-    width: 100%;
-    height: 10vh;
-
-    border-radius: 5px;
-    margin-bottom: 2em;
-    background-color: rgba(255, 255, 255, 0);
-}
-
 
 .topCardImgDiv{
     display: grid;
-    grid-template-columns: 160px auto;
+    grid-template-columns: 190px auto;
 
 }
 
 .topCardCartDiv{
     background-color: grey;
     background: rgb(255, 255, 255);
-    width: 100%;
-
 }
 .topCardCart {
 
@@ -84,10 +53,8 @@
 
 .imageCart {
     display: flex;
-    width: auto;
+    width: 100px;
     height: 100px;
-    overflow: hidden;
-
 }
 
 .topCardImgDivParent  {
@@ -103,52 +70,7 @@
     transition: .2s;
 }
 
-.topCardCart:hover .imgCart {
-    transform: scale(1.05);
-}
 
-
-.productsCart  .topCardCart:hover .small_cardCart {
-    transform: translateY(8px);
-    cursor: pointer;
-    opacity: 1;
-    z-index: 1;
-}
-
-
-.iconX {
-    padding: .15em;
-    width: 35px;
-    height: 35px;
-    margin: 2px 0;
-    color: rgba(0, 0, 0, 0.442);
-}
-
-
-.products_star {
-    display: flex;
-    justify-content: left;
-}
-
-
-
-.starIcon {
-    width: 25px;
-    height: 25px;
-    display: inline-block;
-    font-size: 1.4em;
-    margin-bottom: 1em;
-}
-
-
-.starIcon1 {
-    width: 25px;
-    height: 25px;
-    display: inline-block;
-    font-size: 1.4em;
-    margin-bottom: 1em;
-    margin-top: 1em;
-}
 
 
 .shoeBranCartDiv {
@@ -165,7 +87,7 @@
 
 .div3CartChild {
     background-color: rgb(255, 255, 255);
-    min-width: auto;
+    width: auto;
     min-height: 200px;
     padding: 0 25px 0 0;
 }
@@ -183,17 +105,13 @@
 
 
 .cardCart {
-    border: 1px solid rgba(255, 255, 255, 0);
-    white-space: nowrap;
-        padding: 0;
+    max-width: 600px;
 }
 
 
 
 .shoeNameCartContainer {
-    display: flex;
-    justify-content: left;
-    align-items: start;
+
 }
 
 .shoeNameCart {
@@ -218,8 +136,9 @@
 
 .namePriceCartDiv{
     display: grid;
-    grid-template-columns: 1fr 10fr;
-    width: 100%;
+    grid-template-columns: 10% 90%;
+    max-width: 600px;
+    white-space: nowrap;
 }
 
 
@@ -239,19 +158,15 @@
 }
 
 .div3CartHeaderDiv {
-    grid-column: 1;
-        /* This ensures that the header is in the first column */
-        /* Ensure there's no additional margin or padding throwing off the alignment */
-        margin: 0;
-        padding: 0;
+    display: flex;
+    align-items: end;
 }
 
 
 .div3CartHeader {
-    font-size: 30px;
+    font-size: 27px;
     margin: 40px 0 15px 0;
     padding: 5px;
-
 }
 
 .productsCart .topCardCart .div3Cart {
@@ -260,15 +175,12 @@
 }
 
 .div3Cart {
-    display: grid;
-    justify-content: right;
-    padding-left: 0;
-    background-color: rgba(255, 255, 255, 0.448);
-    width: auto;
+
+
 }
 
 .mainCardCart {
-    width: auto;
+max-width: 600px;
 }
 
 .mainCardCartParent{
@@ -278,12 +190,6 @@
 
 
 
-.shoePageStarsCartDiv {
-    display: flex;
-    justify-content: right;
-    margin-top: .8em;
-    margin-right: 3em;
-}
 
 
 .nameReviewDiv {
@@ -292,51 +198,85 @@
 }
 
 .checkoutBottomInfoDivParent {
-    width: 100%;
-    display: grid;
-    grid-template-rows: 18% auto;
-    grid-template-columns: auto;
-    justify-content: left;
+    padding-right: 350px;
+    margin-bottom: 20px;
+}
+
+.checkoutBottomInfoDivParentMain {
+    display: flex;
+    justify-content: center;
+
 }
 
 .checkoutSummaryTitleDiv{
     display: flex;
-    align-items: end;
-    padding: 0 0 0 15px;
+        align-items: end;
 
 }
 .checkoutSummaryTitle {
-    font-size: 35px;
-    margin: 0;
+    font-size: 27px;
+        margin: 40px 0 15px 0;
+        padding: 5px;
 }
+
+
+
 
 hr {
     margin: 0;
 }
 
 .checkoutBottomInfoDivChild {
+
+}
+
+.checkoutBottomInfoDivSibling{
     display: grid;
-    padding: 15px 0 0 15px;
+    min-height: 230px;
+    padding:  9px 0 0 6px;
     grid-template-columns: 1fr;
-    grid-template-rows: 40px 40px 30px 10px;
+    grid-template-rows: 40px 40px 40px 40px 40px;
     width: auto;
 }
 
 
 .cartMainDiv{
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    padding: 30px 400px 0 400px;
-    width: 100%;
-    /* This will create two rows, one fitting to content and one taking the remaining space */
+
 }
 
-.shoeCartAndCheckoutInfoDiv{
+.MainLarge{
     display: grid;
-    grid-template-columns: auto 400px;
-    justify-content: center;
+    grid-template-columns: 65% 35%;
     width: 100%;
+    padding: 25px 0 0 20px;
+    max-width: 80%;
+}
+
+.cartMainDivLarge {
+
+}
+
+.MainLargeParent{
+    display: flex;
+    justify-content: center;
+}
+.shoeCartAndCheckoutInfoDiv{
+    display: flex;
+    justify-content: center;
+}
+
+.cartMainDivParent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
+@media (max-width: 600px) {
+    .shoeCartAndCheckoutInfoDiv {
+
+    }
 }
 
 .checkOutEstimatedDiv{
@@ -365,17 +305,18 @@ hr {
     height: 100%;
 }
 .checkoutButtonDiv{
-    margin-top: 30px;
     height: 100%;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     align-items: center;
 }
+
+
 .checkOutPriceTotalDiv{
     display: flex;
-    align-items: end;
-    height: 100%;
+    align-items: center;
+    min-height: 50px;
 }
 
 .checkOutTotal {
@@ -401,12 +342,56 @@ hr {
 .buttonCheckout {
     background-color: #000;
     color: #fff;
-    padding: 16px 80px;
-    border-radius: 25px;
+    width: 100%;
+    padding: 18px 65px;
+    border-radius: 40px;
     border: none;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
     outline: none;
     transition: background-color 0.1s;
+    position: sticky;
+}
+
+.buttonCheckoutDivLarge{
+    display: flex;
+    justify-content: left;
+    margin-top: 20px;
+
+}
+
+.buttonCheckoutLarge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    width: 100%;
+    padding: 25px 100px;
+    border-radius: 40px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.1s;
+    position: sticky;
+}
+
+.main-footer {
+    position: -webkit-sticky;
+    position: sticky;
+    display: flex;
+    justify-content: center;
+    bottom: 0;
+
+    margin-bottom: 30px;
+}
+
+.buttonCheckoutDiv {
+    width: 100%;
+    background-color: white;
+    padding: 18px 12px 16px 12px;
+    border-top: .5px solid black;
 }

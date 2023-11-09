@@ -124,12 +124,17 @@ a {
     justify-content: right;
 }
 
+.nav-item {
+    display: flex;
+    align-items: center;
+}
+
 .navTop {
     z-index: 2;
     position: relative;
     padding: 0 0 0 0;
     margin: 0;
-    height: 3vh auto;
+    height: 37px;
     display:flex;
     justify-content: right;
     background-color: rgb(245, 245, 245);

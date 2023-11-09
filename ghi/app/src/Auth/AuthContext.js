@@ -12,9 +12,6 @@ export const AuthProvider = ({ children }) => {
     const [userFirstName, setUserFirstName] = useState("");
     const [isActive, setIsActive] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    console.log(userFirstName)
-    console.log(isActive)
-    console.log(userId)
     const checkAuthStatus = async () => {
         try {
             const response = await fetch('http://localhost:8070/api/check-auth-status', {
