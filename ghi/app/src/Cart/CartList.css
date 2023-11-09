@@ -241,14 +241,14 @@ hr {
 
 
 .cartMainDiv{
-
+    padding: 25px 0 0 0;
 }
 
 .MainLarge{
     display: grid;
     grid-template-columns: 65% 35%;
     width: 100%;
-    padding: 25px 0 0 20px;
+    padding: 25px 0 0 0;
     max-width: 80%;
 }
 

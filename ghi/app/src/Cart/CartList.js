@@ -36,6 +36,7 @@ function CartList(){
     const { userId } = useAuth();
     const showToast = useToast();
     const { width, height } = useWindowSize();
+    const totalQuantity = userCart.reduce((total, item) => total + item.quantity, 0);
     console.log(width, height)
 
 
@@ -88,7 +89,7 @@ function CartList(){
                     <div className="shoeCartAndCheckoutInfoDiv">
                     <div className="div3Cart">
                         <div className="div3CartHeaderDiv">
-                            <h1 className="div3CartHeader">Cart</h1>
+                            <h1 className="div3CartHeader">Cart ({totalQuantity})</h1>
                         </div>
                         <div className="div3CartChild">
                             {userCart.map((item) => (

@@ -3,6 +3,7 @@ from django.views.decorators.http import require_http_methods
 from .models import Shoe, Rating, AccountVO, Favorite, Cart, CartItem
 from common.json import ModelEncoder
 import json
+from django.db.models import F
 
 
 class AccountEncoder(ModelEncoder):
@@ -227,7 +228,7 @@ def FavoriteDelete(request, favorite_id=None):
 
 
 @require_http_methods(["GET", "POST"])
-def CartList(request, user_id=None, shoe_id=None, cart_id=None):
+def CartList(request, user_id=None, shoe_id=None, cart_id=None, quantity=1):
     if request.method == "GET":
         if shoe_id is not None:
             pass
@@ -240,7 +241,26 @@ def CartList(request, user_id=None, shoe_id=None, cart_id=None):
         cart_items = user.serialized_items
         return JsonResponse(cart_items, safe=False)
     else:
-        content = json.loads(request.body)
+        try:
+            shoe = Shoe.objects.get(id=shoe_id)
+            cart = Cart.objects.get(id=cart_id)
+            cart_item = CartItem.objects.filter(shoe=shoe, cart=cart).first()
+
+            if cart_item:
+                cart_item.quantity = F('quantity') + quantity
+                cart_item.save()
+                cart_item.refresh_from_db()
+                return JsonResponse(
+                    cart_item,
+                    CartItemsEncoder,
+                    safe=False
+                    )
+        except Shoe.DoesNotExist:
+            return JsonResponse({"message": "Invalid shoe id"}, status=400)
+        except Cart.DoesNotExist:
+            return JsonResponse({"message": "Invalid cart id"}, status=400)
+
+        content = {}
         try:
             shoeID = f"{shoe_id}"
             shoe = Shoe.objects.get(id=shoeID)
@@ -259,6 +279,8 @@ def CartList(request, user_id=None, shoe_id=None, cart_id=None):
                 {"message": "Invalid cart id"},
                 status=400,
             )
+        quantity_amount = f"{quantity}"
+        content["quantity"] = quantity_amount
         cart_item = CartItem.objects.create(**content)
         return JsonResponse(
             cart_item,

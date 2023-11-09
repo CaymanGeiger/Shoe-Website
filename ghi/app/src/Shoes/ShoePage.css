@@ -38,21 +38,22 @@
 
 
 .products .box {
-    width: 100%;
+    min-width: 300px;
+    min-height: 300px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 34%);
     grid-gap: 10px 0;
     padding: 18px;
 }
 
 
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
     .products .box {
         grid-template-columns: 1fr 1fr;
     }
 }
-@media (max-width: 700px) {
+@media (max-width: 900px) {
     .products .box {
         grid-template-columns: 1fr;
     }
@@ -142,7 +143,7 @@
     background: rgb(255, 255, 255);
     padding-left: .2em;
     padding-bottom: 1em;
-    width: 400px;
+    min-width: 250px;
     height: 35vh;
 }
 
@@ -598,7 +599,7 @@ textarea {
     width: 100%;
     border-bottom: 1px solid rgb(217, 217, 217);
     margin-bottom:  0;
-    background-color: rgb(245, 245, 245);
+    background-color: rgb(230, 230, 230);
 }
 
 
@@ -614,8 +615,9 @@ textarea {
 }
 
 .mainCard{
-    width: 400px;
+    width: 30vw;
 }
+
 
 .mainCard:hover {
 
@@ -656,7 +658,8 @@ textarea {
 
 .nameReviewDiv {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 80% 20%;
+    min-width: 360px;
 }
 
 

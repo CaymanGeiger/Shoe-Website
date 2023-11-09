@@ -5,15 +5,21 @@ import StarRating from "./Reviews/Stars"
 import SubmitStarRating from "./Reviews/ReviewForm"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAuth } from '../Auth/AuthContext';
+import { useToast } from '../ToastContext';
+import { useModal } from '../Accounts/SignInModal';
 
 
 
 function ShoeDetail() {
     const [shoe, setShoe] = useState({});
     const [activeTab, setActiveTab] = useState('details');
+    const [cart, setCart] = useState('details');
     const [showReviewModel, setShowReviewModel] = useState(false);
     const [showCreateReviewModel, setShowCreateReviewModel] = useState(false);
-
+    const { userId } = useAuth();
+    const showToast = useToast();
+    const { openModal } = useModal();
 
     const { id } = useParams();
 
@@ -31,10 +37,39 @@ function ShoeDetail() {
         }
 
         loadShoe();
+        async function loadCart() {
+            if (userId) {
+                const response = await fetch(`http://localhost:8080/api/items/${userId}/`);
+                const data = await response.json();
+                console.log(data.items[0].cart_id)
+                setCart(data.items[0].cart_id);
+            }
+        }
+
+        loadCart();
         return () => {
             document.removeEventListener('touchmove', handleTouchMove);
         };
     }, []);
+
+
+    async function HandleAddToCartClick() {
+            if (!(userId)) {
+                openModal(true)
+                showToast("Please log in first!", "error");
+            } else {
+                const response = await fetch (`http://localhost:8080/api/items/${shoe.id}/${cart}/${1}/`, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                method: "POST"
+            });
+            if (response.ok) {
+                showToast("Added To Cart!", "success");
+            } else {
+            }
+        }
+    }
 
 
     const randomNumber = Math.floor(Math.random() * 9) + 1;
@@ -95,6 +130,11 @@ return (
                         <hr className='hr'></hr>
                     </div>
                 </div>
+                </div>
+                <div className='addToCartButtonDiv'>
+                    <button onClick={HandleAddToCartClick} className='addToCartButton'>
+                        Add To Cart
+                    </button>
                 </div>
             </div>
         </div>
