@@ -8,19 +8,21 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from '../Auth/AuthContext';
 import { useToast } from '../ToastContext';
 import { useModal } from '../Accounts/SignInModal';
-
-
+import { Modal, Box } from '@mui/material';
+import QuantitySelection from "./QuantitySelection"
 
 function ShoeDetail() {
     const [shoe, setShoe] = useState({});
     const [activeTab, setActiveTab] = useState('details');
-    const [cart, setCart] = useState('details');
+    const [quantity, setQuantity] = useState(0);
+    const [selectingQuantity, setSelectingQuantity] = useState(false);
+    const [cart, setCart] = useState(0);
     const [showReviewModel, setShowReviewModel] = useState(false);
     const [showCreateReviewModel, setShowCreateReviewModel] = useState(false);
     const { userId } = useAuth();
     const showToast = useToast();
     const { openModal } = useModal();
-
+    console.log(quantity)
     const { id } = useParams();
 
     const handleTouchMove = (event) => {
@@ -31,7 +33,7 @@ function ShoeDetail() {
         document.addEventListener('touchmove', handleTouchMove, { passive: true });
 
         async function loadShoe() {
-            const response = await fetch(`http://localhost:8080/api/shoe/${id}/`);
+            const response = await fetch(`http://localhost:8000/api/shoe/${id}/`);
             const data = await response.json();
             setShoe(data);
         }
@@ -39,10 +41,9 @@ function ShoeDetail() {
         loadShoe();
         async function loadCart() {
             if (userId) {
-                const response = await fetch(`http://localhost:8080/api/items/${userId}/`);
+                const response = await fetch(`http://localhost:8000/api/items/${userId}/`);
                 const data = await response.json();
-                console.log(data.items[0].cart_id)
-                setCart(data.items[0].cart_id);
+                setCart(data.cart_id);
             }
         }
 
@@ -54,16 +55,19 @@ function ShoeDetail() {
 
 
     async function HandleAddToCartClick() {
+        setSelectingQuantity(true)
             if (!(userId)) {
                 openModal(true)
                 showToast("Please log in first!", "error");
-            } else {
-                const response = await fetch (`http://localhost:8080/api/items/${shoe.id}/${cart}/${1}/`, {
+            }
+            if (quantity) {
+                const response = await fetch (`http://localhost:8000/api/items/${shoe.id}/${cart}/${quantity}/`, {
                 headers: {
                     "Content-Type": "application/json",
                 },
                 method: "POST"
-            });
+                });
+                console.log(response)
             if (response.ok) {
                 showToast("Added To Cart!", "success");
             } else {
@@ -74,8 +78,13 @@ function ShoeDetail() {
 
     const randomNumber = Math.floor(Math.random() * 9) + 1;
 
+    const handleQuantitySelectionClose = () => {
+        setSelectingQuantity(false)
+    }
 
-
+    const handleQuantityChange = (newQuantity) => {
+        setQuantity(newQuantity);
+    };
 
     const handleTabClick = (tabName) => {
         setActiveTab(tabName);
@@ -91,8 +100,22 @@ function ShoeDetail() {
     };
 
 
+
 return (
     <div className='detailMainDiv'>
+        {selectingQuantity && (
+                <Modal
+                    open={selectingQuantity}
+                    onClose={handleQuantitySelectionClose}
+                >
+                    <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+                    <QuantitySelection
+                    onQuantityChange={handleQuantityChange}
+                    HandleAddToCartClick={HandleAddToCartClick}
+                    closeSelection={handleQuantitySelectionClose} />
+                    </Box>
+                </Modal>
+            )}
     <div className='product'>
         <div className='boxesDiv'>
             <div className='col-md-10 col-sm-12 card'>
@@ -158,7 +181,7 @@ return (
                     </div>
                     <div className='shoeAllReviews'>
                         <div className='averageNameAndReview'>
-                            <button onClick={handleAllReviewsClick}className='averageReviewAllButton'>
+                            <button onClick={handleAllReviewsClick} className='averageReviewAllButton'>
                                 All Reviews
                                 {showReviewModel ? (
                                     <span style={{ color: 'black', fontSize: "13px", marginLeft: "5px" }}>&#9650;</span>

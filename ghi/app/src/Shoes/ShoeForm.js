@@ -18,7 +18,7 @@ import './ShoeForm.css';
     const handleSubmit = async (event) => {
         event.preventDefault();
         let sizesArray = formData.sizes.split(' ').filter(size => size.trim() !== "").map(size => parseFloat(size));
-        const shoeUrl = 'http://localhost:8080/api/shoes/';
+        const shoeUrl = 'http://localhost:8000/api/shoes/';
         let sendData = {...formData, sizes: sizesArray};
         const fetchConfig = {
             method: "post",

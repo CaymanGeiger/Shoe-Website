@@ -12,7 +12,7 @@ import { useModal } from '../../Accounts/SignInModal';
 
 
 
-function SubmitStarRating({ shoeID, onSuccess }) {
+function SubmitStarRating({ shoeID }) {
     const [hoveredStar, setHoveredStar] = useState(null);
     const [selectedStar, setSelectedStar] = useState(null);
     const [showModel, setShowModel] = useState(false);
@@ -30,7 +30,7 @@ function SubmitStarRating({ shoeID, onSuccess }) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (userId) {
-        const ratingUrl = `http://localhost:8080/api/ratings/${shoeID}/${userId}/`;
+        const ratingUrl = `http://localhost:8000/api/ratings/${shoeID}/${userId}/`;
         const fetchConfig = {
             method: "POST",
             body: JSON.stringify(formData),

@@ -15,15 +15,10 @@ function useWindowSize() {
         const handleResize = () => {
         setSize({ width: window.innerWidth, height: window.innerHeight });
         };
-
         window.addEventListener('resize', handleResize);
-
-        // Call handler right away so state gets updated with initial window size
         handleResize();
-
         return () => window.removeEventListener('resize', handleResize);
     }, []);
-
     return size;
 }
 
@@ -31,18 +26,18 @@ function useWindowSize() {
 function CartList(){
     const [userCart, setUserCart] = useState([]);
     const [userCartTotal, setUserCartTotal] = useState("");
-    const [cartItem, setCartItem] = useState("");
+    const [cartId, setCartId] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
     const { userId } = useAuth();
     const showToast = useToast();
     const { width, height } = useWindowSize();
     const totalQuantity = userCart.reduce((total, item) => total + item.quantity, 0);
-    console.log(width, height)
 
 
     async function loadCart() {
-        const response = await fetch(`http://localhost:8080/api/items/${userId}/`);
+        const response = await fetch(`http://localhost:8000/api/items/${userId}/`);
         const data = await response.json();
+        setCartId(data.cart_id)
         setUserCart(data.items);
         setUserCartTotal(data.total_cost)
         setIsLoading(false);
@@ -51,21 +46,20 @@ function CartList(){
         loadCart();
     }, []);
 
-    async function itemDelete(cartId, cartItemId){
-            const response = await fetch (`http://localhost:8080/api/item/${cartId}/${cartItemId}/`, {
+    async function itemDelete(test){
+        console.log("test", test)
+        const response = await fetch(`http://localhost:8000/api/item/${cartId}/${test}/`, {
             method: "DELETE"
         });
             if (response.ok){
-                setIsLoading(true);
                 showToast("Removed From Cart!", "error");
                 loadCart();
             } else {
-
             }
         }
 
     return (
-    <div>
+    <div className="cartMainDiv">
     {isLoading && (
             <div className="loading-message"></div>
         )}
@@ -89,7 +83,7 @@ function CartList(){
                     <div className="shoeCartAndCheckoutInfoDiv">
                     <div className="div3Cart">
                         <div className="div3CartHeaderDiv">
-                            <h1 className="div3CartHeader">Cart ({totalQuantity})</h1>
+                            <h1 className="div3CartHeader">Cart({totalQuantity})</h1>
                         </div>
                         <div className="div3CartChild">
                             {userCart.map((item) => (
@@ -130,8 +124,10 @@ function CartList(){
                                                                 </div>
                                                             </div>
                                                             <div>
-                                                            <button onClick={() => itemDelete(item.cart_id, item.item_id)}>
-                                                                <FontAwesomeIcon icon={faTrash} />
+                                                            <button onClick={() => itemDelete("test")}>
+                                                                <FontAwesomeIcon
+                                                                icon={faTrash}
+                                                                />
                                                             </button>
                                                             </div>
                                                         </div>

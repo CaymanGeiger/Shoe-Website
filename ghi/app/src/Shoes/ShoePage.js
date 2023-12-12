@@ -8,7 +8,7 @@ import { useAuth } from '../Auth/AuthContext';
 import 'react-toastify/dist/ReactToastify.css';
 import { useToast } from '../ToastContext';
 import { useModal } from '../Accounts/SignInModal';
-
+import useWindowSize from "../functions/WindowSize";
 
 
 function ShoePage(){
@@ -24,22 +24,26 @@ function ShoePage(){
     const { userId } = useAuth();
     const showToast = useToast();
     const { openModal } = useModal();
+    const { width } = useWindowSize();
 
 
     async function loadShoes() {
-        const response = await fetch('http://localhost:8080/api/shoes/');
+        const response = await fetch('http://localhost:8000/api/shoes/');
+        console.log(response)
         const data = await response.json();
+        console.log(data)
         setShoes(data.shoes);
     }
 
     async function loadFavorites() {
-        const response = await fetch(`http://localhost:8080/api/favorites/${userId}/`);
+        const response = await fetch(`http://localhost:8000/api/favorites/${userId}/`);
         const data = await response.json();
         setUserFavorites(data.favorites);
     }
     useEffect(() => {
         loadFavorites();
         loadShoes();
+        console.log("hit")
     }, []);
 
 
@@ -71,7 +75,7 @@ function ShoePage(){
     useEffect(() => {
     async function filterBrands() {
         if (brandSearched !== "") {
-            const response = await fetch('http://localhost:8080/api/shoes/');
+            const response = await fetch('http://localhost:8000/api/shoes/');
             const data = await response.json();
             const filteredBrands = data.shoes.filter(shoe =>
                 shoe.brand.toLowerCase().includes(brandSearch.toLowerCase())
@@ -89,7 +93,7 @@ function ShoePage(){
     useEffect(() => {
     async function filterPrice() {
         if (priceSearch !== ""){
-            const response = await fetch('http://localhost:8080/api/shoes/');
+            const response = await fetch('http://localhost:8000/api/shoes/');
             const data = await response.json();
             const filteredBrands = data.shoes.filter(shoe =>
                 String(shoe.price).includes(priceSearch)
@@ -107,7 +111,7 @@ function ShoePage(){
     useEffect(() => {
     async function filterName() {
         if (nameSearch !== ""){
-            const response = await fetch('http://localhost:8080/api/shoes/');
+            const response = await fetch('http://localhost:8000/api/shoes/');
             const data = await response.json();
             const filteredBrands = data.shoes.filter(shoe =>
                 shoe.name.toLowerCase().includes(nameSearch.toLowerCase())
@@ -132,7 +136,7 @@ function ShoePage(){
 
         if (!(isFavorited)){
         showToast("Added To Favorites!", "success");
-        const response = await fetch (`http://localhost:8080/api/favorites/${shoeId}/${userId}/`, {
+        const response = await fetch (`http://localhost:8000/api/favorites/${shoeId}/${userId}/`, {
             headers: {
                 "Content-Type": "application/json",
             },
@@ -158,7 +162,7 @@ function ShoePage(){
             showToast("Removed From Favorites!", "error");
             const favoritedItem = userFavorites.find(favorite => favorite.shoe_id === shoeId);
             const favoriteId = favoritedItem.favorite_id;
-            const response = await fetch (`http://localhost:8080/api/favorite/${favoriteId}/`, {
+            const response = await fetch (`http://localhost:8000/api/favorite/${favoriteId}/`, {
             method: "DELETE"
         });
             if (response.ok){
@@ -209,6 +213,7 @@ function ShoePage(){
             <div className="products">
             <h4 className="yyy">Wardrobify Shoes And Sneakers({shoes.length})</h4>
             <div  className="shoePageColumns">
+            {width > 2100 && (
             <div className="filterSideWindowDiv">
                 <div className="filterSideWindow">
                     <ul className="filterList">
@@ -233,47 +238,76 @@ function ShoePage(){
                     </ul>
                 </div>
             </div>
-            <div className="box gap-3 div3 ">
-                {shoes.map((shoe, index) => {
-                const isFavorited = userFavorites.some(favorite => favorite.shoe_id === shoe.id);
-            return (
-                <div key={shoe.id} className="mainCard">
-                <div className="topCard">
-                    <div className="hoverItems">
-                        <div className="small_card">
-                            {isFavorited ?
-                            <FontAwesomeIcon onClick={() => handleHeartClick(shoe.id)} className="iconHeartFavorited" icon={faHeart} />
-                            : <FontAwesomeIcon onClick={() => handleHeartClick(shoe.id)} className={shoe.id === lastFavoritedShoeId ? "iconHeart small_card show" : "iconHeart"} icon={faHeart} />
-                            }
-                            <FontAwesomeIcon  className="iconShare" icon={faShare} />
-                        </div>
-                        <div className="image">
-                            <img key={index} className="img" src={shoe.picture_url}/>
+            )}
+            {width <= 2100 && (
+                <div>
+                <footer className="filterFooter">
+                    <ul className="footerFilterUl">
+                        <li className="footerFilterLi">
+                            <input placeholder="Name" className="form-control inputsFooter" onChange={HandleNameSearch} value={nameSearch} required type="text" name="nameSearch" id="nameSearch"/>
+                            <div className="btn23Div">
+                                <button onClick={HandleNameSearchClick}className="btn btn-light ml-2 btn23">Search</button>
+                            </div>
+                        </li>
+                        <li className="footerFilterLi">
+                            <input placeholder="Brand.." className="form-control inputsFooter" onChange={HandleBrandSearch} value={brandSearch} required type="text" name="brandSearch" id="brandSearch"/>
+                            <div className="btn23Div">
+                                <button onClick={HandleBrandSearchClick}className="btn btn-light ml-2 btn23">Search</button>
+                            </div>
+                        </li>
+                        <li className="footerFilterLi">
+                            <input placeholder="Price" className="form-control inputsFooter" onChange={HandlePriceSearch} value={priceSearch} required type="number" name="priceSearch" id="priceSearch"/>
+                            <div className="btn23Div">
+                                <button onClick={HandlePriceSearchClick}className="btn btn-light ml-2 btn23">Search</button>
+                            </div>
+                        </li>
+                    </ul>
+                </footer>
+                <div className="box div3 ">
+                    {shoes.map((shoe, index) => {
+                    const isFavorited = userFavorites.some(favorite => favorite.shoe_id === shoe.id);
+                return (
+                    <div key={shoe.id} className="mainCard">
+                    <div className="topCard">
+                        <div className="hoverItems">
+                            <div className="small_card">
+                                {isFavorited ?
+                                <FontAwesomeIcon onClick={() => handleHeartClick(shoe.id)} className="iconHeartFavorited" icon={faHeart} />
+                                : <FontAwesomeIcon onClick={() => handleHeartClick(shoe.id)} className={shoe.id === lastFavoritedShoeId ? "iconHeart small_card show" : "iconHeart"} icon={faHeart} />
+                                }
+                                <FontAwesomeIcon  className="iconShare" icon={faShare} />
+                            </div>
+                            <div className="image">
+                                <img key={index} className="img" src={shoe.picture_url}/>
+                            </div>
                         </div>
                     </div>
+                    <div className="card">
+                        <div className="productsText">
+                            <div className="nameReviewPageDiv">
+                                <div className="shoeNameContainer">
+                                    <h2 className="shoeNameH2"><Link className="shoeName" to={`/shoes/${shoe.id}`}>{ shoe.name }</Link></h2>
+                                </div>
+                                <div className="shoePageStarsDiv">
+                                    <StarRating shoeID={shoe.id} starStyle={{ fontSize: '2em', width: '28px', height: '25px',color: "grey"}}  ratingValue="average" />
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="shoeBranDiv">
+                                <h3 className="shoeBrand">{shoe.brand}</h3>
+                            </div>
+                            <div className="shoePriceDiv">
+                                <h3 className="shoePrice">${shoe.price}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    );
+            })}
                 </div>
-                <div key={shoe.id} className="card">
-                    <div className="productsText">
-                        <div className="nameReviewDiv">
-                        <div className="shoeNameContainer">
-                            <h2 className="shoeNameH2"><Link className="shoeName" to={`/shoes/${shoe.id}`}>{ shoe.name }</Link></h2>
-                        </div>
-                        <div className="shoePageStarsDiv">
-                            <StarRating shoeID={shoe.id} starStyle={{ fontSize: '2em', width: '28px', height: '25px',color: "grey"}}  ratingValue="average" />
-                        </div>
-                        </div>
-                        </div>
-                        <div className="shoeBranDiv">
-                            <h3 className="shoeBrand">{shoe.brand}</h3>
-                        </div>
-                        <div className="shoePriceDiv">
-                            <h3 className="shoePrice">${shoe.price}</h3>
-                        </div>
-                </div>
-                </div>
-                );
-        })}
             </div>
+            )}
             </div>
         </div>
 

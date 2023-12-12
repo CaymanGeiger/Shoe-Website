@@ -2,7 +2,6 @@ import { NavLink } from 'react-router-dom';
 import "./Nav.css"
 import { useAuth } from './Auth/AuthContext';
 import { useLogout } from './Accounts/AccountLogOut';
-import { AuthProvider } from './Auth/AuthContext';
 import LogoutButton from './Accounts/AccountLogOut';
 import { useNavigate } from 'react-router-dom';
 import { useModal } from './Accounts/SignInModal';
@@ -11,7 +10,6 @@ import { faStar, faCartShopping, faShop, faUser } from '@fortawesome/free-solid-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import 'react-toastify/dist/ReactToastify.css';
 import { useToast } from './ToastContext';
-
 
 
 
@@ -58,6 +56,17 @@ function Nav() {
     <div className='navMainDiv'>
       <div className='navTop'>
           <ul className="accountBarUL">
+            {userId === 1 && (
+              <NavLink to="sneakeradd"
+              style={
+                {color: "black",
+                position: "absolute",
+                top: "5px",
+                left: "0",
+                }}>
+                Admin Add
+              </NavLink>
+            )}
             {!isAuthenticated &&(
               <>
               <li className="nav-item">
@@ -114,7 +123,7 @@ function Nav() {
         </div>
       </div>
           <div className="heartIconDiv">
-            <button>
+            <button className='navButtons'>
                 <FontAwesomeIcon onClick={handlePersonClick} className="personIcon"  icon={faUser} />
             </button>
             <button className='navButtons'>

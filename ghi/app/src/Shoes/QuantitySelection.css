@@ -1,0 +1,35 @@
+.quantitySelectionDiv {
+    background-color: white;
+    height: 135px;
+    width: calc(100vw / 2);
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 200px;
+}
+
+.quantitySelectionHeader {
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.quantitySelectionButton {
+    padding: 0;
+    margin: 0;
+    font-size: 15px;
+    background-color: rgb(204, 204, 204);
+    padding: 2px;
+    border-radius: 6px;
+    box-shadow: 0 0 5px rgb(123, 123, 123);
+    margin-top: 10px;
+}
+
+.quantitySelectionInputDiv {
+    width: 50%;
+    margin-top: 10px;
+}
+.selectElement {
+    margin-left: 5px;
+    width: 20px;
+    padding: 0 2px;
+}

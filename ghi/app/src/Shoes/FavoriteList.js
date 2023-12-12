@@ -10,14 +10,20 @@ import { useAuth } from '../Auth/AuthContext';
 function FavoriteList(){
     const [userFavorites, setUserFavorites] = useState([]);
     const [lastFavoritedShoeId, setLastFavoritedShoeId] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
+    const [noFavorites, setNoFavorites] = useState(false);
+    console.log(noFavorites)
     const { userId } = useAuth();
     console.log(userFavorites)
 
     async function loadFavorites() {
-        const response = await fetch(`http://localhost:8080/api/favorites/${userId}/`);
+        const response = await fetch(`http://localhost:8000/api/favorites/${userId}/`);
         const data = await response.json();
+        console.log(data)
+        if (data.favorites.length > 0){
         setUserFavorites(data.favorites);
+        } else {
+            setNoFavorites(true)
+        }
     }
     useEffect(() => {
         loadFavorites();
@@ -29,7 +35,7 @@ function FavoriteList(){
         const isFavorited = userFavorites.some(favorite => favorite.shoe_id === shoeId);
 
         if (!(isFavorited)){
-        const response = await fetch (`http://localhost:8080/api/favorites/${shoeId}/${userId}/`, {
+        const response = await fetch (`http://localhost:8000/api/favorites/${shoeId}/${userId}/`, {
             headers: {
                 "Content-Type": "application/json",
             },
@@ -37,7 +43,6 @@ function FavoriteList(){
         });
         if (response.ok) {
             await loadFavorites();
-            setIsLoading(true)
             const isAlreadyFavorited = userFavorites.some(favorite => favorite.shoe_id === shoeId);
             if (isAlreadyFavorited) {
                 setUserFavorites(prevFavorites => prevFavorites.filter(favorite => favorite.shoe_id !== shoeId));
@@ -56,11 +61,12 @@ function FavoriteList(){
             const favoritedItem = userFavorites.find(favorite => favorite.shoe_id === shoeId);
             const favoriteId = favoritedItem.favorite_id;
             console.log(favoritedItem)
-            const response = await fetch (`http://localhost:8080/api/favorite/${favoriteId}/`, {
+            const response = await fetch (`http://localhost:8000/api/favorite/${favoriteId}/`, {
             method: "DELETE"
         });
 
         if (response.ok){
+        await loadFavorites();
         setUserFavorites(prevFavorites => prevFavorites.filter(favorite => favorite.shoe_id !== shoeId));
         } else {
             alert("Not Deleted!")
@@ -105,7 +111,7 @@ function FavoriteList(){
                 <button className="textBarButton"  onClick={goNext}>&gt;</button>
             </div>
             <div className="products">
-            {isLoading && userFavorites.length === 0 ? (
+                {noFavorites ? (
                 <div className="noFavortiesDiv">
                     <h2 className="noFavorites">No Favorites Added!</h2>
                         <div className='shopButtonLinkDiv' >
@@ -143,7 +149,7 @@ function FavoriteList(){
                         </div>
                         <div className="card">
                             <div className="productsText">
-                            <div className="nameReviewDiv">
+                            <div className="nameReviewPageDiv">
                                 <div className="shoeNameContainer">
                                 <h2 className="shoeNameH2"><Link className="shoeName" to={`/shoes/${item.shoe.id}`}>{item.shoe.name}</Link></h2>
                                 </div>

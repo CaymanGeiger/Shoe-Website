@@ -60,7 +60,7 @@
 .name {
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
-    font-size: calc(20px + 1vw);
+    font-size: calc(18px + 1vw);
     padding: 5px;
     white-space: nowrap;
 }
@@ -160,10 +160,9 @@
 
 .product .card2 {
     padding-top: 2em;
-    min-width: 220px;
+    min-width: 240px;
     text-align: center;
     background-color: white;
-
 
 }
 
@@ -184,7 +183,8 @@
 }
 
 .image1 {
-    max-width: 100%;
+    max-width: 90%;
+    min-width: 90%;
     height: auto;
     margin-bottom: 4.7em;
     margin-top: 10em;
@@ -257,6 +257,7 @@
     min-width: 500px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     margin-top: 4em;
+    padding: 0;
 }
 
 
@@ -273,7 +274,7 @@
     width: 100%;
     height: 100%;
     display: grid;
-    padding: 4em 8em;
+    padding: auto auto;
 }
 
 .addToCartButtonDiv {

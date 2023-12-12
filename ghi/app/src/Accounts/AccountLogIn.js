@@ -19,44 +19,20 @@ function AccountLogIn() {
     const showToast = useToast();
     const { userFirstName, isAuthenticated } = useAuth();
     const [loginCompleted, setLoginCompleted] = useState(false);
-    const [csrfToken, setCsrfToken] = useState('');
     const navigate = useNavigate();
 
 
-
-    useEffect(() => {
-        const fetchCsrfToken = async () => {
-        try {
-            const response = await fetch('http://localhost:8070/api/csrf-token/', {
-                method: 'GET',
-                credentials: 'include',
-            });
-        if (response.ok) {
-            const data = await response.json();
-            setCsrfToken(data.csrfToken);
-        } else {
-            console.error('Failed to fetch CSRF token.');
-        }
-        } catch (error) {
-            console.error('Error fetching CSRF token:', error);
-        }
-        };
-
-        fetchCsrfToken();
-    }, []);
     const handleSubmit = async (event) => {
 
         event.preventDefault();
-        const accountUrl = 'http://localhost:8070/api/account/login/';
+        const accountUrl = 'http://localhost:8000/api/account/login/';
         const fetchConfig = {
             method: "POST",
             body: JSON.stringify(formData),
             headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrfToken,
+                'Content-Type': 'application/json'
             },
             credentials: 'include',
-
             }
         try {
             const response = await fetch(accountUrl, fetchConfig);

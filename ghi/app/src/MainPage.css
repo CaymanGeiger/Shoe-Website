@@ -118,15 +118,14 @@ button {
 
 .textBarSpan {
     flex: 1;
-    font-size: 15px;
+    font-size: min(15px, calc(14px + (60 - 40) * ((100vw - 600px) / (2000 - 320))));
     text-align: center;
     white-space: nowrap;
-    width: 100px;
 
 }
 
 .textBarSpanDiv {
-    width: 380px;
+    width: fit-content;
     display: flex;
     justify-content: center;
 }

@@ -12,9 +12,10 @@ export const AuthProvider = ({ children }) => {
     const [userFirstName, setUserFirstName] = useState("");
     const [isActive, setIsActive] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    console.log(userId)
     const checkAuthStatus = async () => {
         try {
-            const response = await fetch('http://localhost:8070/api/check-auth-status', {
+            const response = await fetch('http://localhost:8000/api/check-auth-status', {
                 method: 'GET',
                 credentials: 'include',
             });

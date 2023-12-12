@@ -1,5 +1,19 @@
+volumes:
+  wardrobify-data:
+    external: true
 services:
-  react:
+  postgres:
+    image: postgres:14.2-bullseye
+    volumes:
+      - wardrobify-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres_db
+    ports:
+      - 15432:5432
+
+  front-end:
     image: node:lts-bullseye
     command: /bin/bash run.sh
     working_dir: /app
@@ -8,33 +22,24 @@ services:
     ports:
       - "3000:3000"
     environment:
-      HOST_OS: ${OS}
-      NODE_ENV: development
+      REACT_APP_API_HOST: ${REACT_APP_API_HOST}
       HOST: "0.0.0.0"
-  database:
-    image: postgres:14.2-bullseye
-    volumes:
-      - two-shot-pgdata:/var/lib/postgresql/data
-      - ./db:/docker-entrypoint-initdb.d
-    environment:
-      - POSTGRES_MULTIPLE_DATABASES=shoes,accounts,sneaks
-      - POSTGRES_PASSWORD=test-databases
-    ports:
-      - 15432:5432
-  accounts-api:
+      NODE_ENV: development
+
+  back-end:
     build:
-      context: ./accounts/api
+      context: ./back_end/api
       dockerfile: ./Dockerfile.dev
     ports:
-      - "8070:8000"
+      - "8000:8000"
     volumes:
-      - ./accounts/api:/app
+      - ./back_end/api:/app
     depends_on:
-      - database
+      - postgres
     environment:
-      DATABASE_URL: postgres://accounts:password@database:5432/accounts
-      WAIT_HOSTS: database:5432
-      WAIT_TIMEOUT: 240
+      WAIT_HOSTS: postgres:5432
+      DATABASE_URL: postgres://postgres:password@postgres:5432/postgres_db
+
   sneaks-api:
     build:
       context: ./sneaks/api
@@ -44,40 +49,8 @@ services:
     volumes:
       - ./sneaks/api:/app
     depends_on:
-      - database
+      - postgres
     environment:
-      DATABASE_URL: postgres://sneaks:password@database:5432/sneaks
-      WAIT_HOSTS: database:5432
+      DATABASE_URL: postgres://postgres:password@postgres:5432/postgres_db
+      WAIT_HOSTS: postgres:5432
       WAIT_TIMEOUT: 240
-  shoes-api:
-    build:
-      context: ./shoes/api
-      dockerfile: ./Dockerfile.dev
-    ports:
-      - "8080:8000"
-    volumes:
-      - ./shoes/api:/app
-    depends_on:
-      - database
-    environment:
-      DATABASE_URL: postgres://shoes:password@database:5432/shoes
-      WAIT_HOSTS: database:5432
-      WAIT_TIMEOUT: 240
-  shoes-poller:
-    build:
-      context: ./shoes/poll
-      dockerfile: ./Dockerfile.dev
-    volumes:
-      - ./shoes/poll:/app
-      - ./shoes/api/shoes_project:/app/shoes_project
-      - ./shoes/api/shoes_rest:/app/shoes_rest
-    depends_on:
-      - database
-      - shoes-api
-    environment:
-      DATABASE_URL: postgres://shoes:password@database:5432/shoes
-      WAIT_HOSTS: database:5432,shoes-api:8000
-      WAIT_TIMEOUT: 240
-volumes:
-  two-shot-pgdata:
-    external: true

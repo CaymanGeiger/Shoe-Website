@@ -23,7 +23,7 @@ function AccountForm() {
     useEffect(() => {
         const fetchCsrfToken = async () => {
         try {
-            const response = await fetch('http://localhost:8070/api/csrf-token/', {
+            const response = await fetch('http://localhost:8000/api/csrf-token/', {
                 method: 'GET',
                 credentials: 'include',
             });
@@ -44,7 +44,7 @@ function AccountForm() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const accountUrl = 'http://localhost:8070/api/accounts/';
+        const accountUrl = 'http://localhost:8000/api/accounts/';
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(formData),

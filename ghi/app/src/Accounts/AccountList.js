@@ -4,7 +4,7 @@ function AccountList() {
     const [accounts, setAccounts] = useState([]);
 
     async function loadAccounts() {
-        const response = await fetch('http://localhost:8070/api/accounts/');
+        const response = await fetch('http://localhost:8000/api/accounts/');
         const data = await response.json();
         setAccounts(data.accounts);
     }

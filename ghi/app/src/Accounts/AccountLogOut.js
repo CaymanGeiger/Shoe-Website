@@ -12,7 +12,7 @@ export const useLogout = () => {
     useEffect(() => {
     const fetchCsrfToken = async () => {
         try {
-        const response = await fetch('http://localhost:8070/api/csrf-token/', {
+        const response = await fetch('http://localhost:8000/api/csrf-token/', {
             method: 'GET',
             credentials: 'include',
         });
@@ -34,7 +34,7 @@ export const useLogout = () => {
 
     const handleLogout = async () => {
         try {
-            const response = await fetch('http://localhost:8070/api/account/logout/', {
+            const response = await fetch('http://localhost:8000/api/account/logout/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

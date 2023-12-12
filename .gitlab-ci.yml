@@ -1,0 +1,92 @@
+services:
+  - docker:dind
+
+stages:
+  - build
+  - deploy
+
+variables:
+  HEROKU_API_KEY: ${HEROKU_API_KEY}  # Set this in your GitLab CI/CD environment variables
+
+# Build React Frontend
+build-react:
+  stage: build
+  image: node:lts-bullseye
+  script:
+    - cd path_to_react_app  # Replace with the actual path to your React app
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - path_to_react_app/build  # Adjust this to where your React build artifacts are located
+  only:
+    - main
+
+# Deploy React to Heroku
+deploy-react:
+  stage: deploy
+  image: ruby:latest
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=your-heroku-react-app-name --api-key=$HEROKU_API_KEY --skip_cleanup path_to_react_app/build
+  dependencies:
+    - build-react
+  only:
+    - main
+
+# Build Django Backend (Repeat this for each Django app)
+build-back-end:
+  stage: build
+  image: python:3-bullseye
+  script:
+    - cd path_to_django_app1  # Replace with the actual path to your Django app
+    - pip install -r requirements.txt
+  artifacts:
+    paths:
+      - path_to_django_app1  # Adjust this to where your Django app artifacts are located
+  only:
+    - main
+
+# Deploy Django to Heroku (Repeat this for each Django app)
+deploy-back-end:
+  stage: deploy
+  image: ruby:latest
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=your-heroku-django-app1-name --api-key=$HEROKU_API_KEY
+  dependencies:
+    - build-django-app1
+  only:
+    - main
+
+build-sneaks:
+  stage: build
+  image: python:3-bullseye
+  script:
+    - cd path_to_django_app1  # Replace with the actual path to your Django app
+    - pip install -r requirements.txt
+  artifacts:
+    paths:
+      - path_to_django_app1  # Adjust this to where your Django app artifacts are located
+  only:
+    - main
+
+# Deploy Django to Heroku (Repeat this for each Django app)
+deploy-sneaks:
+  stage: deploy
+  image: ruby:latest
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=your-heroku-django-app1-name --api-key=$HEROKU_API_KEY
+  dependencies:
+    - build-django-app1
+  only:
+    - main
+
+# Define any additional stages for your other Django backend in a similar fashion

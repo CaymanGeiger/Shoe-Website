@@ -19,7 +19,7 @@ function AccountDetail() {
     useEffect(() => {
 
         async function loadAccount() {
-            const response = await fetch(`http://localhost:8070/api/account/${userId}/`);
+            const response = await fetch(`http://localhost:8000/api/account/${userId}/`);
             const data = await response.json();
             setAccounts(data);
         }
