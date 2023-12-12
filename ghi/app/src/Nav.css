@@ -1,15 +1,98 @@
-.navbar.navApp {
-    background-color: rgb(255, 255, 255);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: .5rem;
-    margin-right: 2em;
-    margin-left: 2em;
-    z-index: 2;
-    position: relative;
 
+
+@media(max-width: 500px) {
+    .navbar.navApp {
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 2;
+        padding: 0 5px;
+        position: relative;
+    }
+    .divNav2 {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .pageLinks {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .cartIcon {
+        margin-top: 2px;
+        height: 100%;
+        color: rgb(115, 115, 115);
+    }
+    .personIcon {
+        color: rgb(117, 117, 117);
+    }
+    .heartIconDiv {
+        display: flex;
+        align-items: center;
+        gap: .2rem;
+    }
+    .accountBarUL {
+        display: flex;
+        justify-content: flex-end;
+        list-style-type: none;
+        padding: 0;
+        margin: 0 5px 0 0;
+    }
 }
+
+@media(min-width: 500px) {
+    .navbar.navApp {
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: .5rem;
+        margin-right: 2em;
+        margin-left: 2em;
+        z-index: 2;
+        position: relative;
+    }
+    .divNav2 {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .pageLinks {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 18px;
+    }
+    .cartIcon {
+        margin-top: 2px;
+        margin-left: .5em;
+        height: 100%;
+        color: rgb(115, 115, 115);
+    }
+    .personIcon {
+        color: rgb(117, 117, 117);
+        margin-right: .5em;
+    }
+    .heartIconDiv {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+    }
+    .accountBarUL {
+        display: flex;
+        justify-content: flex-end;
+        list-style-type: none;
+        padding: 0;
+        margin: 0 2em 0 2em;
+    }
+}
+
 
 .navLinks {
     color: rgb(104, 104, 104);
@@ -28,26 +111,11 @@ a {
 
 
 
-.pageLinks {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 4.5em;
+.navMainDiv {
 
 }
 
-
-.divNav2 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-
-.navMainDiv {}
-
-.websiteTitle {
+.websiteTitle{
     margin-right: 0;
     color: black;
     font-weight: bold;
@@ -83,6 +151,25 @@ a {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.filled {
+    background-color: green;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    background-color: green;
+    margin: 0;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.dotDiv{
+    display: flex;
+    align-items: center;
+    margin-right: -10px;
+}
+
 .submenu ul {
     list-style-type: none;
     padding: 0;
@@ -95,7 +182,8 @@ a {
 
 .menu-item:hover .submenu {
     display: block;
-    width: 12vw;
+    width: 23vw;
+    max-width: 200px;
 }
 
 .accountLinks {
@@ -103,16 +191,27 @@ a {
     justify-content: right;
 }
 
+.nav-item {
+    display: flex;
+    align-items: center;
+}
+
 .navTop {
     z-index: 2;
     position: relative;
     padding: 0 0 0 0;
     margin: 0;
-    height: 3vh auto;
-    display: flex;
+    height: 37px;
+    display:flex;
     justify-content: right;
-    background-color: #ededed;
+    align-items: center;
+    background-color: rgb(230, 230, 230);
+}
 
+
+
+.personIcon:hover {
+    color: rgb(0, 0, 0);
 }
 
 .heartIcon {
@@ -124,18 +223,6 @@ a {
     color: red;
 }
 
-.heartIconDiv {
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-}
-
-.divNav2 {
-    flex: 1;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
 .accountBarDiv {
     display: flex;
@@ -153,24 +240,9 @@ a {
     color: #000000;
 }
 
-.cartIcon {
-    margin-top: 2px;
-    margin-left: .5em;
-    height: 100%;
-    color: rgb(115, 115, 115);
-}
 
 .cartIcon:hover {
     color: rgb(0, 17, 255);
-}
-
-
-.accountBarUL {
-    display: flex;
-    justify-content: flex-end;
-    list-style-type: none;
-    padding: 0;
-    margin: 0 2em 0 2em;
 }
 
 .accountButtons {

@@ -1,9 +1,4 @@
-.products {
-    width: 100%;
-    height: 140vh;
-    padding: 0 4em 1em 4em;
-    margin-top: 0;
-}
+
 
 .productsText {
     white-space: nowrap;
@@ -14,7 +9,7 @@
     margin: 35px 0;
     font-size: 50px;
     display: flex;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     align-items: center;
     justify-content: center;
     text-transform: uppercase;
@@ -24,11 +19,11 @@
     border: 8px solid;
     padding: 10px;
     border-image: repeating-linear-gradient(to bottom right,
-            #ffffff,
-            #ffffff,
-            rgb(255, 255, 255),
-            rgb(255, 255, 255),
-            rgb(255, 255, 255)) 15;
+        #ffffff,
+        #ffffff,
+        rgb(255, 255, 255),
+        rgb(255, 255, 255),
+        rgb(255, 255, 255)) 15;
 }
 
 .h1Container {
@@ -36,67 +31,280 @@
 
 }
 
+@media (min-width: 1800px) {
+    .products .box {
+        display: grid;
+        width: 100vw;
+        grid-template-columns: auto auto auto auto;
+        column-gap: 10px;
+        padding: 20px 10px;
+    }
+    .products {
+        width: 100%;
+        height: 140vh;
+        padding: 40px 10px;
+        margin-top: 0;
+    }
 
-.products .box {
+    .topCard {
+        background: rgb(255, 255, 255);
+        width: calc(100vw / 3.1);
+        min-width: 220px;
+        max-width: 400px;
+        height: min(max(200px, calc(100vw / 3)), 300px);
+        height: calc(100vw / 3.4);
+        min-height: 300px;
+        max-height: 350px;
+    }
+
+    .img {
+        width: calc(100vw / 5);
+        min-width: 150px;
+        max-width: 300px;
+        height: calc(100vw / 6);
+        min-height: 150px;
+        max-height: 250px;
+    }
+
+    .image {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 20vh;
+        margin-top: 1em;
+    }
+
+    .mainCard {
+        width: auto;
+        min-width: 220px;
+        max-width: 500px;
+        height: calc(100vh / 1);
+        max-height: 530px;
+    }
+
+    .products .box .card {
+        width: 100%;
+        height: fit-content;
+        border-radius: 5px;
+        margin-bottom: 2em;
+        background-color: rgba(255, 255, 255, 0);
+    }
+
+    .nameReviewPageDiv {
+        display: grid;
+        width: calc(100vw / 3);
+        min-width: 130px;
+        max-width: 600px;
+    }
+}
+
+@media (min-width: 1000px) and (max-width: 1800px) {
+    .products .box {
+        display: grid;
+        width: 100vw;
+        grid-template-columns: auto auto auto;
+        column-gap: 10px;
+        padding: 20px 10px;
+    }
+    .products {
+        width: 100%;
+        height: 140vh;
+        padding: 40px 10px;
+        margin-top: 0;
+    }
+    .topCard {
+        background: rgb(255, 255, 255);
+        width: calc(100vw / 3.1);
+        min-width: 220px;
+        max-width: 400px;
+        height: min(max(200px, calc(100vw / 3)), 300px);
+        height: calc(100vw / 3.4);
+        min-height: 300px;
+        max-height: 350px;
+    }
+    .img {
+        width: calc(100vw / 5);
+        min-width: 150px;
+        max-width: 300px;
+        height: calc(100vw / 6);
+        min-height: 150px;
+        max-height: 250px;
+    }
+    .image {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 20vh;
+        margin-top: 1em;
+    }
+    .mainCard {
+        width: auto;
+        min-width: 220px;
+        max-width: 500px;
+        height: calc(100vh / 1);
+        max-height: 530px;
+    }
+    .products .box .card {
+        width: 100%;
+        height: fit-content;
+        border-radius: 5px;
+        margin-bottom: 2em;
+        background-color: rgba(255, 255, 255, 0);
+    }
+    .nameReviewPageDiv {
+        display: grid;
+        width: calc(100vw / 3);
+        min-width: 130px;
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .products .box {
+        display: grid;
+        grid-template-columns: auto auto;
+        padding: 20px 2vw;
+        column-gap: 10px;
+    }
+    .topCard {
+        background: rgb(255, 255, 255);
+        width: calc(100vw / 2.2);
+        min-width: 150px;
+        max-width: 600px;
+        height: calc(100vw / 2.2);
+        height: calc(100vw / 3);
+        min-height: 300px;
+        max-height: 300px;
+    }
+    .img {
+        width: calc(100vw / 2);
+        min-width: 150px;
+        max-width: 250px;
+        height: calc(100vw / 2.5);
+        min-height: 150px;
+        max-height: 220px;
+    }
+    .image {
+        display: flex;
+        justify-content: center;
+        height: fit-content;
+    }
+    .products {
+        width: 100%;
+        height: 140vh;
+        padding: 40px 0;
+        margin-top: 0;
+    }
+    .mainCard {
+        width: calc(100vw / 2.2);
+        min-width: 130px;
+        max-width: 600px;
+        height: 440px;
+    }
+    .products .box .card {
+        width: 100%;
+        height: fit-content;
+        border-radius: 5px;
+        margin-bottom: 2em;
+        background-color: rgba(255, 255, 255, 0);
+    }
+    .nameReviewPageDiv {
+        display: grid;
+        width: calc(100vw / 3);
+        min-width: 130px;
+        max-width: 600px;
+    }
+}
+
+
+@media(min-width: 600px) {}
+
+.noFavorites  {
+    color: rgb(75, 75, 75);
+    border-bottom: 1px solid rgb(6, 6, 6);
+    box-shadow: 0px 0px 6px rgba(94, 94, 94, 0.1);
+    padding: 20px 20px 10px 20px;
+    margin-bottom: 0;
+}
+
+.noFavortiesDiv {
     width: 100%;
-    margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px 0;
-    padding: 1em 0 1em 1em;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.shopButtonLinkDiv{
+    padding: 12px 8px 8px 8px;
+    box-shadow: 0px 0px 6px rgba(94, 94, 94, 0.1);
+    display: flex;
+    justify-content: center;
 }
 
 
-@media (max-width: 1200px) {
-    .products .box {
-        grid-template-columns: 1fr 1fr;
-    }
+.shopButtonLink {
+    display: flex;
+    justify-content: center;
 }
 
-@media (max-width: 700px) {
-    .products .box {
-        grid-template-columns: 1fr;
-    }
+.shopButtonFavorites{
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.1s;
 }
 
-.products .box .card {
-    width: 100%;
-    height: 10vh;
-    border-radius: 5px;
-    text-align: center;
-    margin-bottom: 2em;
-    background-color: rgba(255, 255, 255, 0);
+.shopText {
+    font-size: 18px;
+    color: rgb(100, 100, 100);
+
+}
+.shopButtonLinkDivCenter {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    padding-bottom: 15px;
 }
 
-.topCard {
-    z-index: 1000;
-    background: rgb(255, 255, 255);
-    padding-left: .2em;
-    padding-bottom: 1em;
-    height: 35vh;
+
+
+
+
+.btn23Div {
+    display: flex;
+    justify-content: center;
+    width: 70px;
+    height: 37px;
 }
+
+.btn23 {
+    background-color: rgba(255, 255, 255, 0.87);
+    border: 1px solid rgba(99, 99, 99, 0.241);
+    color: rgb(71, 71, 71);
+    width: 70px;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+
+
+
 
 .products .box .topCard:hover {
     background-color: rgb(255, 255, 255);
 }
 
 
-.image {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 20vh;
-    overflow: hidden;
-    margin-top: 1em;
-}
 
 
-.img {
-    transition: .3s;
-}
 
 .products .box .topCard:hover .image img {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 
@@ -106,7 +314,7 @@
     justify-content: left;
     position: relative;
     transition: 0.3s;
-    margin-top: 1em;
+    margin-bottom: 1em;
     opacity: 0;
     z-index: 1;
 }
@@ -122,8 +330,8 @@
 
 .iconHeart {
     padding: .15em;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     margin: 2px 0;
     color: rgba(0, 0, 0, 0.442);
 }
@@ -131,8 +339,8 @@
 
 .iconHeartFavorited {
     padding: .15em;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     margin: 2px 0;
     opacity: 1;
     z-index: 1;
@@ -141,8 +349,8 @@
 
 .iconShare {
     padding: .15em;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     border-radius: 5px;
     font-size: 18px;
     margin: 2px 0;
@@ -193,10 +401,12 @@
 .shoeBranDiv {
     display: flex;
     justify-content: left;
+    margin-top: -10px;
+    padding-top: 0;
 }
 
 
-.shoeBrand {
+.shoeBrand{
     font-size: 1em;
     color: rgb(124, 124, 124);
     margin-bottom: .4em;
@@ -205,6 +415,7 @@
 
 .card {
     border: 1px solid rgba(255, 255, 255, 0);
+    margin-left: 5px;
 }
 
 .products .box .topCard .small_card .iconShare:hover {
@@ -237,7 +448,7 @@
 }
 
 .addButton:hover {
-    color: rgb(115, 166, 255);
+    color:rgb(115, 166, 255);
     cursor: pointer;
 
 }
@@ -251,7 +462,6 @@
 .shoeNameContainer {
     display: flex;
     justify-content: left;
-
 }
 
 .shoeName {
@@ -262,22 +472,21 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.shoeNameH2 {
-    margin-bottom: 0;
+.shoeNameH2{
 }
 
-.shoeName:hover {
+.shoeName:hover{
     color: rgb(0, 0, 0);
     border-bottom: 3px solid;
     border-image: repeating-linear-gradient(to bottom right, #3a3a3a,
-            #343434d7,
-            rgb(60, 60, 60),
-            rgb(48, 48, 48),
-            rgb(64, 64, 64)) 20;
+    #343434d7,
+    rgb(60, 60, 60),
+    rgb(48, 48, 48),
+    rgb(64, 64, 64)) 20;
 }
 
 .shoePrice {
-    font-family: 'Times New Roman', Times, serif;
+    font-family:'Times New Roman', Times, serif;
     font-size: 1.1em;
     font-weight: bold;
     color: rgb(34, 34, 34);
@@ -317,21 +526,39 @@
 }
 
 
-.newReviewForm {
+.newReviewForm{
     padding-left: 0;
     margin-bottom: 1em;
 }
 
-.newReviewForm {
+.newReviewFormDiv {
+    display: flex;
+    justify-content: left;
+    width: 100%;
+}
+
+
+.newReviewForm{
+    padding-right: 0;
+    margin-bottom: 30px;
+    margin-top: 15px;
     border-bottom: 1px solid black;
 }
 
-.topSection {
-    background-color: #f2f2f2;
-    padding: 5px 0 5px 2px;
-    border-bottom: 1px solid #ccc;
-    align-items: center;
+.newReviewForm:hover {
+    color: rgb(78, 78, 78);
+    border-bottom: 1px solid rgb(78, 78, 78);
 }
+
+
+.topSection {
+    background-color: #cdcccc56;
+    padding: 5px 0 5px 2px;
+    border-bottom: 1px solid #bebebe;
+    align-items: center;
+    padding: 8px 6px 2px 6px
+}
+
 
 .ratingContent {
     padding: 15px, 20px 0 20px;
@@ -351,7 +578,7 @@ textarea {
 }
 
 .rateStars {
-    color: rgb(0, 0, 0);
+    color: rgb(44, 44, 44);
     font-weight: bold;
 
 }
@@ -421,8 +648,8 @@ textarea {
 
 
 .yyy {
-    margin-top: .8em;
-
+    margin-top: .4em;
+    padding-bottom: 15px;
     color: rgb(98, 98, 98);
 }
 
@@ -434,16 +661,16 @@ textarea {
 
 }
 
-
+.filterInputs{
+    width: 150px;
+}
 .products .filterSideWindowDiv {
     min-height: auto;
     display: grid;
     grid-template-columns: 1fr;
-    width: 250px;
-    min-width: 250px;
-    max-width: 250px;
-    height: auto;
-    margin-top: 2em;
+    min-width: 150px;
+    max-width: 150px;
+
 }
 
 
@@ -463,28 +690,31 @@ textarea {
 }
 
 
-/* .filterSelects:hover {
-    background-color: transparent;
-    transform: rotate(-45deg);
-    transform-origin: center;
-} */
-
-
-.filterListItem {
-    width: 100%;
-    margin-bottom: 1em;
-    box-shadow: 0 0 5px rgb(255, 255, 255);
-    background-color: transparent;
+@media(min-width: 2100px) {
+    .filterListItem {
+        width: 100%;
+        margin-bottom: 1em;
+        box-shadow: 0 0 5px rgb(255, 255, 255);
+        background-color: transparent;
+    }
+    .shoePageColumns {
+        width: 100%;
+        min-width: 800px;
+        margin: 0;
+        display: grid;
+        grid-template-columns: 160px 1fr;
+    }
 }
 
-
-.shoePageColumns {
-    width: 100%;
-    margin: 0;
-    display: grid;
-    grid-template-columns: 250px 1fr;
+@media(max-width: 2100px) {
+    .shoePageColumns {
+        width: fit-content;
+        margin: 0;
+        display: grid;
+        justify-items: flex-start;
+        grid-template-columns: 1fr;
+    }
 }
-
 
 .filterHeader {
     color: rgb(0, 0, 0);
@@ -505,7 +735,7 @@ textarea {
 }
 
 
-.App {
+.App1 {
     font-family: Arial, sans-serif;
     display: flex;
     align-items: center;
@@ -513,23 +743,23 @@ textarea {
     height: 50px;
     padding: 1.8em;
     width: 100%;
-    border-bottom: 1px solid rgb(191, 191, 191);
-    margin-bottom: 0;
-    background-color: #ededed;
+    border-bottom: 1px solid rgb(217, 217, 217);
+    margin-bottom:  0;
+    background-color: rgb(230, 230, 230);
 }
 
 
-.products .topCard .div3 {
-    padding-right: 0;
 
-}
 
 .div3 {
-    width: 100%;
+    padding-left: 0;
+    background-color: rgba(248, 248, 248, 0.448);
 }
 
-.mainCard {
-    width: 100%;
+
+
+.mainCard:hover {
+
 }
 
 .textBarButton {
@@ -543,42 +773,70 @@ textarea {
 
 .textBarSpan {
     flex: 1;
-    font-size: 15px;
+    font-size: min(15px, calc(14px + (60 - 40) * ((100vw - 600px) / (2000 - 320))));
     text-align: center;
     white-space: nowrap;
-    width: 100px;
 
 }
 
 .textBarSpanDiv {
-    width: 380px;
+    width: fit-content;
     display: flex;
     justify-content: center;
 }
 
 
 .shoePageStarsDiv {
-    display: flex;
-    justify-content: right;
-    margin-top: .8em;
+
 }
 
 
-.nameReviewDiv {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+
+
+.shoePageStars {
+
 }
-
-
-.shoePageStars {}
 
 .favoritesTitle {
-    color: rgb(72, 72, 72);
-    border-bottom: 2px solid black;
+    color: rgb(92, 92, 92);
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.favoritesTitleDiv {
-    margin-top: 1em;
+.favoritesTitleDiv{
     display: flex;
-    justify-content: center;
+    justify-content: left;
+}
+
+.filterFooter {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 5;
+    height: fit-content;
+    background-color: rgba(236, 236, 236, 0.724);
+}
+
+.inputsFooter {
+    border: none;
+}
+
+.footerFilterUl {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px;
+    margin: 0;
+}
+
+.footerFilterLi {
+    display: flex;
+    border: 1px solid rgba(195, 195, 195, 0.712);
+}
+
+.form-control {
+    padding: 0;
+    margin: 0;
 }

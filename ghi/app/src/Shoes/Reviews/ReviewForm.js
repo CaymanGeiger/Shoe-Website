@@ -8,15 +8,17 @@ import { useAuth } from '../../Auth/AuthContext';
 import "../ShoePage.css"
 import 'react-toastify/dist/ReactToastify.css';
 import { useToast } from '../../ToastContext';
+import { useModal } from '../../Accounts/SignInModal';
 
 
 
-function SubmitStarRating({ shoeID, onSuccess }) {
+function SubmitStarRating({ shoeID }) {
     const [hoveredStar, setHoveredStar] = useState(null);
     const [selectedStar, setSelectedStar] = useState(null);
     const [showModel, setShowModel] = useState(false);
-    const { userId } = useAuth();
     const showToast = useToast();
+    const { userId } = useAuth();
+    const { openModal } = useModal();
 
 
     const [formData, setFormData] = useState({
@@ -28,7 +30,7 @@ function SubmitStarRating({ shoeID, onSuccess }) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (userId) {
-        const ratingUrl = `http://localhost:8080/api/ratings/${shoeID}/${userId}/`;
+        const ratingUrl = `http://localhost:8000/api/ratings/${shoeID}/${userId}/`;
         const fetchConfig = {
             method: "POST",
             body: JSON.stringify(formData),
@@ -70,7 +72,12 @@ function SubmitStarRating({ shoeID, onSuccess }) {
 
 
     const handleCreateReviewClick = () => {
+        if (!(userId)) {
+            openModal(true)
+            showToast("Please log in first!", "error");
+        } else {
         setShowModel(true)
+        }
     };
 
     const handleCloseClick = () => {
@@ -140,7 +147,7 @@ function SubmitStarRating({ shoeID, onSuccess }) {
                                 onMouseLeave={() => setHoveredStar(selectedStar)}
                                 onClick={(e) => handleStarClick(e, starNumber)}
                                 color="transparent"
-                                style={{ color: iconToUse !== farFaStar ? 'gold' : 'grey' }}
+                                style={{ fontSize: "25px", color: iconToUse !== farFaStar ? 'gold' : 'grey' }}
                             />
                         );
                     })}

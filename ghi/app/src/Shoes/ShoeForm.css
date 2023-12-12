@@ -1,36 +1,136 @@
-.formShoe {
-    background-color: rgb(255, 255, 255);
-    border-radius: 1em 1em;
+
+.shoe-container {
+    min-width: 500px;
+    max-width: 600px;
 }
 
-.formHeaderShoeForm {
-    font-size: 3em;
-    color: rgb(72, 72, 72);
-    margin-bottom: .4em;
 
-}
-
-.formHeaderContainer {
+.shoe-containerDiv {
     display: flex;
     justify-content: center;
-    border-bottom: 1px solid black;
+    margin-top: 40px;
 }
 
-.inputBoxes {
-    border:1px solid black;
-}
 
-.createButtonShoe {
-    background-color: rgb(84, 84, 84);
-    color: white;
-}
-
-.createButtonShoe:hover {
-    background-color: rgb(128, 127, 127);
-    color: rgb(0, 0, 0);
-}
-
-.createButtonShoeDiv {
+.stepper {
+    border-bottom: 5px solid white;
     display: flex;
-    justify-content: center;
+    justify-content: left;
+    margin-left: 15px;
+    width: fit-content;
+    padding-left: 10px;
+}
+
+
+
+.dot1 {
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    margin: 0;
+    border-radius: 50%;
+    background: #e0e0e0;
+    margin-right: 15px;
+}
+
+.filled {
+    background: #494949;
+}
+
+.filled1 {
+    background: #850a0a;
+}
+
+
+.navigation-buttons {
+    display: flex;
+    justify-content: left;
+    align-items: flex-end;
+    height: 100%;
+    width: 100%;
+}
+
+button {
+
+}
+
+input {
+    display: block;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    width: 100%;
+}
+
+
+.shoeForm{
+    padding: 20px;
+    border-top: 5px solid white;
+    width: 100%;
+    display: grid;
+    align-items: flex-start;
+    min-height: 260px;
+    margin-top: 30px;
+}
+
+.shoeDetailsHeader{
+    font-size: 35px;
+}
+
+.buttonText {
+    font-size: 26px;
+}
+
+
+.inputDiv {
+    background-color: rgba(246, 246, 246, 0.658);
+}
+
+
+.shoeFormStepperDiv {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+}
+
+
+.formShoeStepperDivMain{
+
+}
+
+
+.shoeFormLabelsDiv {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 100px;
+}
+
+
+.formCaseDiv {
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    justify-self: left;
+    align-items: center;
+}
+
+
+.inputsDiv{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 100%;
+}
+.inputShoeFormDiv {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+.caseOneDiv {
+    display: grid;
+    grid-template-rows: 1fr 100%;
+    height: auto;
 }

@@ -60,16 +60,17 @@
 .name {
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
-    font-size: 2em;
-    border-bottom: 3px solid grey;
-    margin-bottom: 20px;
+    font-size: calc(18px + 1vw);
+    padding: 5px;
+    white-space: nowrap;
 }
 
 
 .nameDiv {
     display: flex;
+    box-shadow: 0px 0px 6px rgba(166, 166, 166, 0.1);
     justify-content: center;
-    border-bottom: 1px solid rgb(255, 255, 255);
+    align-items: center;
     margin-bottom: 1.4em;
     margin-top: 2em;
 
@@ -89,7 +90,6 @@
 
 .imgContainer {
     min-width: 200px;
-    /* Adjust as per your requirement */
 }
 
 .tableHead {
@@ -145,7 +145,7 @@
     grid-template-columns: 6fr 4fr;
     grid-gap: 0 1em;
     padding: 1em;
-    background-color: rgb(225, 225, 225);
+    background-color: rgb(255, 255, 255);
 }
 
 
@@ -160,7 +160,7 @@
 
 .product .card2 {
     padding-top: 2em;
-    min-width: 220px;
+    min-width: 240px;
     text-align: center;
     background-color: white;
 
@@ -170,6 +170,10 @@
 
 .shoeInfo {
     float: center;
+    background-color: rgb(219, 219, 219);
+    padding: 20px;
+    height: fit-content;
+
 }
 
 .product .boxesDiv {
@@ -179,14 +183,15 @@
 }
 
 .image1 {
-    max-width: 100%;
+    max-width: 90%;
+    min-width: 90%;
     height: auto;
     margin-bottom: 4.7em;
     margin-top: 10em;
 }
 
-hr {
-    width: 100px;
+.hr {
+    width: 40%;
     margin: 10px auto;
     border-color: grey;
 }
@@ -252,6 +257,7 @@ hr {
     min-width: 500px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     margin-top: 4em;
+    padding: 0;
 }
 
 
@@ -267,10 +273,35 @@ hr {
 .detailMainDiv {
     width: 100%;
     height: 100%;
-    padding: 3em 18em 5em 18em
+    display: grid;
+    padding: auto auto;
 }
 
+.addToCartButtonDiv {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 
+}
+
+.addToCartButton {
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    width: 80%;
+    min-height: 30px;
+    padding: 25px 80px;
+    border-radius: 40px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.1s;
+}
 .tab-item {
     padding: 10px 20px;
     cursor: pointer;
@@ -294,6 +325,7 @@ hr {
 
 
 .tab-content {
+    height: auto;
     padding: 20px;
     background-color: #fff;
 }
@@ -336,9 +368,13 @@ hr {
     margin-left: 0;
 }
 
+.newReviewForm {
+    font-size: 20px;
+    border-bottom: 1px solid white;
+}
 .reviewsShoe {
     padding: .5em;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.157);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.162);
     margin-bottom: .5em;
 }
 
@@ -352,7 +388,41 @@ hr {
 }
 
 .reviewsShoeDescriptionDiv {
-    box-shadow: 0px 0px 10px rgba(52, 52, 52, 0.1);
+    border: 1px solid rgba(198, 198, 198, 0.413);
+    box-shadow: 0px 0px 10px rgba(147, 147, 147, 0.1);
     height: 10vh;
     width: 100%;
+}
+
+.tableData {
+    font-size: calc(8px + 1vw);
+    color: rgb(65, 65, 65);
+}
+
+.accountDetailsHeader {
+    font-size: calc(12px + 1vw)
+}
+
+.accountDetailData {
+    color: rgb(72, 72, 72);
+    font-size: calc(5px + 1vw)
+}
+
+.hr {
+    margin-bottom: 10px;
+    width: calc(10px + 10vw);
+}
+.tableDataHeader {
+    font-size: calc(14px + 1vw);
+}
+
+.tableDataDiv {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.tableDataHeaderDiv {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
 }

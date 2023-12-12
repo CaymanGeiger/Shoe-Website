@@ -1,18 +1,18 @@
-import { useAuth } from '../Auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import { useAuth } from '../Auth/AuthContext';
 
 
 export const useLogout = () => {
     const navigate = useNavigate();
-    const { logout } = useAuth();
+    const { checkAuthStatus, logout } = useAuth();
     const [csrfToken, setCsrfToken] = useState('');
 
 
     useEffect(() => {
     const fetchCsrfToken = async () => {
         try {
-        const response = await fetch('http://localhost:8070/api/csrf-token/', {
+        const response = await fetch('http://localhost:8000/api/csrf-token/', {
             method: 'GET',
             credentials: 'include',
         });
@@ -34,7 +34,7 @@ export const useLogout = () => {
 
     const handleLogout = async () => {
         try {
-            const response = await fetch('http://localhost:8070/api/account/logout/', {
+            const response = await fetch('http://localhost:8000/api/account/logout/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -45,6 +45,7 @@ export const useLogout = () => {
 
             if (response.ok) {
                 logout();
+                checkAuthStatus()
                 navigate('/');
             } else {
                 console.error('Logout failed');
@@ -55,6 +56,7 @@ export const useLogout = () => {
     };
     return handleLogout;
 };
+
 
     export const LogoutButton = () => {
         const handleLogout = useLogout();

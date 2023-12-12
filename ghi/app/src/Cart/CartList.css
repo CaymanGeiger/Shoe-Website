@@ -1,0 +1,443 @@
+
+
+.productsCart h1 {
+    margin: 35px 0;
+    font-size: 50px;
+    display: flex;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    background: linear-gradient(to top, #070707, #393939d7, rgb(0, 0, 0), rgb(77, 77, 77));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border: 8px solid;
+    padding: 10px;
+    border-image: repeating-linear-gradient(to bottom right,
+            #ffffff,
+            #ffffff,
+            rgb(255, 255, 255),
+            rgb(255, 255, 255),
+            rgb(255, 255, 255)) 15;
+}
+
+
+
+
+
+.topCardImgDiv{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.topCardCartDiv{
+    background-color: grey;
+    background: rgb(255, 255, 255);
+}
+.topCardCart {
+    z-index: 1000;
+    background: rgb(255, 255, 255);
+    padding-bottom: 1em;
+    width: fit-content;
+    height: 100%;
+    margin-bottom: 60px;
+}
+
+
+.productsCart  .topCardCart:hover {
+    background-color: rgb(255, 255, 255);
+}
+
+
+.imageCart {
+    display: flex;
+    width: fit-content;
+    height: 100px;
+    margin-right: 20px;
+}
+
+.topCardImgDivParent  {
+
+}
+
+.namePriceCartDivParent {
+
+    background-color: grey;
+}
+
+.imgCart {
+    transition: .2s;
+}
+
+
+
+
+.shoeBranCartDiv {
+    display: flex;
+    justify-content: left;
+    margin-top: -10px;
+    padding-top: 0;
+}
+
+.loading-message {
+    display: flex;
+    justify-content: center;
+}
+
+
+.shoeBrandQuantityDeleteDiv{
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+}
+
+.shoeBrandCart {
+    font-size: 1em;
+    color: rgb(124, 124, 124);
+    margin-bottom: .4em;
+}
+
+
+.cardCart {
+    max-width: 600px;
+}
+
+
+
+.shoeNameCartContainer {
+
+}
+
+.shoeNameCart {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: .6em;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.shoeNameH2 {}
+
+.shoeNameCart:hover {
+    color: rgb(0, 0, 0);
+    border-bottom: 3px solid;
+    border-image: repeating-linear-gradient(to bottom right, #3a3a3a,
+            #343434d7,
+            rgb(60, 60, 60),
+            rgb(48, 48, 48),
+            rgb(64, 64, 64)) 20;
+}
+
+.namePriceCartDiv{
+    display: grid;
+    grid-template-columns: 10% 90%;
+    max-width: 600px;
+    white-space: nowrap;
+}
+
+
+.shoePriceCart {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: rgb(34, 34, 34);
+    margin-top: .4em;
+}
+
+.shoePriceCartDiv {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+
+}
+
+.div3CartHeaderDiv {
+    display: flex;
+    align-items: flex-end;
+}
+
+
+.div3CartHeader {
+    font-size: 27px;
+    margin: 40px 0 15px 0;
+    padding: 5px;
+}
+
+.productsCart .topCardCart .div3Cart {
+    padding-right: 0;
+
+}
+
+.div3Cart {
+
+
+}
+
+.mainCardCart {
+    max-width: 1000px;
+}
+
+.mainCardCartParent{
+
+}
+.mainCardCart:hover {}
+
+
+
+
+
+.nameReviewDiv {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+@media(max-width: 500px) {
+    .checkoutBottomInfoDivParent {
+        padding-right: 0;
+        margin-bottom: 20px;
+    }
+    .checkoutSummaryTitle {
+        font-size: 30px;
+        margin: 5px 0 15px 0;
+        padding: 5px;
+    }
+    .div3CartChild {
+        background-color: rgb(255, 255, 255);
+        width: auto;
+        min-height: 200px;
+        padding: 0 0 0 0;
+    }
+    .checkoutBottomInfoDivParentMain {
+        display: flex;
+        justify-content: flex-start;
+
+    }
+}
+
+
+@media(min-width: 500px) and (max-width: 900px){
+    .checkoutBottomInfoDivParent {
+        padding-right: 0;
+        margin-bottom: 20px;
+    }
+    .checkoutSummaryTitle {
+        font-size: 30px;
+        margin: 40px 0 15px 0;
+        padding-bottom: 0px;
+    }
+    .div3CartChild {
+        background-color: rgb(255, 255, 255);
+        width: auto;
+        min-height: 200px;
+        padding: 0 25px 0 0;
+    }
+    .checkoutBottomInfoDivParentMain {
+        display: flex;
+        justify-content: flex-start;
+    }
+}
+
+@media(min-width: 900px) {
+    .checkoutBottomInfoDivParent {
+        padding-right: 350px;
+        margin-bottom: 20px;
+    }
+    .checkoutSummaryTitle {
+        font-size: 30px;
+        margin: 40px 0 15px 0;
+        padding: 5px;
+    }
+    .checkoutBottomInfoDivParentMain {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+
+
+.checkoutSummaryTitleDiv{
+    display: flex;
+    align-items: flex-end;
+}
+
+
+
+
+hr {
+    margin: 0;
+}
+
+.checkoutBottomInfoDivChild {
+
+}
+
+.checkoutBottomInfoDivSibling{
+    display: grid;
+    min-height: 230px;
+    padding:  9px 0 0 6px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 40px 40px 40px 40px 40px;
+    width: auto;
+}
+
+
+.cartMainDiv{
+    padding: 25px 0 0 0;
+}
+
+.MainLarge{
+    display: grid;
+    grid-template-columns: 65% 35%;
+    width: 100%;
+    padding: 25px 0 0 0;
+    max-width: 80%;
+}
+
+.cartMainDivLarge {
+
+}
+
+.MainLargeParent{
+    display: flex;
+    justify-content: center;
+}
+.shoeCartAndCheckoutInfoDiv{
+    display: flex;
+    justify-content: center;
+}
+
+.cartMainDivParent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
+}
+
+
+
+@media (max-width: 600px) {
+    .shoeCartAndCheckoutInfoDiv {
+
+    }
+}
+
+.checkOutEstimatedDiv{
+    display: flex;
+        align-items: top;
+        height: auto;
+}
+.checkOutEstimated{
+    font-size: 18px;
+}
+
+.checkOutSubtotalDiv {
+    display: flex;
+    align-items: top;
+    height: auto;
+}
+
+.checkOutSubtotal {
+    font-size: 18px;
+}
+
+.checkOutPrice {
+    font-size: 22px;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+.checkoutButtonDiv{
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+}
+
+
+.checkOutPriceTotalDiv{
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+}
+
+.checkOutTotal {
+    font-size: 22px;
+    font-weight: bold;
+    margin-right: 7px;
+    margin-bottom: 0;
+}
+
+.checkOutPriceDiv {
+    margin-top: 2px;
+}
+
+.checkOutTotalDiv {
+}
+
+.buttonCheckoutDiv {
+    display: flex;
+    justify-content: left;
+    align-items: flex-start;
+    position: sticky;
+}
+
+.buttonCheckout {
+    background-color: #000;
+    color: #fff;
+    width: 100%;
+    padding: 18px 65px;
+    border-radius: 40px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.1s;
+    position: sticky;
+}
+
+.buttonCheckoutDivLarge{
+    display: flex;
+    justify-content: left;
+    margin-top: 20px;
+}
+
+.buttonCheckoutLarge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    width: 100%;
+    padding: 25px 100px;
+    border-radius: 40px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.1s;
+    position: sticky;
+}
+
+.main-footer {
+    position: sticky;
+    display: flex;
+    justify-content: center;
+    bottom: 0;
+    margin-top: 100%;
+}
+
+.buttonCheckoutDiv {
+    width: 100%;
+    background-color: white;
+    padding: 18px 12px 16px 12px;
+    border-top: .5px solid black;
+}
+
+.cartMainDiv {
+    height: fit-content;
+    padding: 0 10px;
+    margin-bottom: auto;
+}

@@ -1,0 +1,74 @@
+.accountDetailMainDiv {
+    width: 100%;
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.accountCardBox {
+    width: calc(290px + 22vw);
+    padding: 25px;
+}
+
+.accountInfo {
+    margin-top: 25px;
+    border-top: 1px solid black;
+    padding: 10px 0 0 0;
+}
+
+.accountImage {
+    width: calc(80px + (100 - 52) * ((100vw - 320px) / (1600 - 320)));
+    height: calc(80px + (90 - 50) * ((100vw - 320px) / (1600 - 320)));
+    border-radius: 50%;
+}
+
+.accountImageDiv {
+    display: flex;
+    justify-content: left;
+}
+
+.accountNameImageDiv {
+    display: flex;
+    justify-content: left;
+}
+
+.accountName {
+    white-space: nowrap;
+    margin-left: 4px;
+    margin-bottom: 4px;
+    font-size: calc(24px + (60 - 30) * ((100vw - 320px) / (1600 - 320)));
+}
+
+.accountDate{
+    white-space: nowrap;
+    color: rgba(78, 78, 78, 0.561);
+    margin-left: 2px;
+    font-size: calc(6px + 1vw)
+}
+
+.accountNameDiv {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.accountNameDateDiv{
+    margin-bottom: -25px;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+
+.accountDetailsDiv {
+
+}
+
+.accountDetailsHeader {
+    font-size: calc(12px + 1vw)
+}
+
+.accountDetailData {
+    color: rgb(72, 72, 72);
+    font-size: calc(5px + 1vw)
+}

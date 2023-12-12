@@ -10,7 +10,7 @@ function ShoeDetail() {
     const [shoe, setShoe] = useState([]);
 
     async function loadShoe() {
-        const response = await fetch('http://localhost:8080/api/shoe/23/');
+        const response = await fetch('http://localhost:8000/api/shoe/23/');
         const data = await response.json();
         setShoe(data);
         console.log(data.picture_url)

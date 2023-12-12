@@ -1,0 +1,23 @@
+.addSuccess {
+    color: rgb(61, 61, 61);
+    background-color: rgba(0, 212, 0, 0.705);
+    width: fit-content;
+    border-radius: 13px;
+    padding: 2px 6px;
+    font-size: 20px;
+    position: absolute;
+    top: 105px;
+    left: 225px;
+}
+
+.addFailed {
+    color: rgb(61, 61, 61);
+    background-color: rgba(212, 0, 0, 0.705);
+    width: fit-content;
+    border-radius: 13px;
+    padding: 2px 6px;
+    font-size: 20px;
+    position: absolute;
+    top: 105px;
+    left: 225px;
+}

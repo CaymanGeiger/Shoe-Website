@@ -9,11 +9,10 @@ import "../ShoePage.css"
 function StarRating({  starStyle = {}, shoeID, ratingValue = null, forceRatingValue = null }) {
     const [shoeRating, setShoeRating] = useState(ratingValue || null);
     const [shoeRatingAverage, setShoeRatingAverage] = useState(null);
-    console.log(shoeID)
 
     async function loadRating() {
         try {
-            const response = await fetch(`http://localhost:8080/api/shoe/${shoeID}/`);
+            const response = await fetch(`http://localhost:8000/api/shoe/${shoeID}/`);
 
             if (!response.ok) {
                 throw new Error('Response was not ok');

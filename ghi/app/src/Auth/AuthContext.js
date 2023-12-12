@@ -10,12 +10,12 @@ export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [userId, setUserId] = useState(null);
     const [userFirstName, setUserFirstName] = useState("");
+    const [isActive, setIsActive] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    console.log(userFirstName)
     console.log(userId)
     const checkAuthStatus = async () => {
         try {
-            const response = await fetch('http://localhost:8070/api/check-auth-status', {
+            const response = await fetch('http://localhost:8000/api/check-auth-status', {
                 method: 'GET',
                 credentials: 'include',
             });
@@ -23,6 +23,7 @@ export const AuthProvider = ({ children }) => {
             setIsAuthenticated(data.isAuthenticated);
             setUserId(data.id);
             setUserFirstName(data.first_name);
+            setIsActive(data.is_active);
         } catch (error) {
             console.error('Failed to check auth status:', error);
         } finally {
@@ -48,9 +49,11 @@ export const AuthProvider = ({ children }) => {
         isAuthenticated,
         userFirstName,
         userId,
+        isActive,
         login,
         logout,
         isLoading,
+        checkAuthStatus,
     };
 
     return (

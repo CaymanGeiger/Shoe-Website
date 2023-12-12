@@ -27,13 +27,19 @@
 
 .form2 {
     display: flex;
-        justify-content: center;
-        height: auto;
-        width: 60vh;
-        border-radius: 1em 1em;
-        background-color: rgb(222, 222, 222);
+    justify-content: center;
+    max-height: 80vh;
+    height: 1200px;
+    width: 60vh;
+    border-radius: 1em 1em;
+    background-color: rgb(255, 255, 255);
 }
 
+
+.inputs{
+    max-width: 400px;
+    min-width: 440px;
+}
 .inputField1 {
     padding-right: .4em;
 }
@@ -43,15 +49,20 @@
 }
 
 .mainDiv1 {
+
     display: flex;
     justify-content: center;
 }
 
+.formDiv{
+    height: 600px;
+}
 
 .mainDivSignIn {
     display: flex;
     justify-content: center;
     padding-top: 0;
+    height: 600px;
 }
 
 .mainDivSignIn1 {
@@ -67,7 +78,8 @@
 
 
 .createButton {
-    color: #000000;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     border: 1px solid black;
     padding: 5px 16px;
     margin-bottom: 0;
@@ -76,8 +88,13 @@
     white-space: nowrap;
 }
 
-
-
+.createButton:hover{
+    background-color: rgb(188, 188, 188);
+    color: black;
+}
+.filled {
+    background-color: green;
+}
 
 .createButtonDiv {
         display: flex;
@@ -92,7 +109,7 @@
 
 
 .baseButton {
-    height: 3.9vh;
+    height: 35px;
     padding: 5px 16px;
     margin: 5px;
     border: 1px solid black;
@@ -101,6 +118,13 @@
     overflow: hidden;
     white-space: nowrap;
     transition: background-color 0.3s ease;
+    background-color: rgb(234, 234, 234);
+}
+
+.baseButton:focus {
+    outline: none;
+    box-shadow: none;
+    background-color: white;
 }
 
 
@@ -109,7 +133,7 @@
 }
 
 .signUpButton {
-    background-color: transparent;
+
     width: auto;
     margin-bottom: 0;
 }
@@ -121,6 +145,12 @@
     width: 100%;
     height: 100%;
 }
+
+.signUpLink:focus {
+    outline: none;
+    box-shadow: none;
+}
+
 
 
 .buttonDiv8 {
@@ -166,7 +196,6 @@
     height: 30px;
     color: rgb(44, 44, 44);
     border-radius: 20%;
-
 }
 
 .exitButtonDiv1 {

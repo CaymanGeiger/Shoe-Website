@@ -3,87 +3,128 @@ import {useState, useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faShare, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { Link } from "react-router-dom"
-import { FilterBrands, FilterCategory, FilterPrice } from "./ShoePageFilter";
 import StarRating from "./Reviews/Stars"
 import { useAuth } from '../Auth/AuthContext';
 import 'react-toastify/dist/ReactToastify.css';
 import { useToast } from '../ToastContext';
 import { useModal } from '../Accounts/SignInModal';
-
+import useWindowSize from "../functions/WindowSize";
 
 
 function ShoePage(){
     const [shoes, setShoes] = useState([]);
-    const [apiShoes, setApiShoes] = useState([]);
     const [userFavorites, setUserFavorites] = useState([]);
-    const [filteredShoes, setFilteredShoes] = useState(shoes);
     const [lastFavoritedShoeId, setLastFavoritedShoeId] = useState(null);
+    const [brandSearched, setBrandSearched] = useState(false);
+    const [priceSearched, setPriceSearched] = useState(false);
+    const [nameSearched, setNameSearched] = useState(false);
+    const [nameSearch, setNameSearch] = useState("");
+    const [brandSearch, setBrandSearch] = useState("");
+    const [priceSearch, setPriceSearch] = useState("");
     const { userId } = useAuth();
     const showToast = useToast();
     const { openModal } = useModal();
-    console.log(apiShoes)
-
-
-    async function loadApiShoes() {
-        const keyword = encodeURIComponent('Yeezy Cinder');
-        const limit = 10;
-        const response = await fetch(`http://localhost:3001/products/${keyword}?limit=${limit}`);
-        const data = await response.json();
-        setApiShoes(data);
-
-    }
-    useEffect(() => {
-        loadApiShoes();
-    }, []);
+    const { width } = useWindowSize();
 
 
     async function loadShoes() {
-        const response = await fetch('http://localhost:8080/api/shoes/');
+        const response = await fetch('http://localhost:8000/api/shoes/');
+        console.log(response)
         const data = await response.json();
+        console.log(data)
         setShoes(data.shoes);
     }
 
     async function loadFavorites() {
-        const response = await fetch(`http://localhost:8080/api/favorites/${userId}/`);
+        const response = await fetch(`http://localhost:8000/api/favorites/${userId}/`);
         const data = await response.json();
         setUserFavorites(data.favorites);
     }
-    console.log("favorites", userFavorites)
     useEffect(() => {
         loadFavorites();
         loadShoes();
+        console.log("hit")
     }, []);
 
 
 
-    const handleBrandFilter = (brand) => {
-        if (brand === "Brand") {
-            setFilteredShoes(shoes);
-        } else {
-            setFilteredShoes(shoes.filter(shoe => shoe.brand === brand));
+    function HandleBrandSearch(e) {
+        setBrandSearch(e.target.value)
+    }
+
+    function HandlePriceSearch(e) {
+        setPriceSearch(e.target.value)
+    }
+
+    function HandleNameSearch(e) {
+        setNameSearch(e.target.value)
+    }
+
+    function HandleNameSearchClick() {
+        setNameSearched(true)
+    }
+
+    function HandleBrandSearchClick() {
+        setBrandSearched(true)
+    }
+
+    function HandlePriceSearchClick() {
+        setPriceSearched(true)
+    }
+
+    useEffect(() => {
+    async function filterBrands() {
+        if (brandSearched !== "") {
+            const response = await fetch('http://localhost:8000/api/shoes/');
+            const data = await response.json();
+            const filteredBrands = data.shoes.filter(shoe =>
+                shoe.brand.toLowerCase().includes(brandSearch.toLowerCase())
+            );
+            setShoes(filteredBrands);
         }
-    };
+    }
+        filterBrands();
+        setPriceSearch("")
+        setNameSearch("")
+        setBrandSearched(false)
+    }, [brandSearched]);
 
 
-    const handleCategoryFilter = (category) => {
-        if (category === "Category") {
-            setFilteredShoes(shoes);
-        } else {
-            setFilteredShoes(shoes.filter(shoe => shoe.category === category));
+    useEffect(() => {
+    async function filterPrice() {
+        if (priceSearch !== ""){
+            const response = await fetch('http://localhost:8000/api/shoes/');
+            const data = await response.json();
+            const filteredBrands = data.shoes.filter(shoe =>
+                String(shoe.price).includes(priceSearch)
+            );
+            setShoes(filteredBrands);
         }
-    };
+    }
+        filterPrice();
+        setBrandSearch("")
+        setNameSearch("")
+        setPriceSearched(false)
+    }, [priceSearched]);
 
 
-    const handlePriceFilter = (selectedLabel) => {
-        if (selectedLabel === "Price Range") {
-            setFilteredShoes(shoes);
-        } else {
-            const range = priceRanges.find(r => r.label === selectedLabel);
-            if (range) {
-                setFilteredShoes(shoes.filter(shoe => shoe.price >= range.min && shoe.price <= range.max));
-            }
+    useEffect(() => {
+    async function filterName() {
+        if (nameSearch !== ""){
+            const response = await fetch('http://localhost:8000/api/shoes/');
+            const data = await response.json();
+            const filteredBrands = data.shoes.filter(shoe =>
+                shoe.name.toLowerCase().includes(nameSearch.toLowerCase())
+            );
+            setShoes(filteredBrands);
         }
-    };
+    }
+        filterName();
+        setBrandSearch("")
+        setPriceSearch("")
+        setNameSearched(false)
+    }, [nameSearched]);
+
 
     async function handleHeartClick(shoeId) {
         setLastFavoritedShoeId(shoeId);
@@ -92,14 +133,16 @@ function ShoePage(){
             openModal(true)
             showToast("Please log in first!", "error");
         } else {
+
         if (!(isFavorited)){
         showToast("Added To Favorites!", "success");
-        const response = await fetch (`http://localhost:8080/api/favorites/${shoeId}/${userId}/`, {
+        const response = await fetch (`http://localhost:8000/api/favorites/${shoeId}/${userId}/`, {
             headers: {
                 "Content-Type": "application/json",
             },
             method: "POST"
         });
+
         if (response.ok) {
             await loadFavorites();
             const isAlreadyFavorited = userFavorites.some(favorite => favorite.shoe_id === shoeId);
@@ -111,7 +154,6 @@ function ShoePage(){
                 };
                 setUserFavorites(prevFavorites => [...prevFavorites, newFavorite]);
             }
-
         } else {
             alert("Not Added!");
         }
@@ -120,16 +162,14 @@ function ShoePage(){
             showToast("Removed From Favorites!", "error");
             const favoritedItem = userFavorites.find(favorite => favorite.shoe_id === shoeId);
             const favoriteId = favoritedItem.favorite_id;
-            console.log(favoritedItem)
-            const response = await fetch (`http://localhost:8080/api/favorite/${favoriteId}/`, {
+            const response = await fetch (`http://localhost:8000/api/favorite/${favoriteId}/`, {
             method: "DELETE"
         });
-
-        if (response.ok){
-        setUserFavorites(prevFavorites => prevFavorites.filter(favorite => favorite.shoe_id !== shoeId));
-        } else {
-            alert("Not Deleted!")
-        }
+            if (response.ok){
+                setUserFavorites(prevFavorites => prevFavorites.filter(favorite => favorite.shoe_id !== shoeId));
+            } else {
+                alert("Not Deleted!")
+            }
         }
         }
     }
@@ -161,16 +201,9 @@ function ShoePage(){
     };
 
 
-    const priceRanges = [
-        { label: '$1 - $50', min: 1, max: 50 },
-        { label: '$50 - $100', min: 50, max: 100 },
-        { label: '$100 - $150', min: 100, max: 150 },
-        { label: '$150 - $200', min: 150, max: 200 }
-    ];
-
     return (
         <>
-            <div className="App h1Container">
+            <div className="App1 h1Container">
                 <button className="textBarButton" onClick={goPrevious}>&lt;</button>
                 <div className="textBarSpanDiv">
                 <span className="textBarSpan">{messages[currentIndex]}</span>
@@ -180,63 +213,101 @@ function ShoePage(){
             <div className="products">
             <h4 className="yyy">Wardrobify Shoes And Sneakers({shoes.length})</h4>
             <div  className="shoePageColumns">
+            {width > 2100 && (
             <div className="filterSideWindowDiv">
                 <div className="filterSideWindow">
                     <ul className="filterList">
-                    <li className="filterListItem">
-                        <FilterBrands shoes={shoes} onBrandSelected={handleBrandFilter} />
-                    </li>
-                    <li className="filterListItem">
-                        <FilterCategory shoes={shoes} onCategorySelected={handleCategoryFilter} />
-                    </li>
-                    <li className="filterListItem">
-                        <FilterPrice shoes={shoes} onPriceSelected={handlePriceFilter} />
-                    </li>
+                        <div className="col-12 mt-0 d-flex align-items-center filterInputs">
+                            <input placeholder="Name" className="form-control" onChange={HandleNameSearch} value={nameSearch} required type="text" name="nameSearch" id="nameSearch"/>
+                            <div className="btn23Div">
+                                <button onClick={HandleNameSearchClick}className="btn btn-light ml-2 mb-2 btn23">Search</button>
+                            </div>
+                        </div>
+                        <div className="col-12 mt-0 d-flex align-items-center filterInputs">
+                            <input placeholder="Brand.." className="form-control" onChange={HandleBrandSearch} value={brandSearch} required type="text" name="brandSearch" id="brandSearch"/>
+                            <div className="btn23Div">
+                                <button onClick={HandleBrandSearchClick}className="btn btn-light ml-2 mb-2 btn23">Search</button>
+                            </div>
+                        </div>
+                        <div className="col-12 mt-0 d-flex align-items-center filterInputs">
+                            <input placeholder="Price" className="form-control" onChange={HandlePriceSearch} value={priceSearch} required type="number" name="priceSearch" id="priceSearch"/>
+                            <div className="btn23Div">
+                                <button onClick={HandlePriceSearchClick}className="btn btn-light ml-2 mb-2 btn23">Search</button>
+                            </div>
+                        </div>
                     </ul>
                 </div>
             </div>
-            <div className="box gap-3 div3 ">
-                {shoes.map((shoe, index) => {
-                const isFavorited = userFavorites.some(favorite => favorite.shoe_id === shoe.id);
-                console.log(`Shoe ID: ${shoe.id}, Is Favorited: ${isFavorited}`);
-            return (
-                <div key={shoe.id}>
-                <div className="topCard">
-                    <div className="hoverItems">
-                        <div className="small_card">
-                            {isFavorited ?
-                            <FontAwesomeIcon onClick={() => handleHeartClick(shoe.id)} className="iconHeartFavorited" icon={faHeart} />
-                            : <FontAwesomeIcon onClick={() => handleHeartClick(shoe.id)} className={shoe.id === lastFavoritedShoeId ? "iconHeart small_card show" : "iconHeart"} icon={faHeart} />
-                            }
-                            <FontAwesomeIcon  className="iconShare" icon={faShare} />
-                        </div>
-                        <div className="image">
-                            <img key={index} className="img" src={`/images/img${index + 1}.png`}/>
+            )}
+            {width <= 2100 && (
+                <div>
+                <footer className="filterFooter">
+                    <ul className="footerFilterUl">
+                        <li className="footerFilterLi">
+                            <input placeholder="Name" className="form-control inputsFooter" onChange={HandleNameSearch} value={nameSearch} required type="text" name="nameSearch" id="nameSearch"/>
+                            <div className="btn23Div">
+                                <button onClick={HandleNameSearchClick}className="btn btn-light ml-2 btn23">Search</button>
+                            </div>
+                        </li>
+                        <li className="footerFilterLi">
+                            <input placeholder="Brand.." className="form-control inputsFooter" onChange={HandleBrandSearch} value={brandSearch} required type="text" name="brandSearch" id="brandSearch"/>
+                            <div className="btn23Div">
+                                <button onClick={HandleBrandSearchClick}className="btn btn-light ml-2 btn23">Search</button>
+                            </div>
+                        </li>
+                        <li className="footerFilterLi">
+                            <input placeholder="Price" className="form-control inputsFooter" onChange={HandlePriceSearch} value={priceSearch} required type="number" name="priceSearch" id="priceSearch"/>
+                            <div className="btn23Div">
+                                <button onClick={HandlePriceSearchClick}className="btn btn-light ml-2 btn23">Search</button>
+                            </div>
+                        </li>
+                    </ul>
+                </footer>
+                <div className="box div3 ">
+                    {shoes.map((shoe, index) => {
+                    const isFavorited = userFavorites.some(favorite => favorite.shoe_id === shoe.id);
+                return (
+                    <div key={shoe.id} className="mainCard">
+                    <div className="topCard">
+                        <div className="hoverItems">
+                            <div className="small_card">
+                                {isFavorited ?
+                                <FontAwesomeIcon onClick={() => handleHeartClick(shoe.id)} className="iconHeartFavorited" icon={faHeart} />
+                                : <FontAwesomeIcon onClick={() => handleHeartClick(shoe.id)} className={shoe.id === lastFavoritedShoeId ? "iconHeart small_card show" : "iconHeart"} icon={faHeart} />
+                                }
+                                <FontAwesomeIcon  className="iconShare" icon={faShare} />
+                            </div>
+                            <div className="image">
+                                <img key={index} className="img" src={shoe.picture_url}/>
+                            </div>
                         </div>
                     </div>
+                    <div className="card">
+                        <div className="productsText">
+                            <div className="nameReviewPageDiv">
+                                <div className="shoeNameContainer">
+                                    <h2 className="shoeNameH2"><Link className="shoeName" to={`/shoes/${shoe.id}`}>{ shoe.name }</Link></h2>
+                                </div>
+                                <div className="shoePageStarsDiv">
+                                    <StarRating shoeID={shoe.id} starStyle={{ fontSize: '2em', width: '28px', height: '25px',color: "grey"}}  ratingValue="average" />
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="shoeBranDiv">
+                                <h3 className="shoeBrand">{shoe.brand}</h3>
+                            </div>
+                            <div className="shoePriceDiv">
+                                <h3 className="shoePrice">${shoe.price}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    );
+            })}
                 </div>
-                <div key={shoe.id} className="card">
-                    <div className="productsText">
-                        <div className="nameReviewDiv">
-                        <div className="shoeNameContainer">
-                            <h2 className="shoeNameH2"><Link className="shoeName" to={`/shoes/${shoe.id}`}>{ shoe.name }</Link></h2>
-                        </div>
-                        <div className="shoePageStarsDiv">
-                            <StarRating shoeID={shoe.id} starStyle={{ fontSize: '1.5em', width: '20px', height: '20px',color: "grey" }}  ratingValue="average" />
-                        </div>
-                        </div>
-                        </div>
-                        <div className="shoeBranDiv">
-                            <h3 className="shoeBrand">{shoe.brand}</h3>
-                        </div>
-                        <div className="shoePriceDiv">
-                            <h3 className="shoePrice">${shoe.price}</h3>
-                        </div>
-                </div>
-                </div>
-                );
-        })}
             </div>
+            )}
             </div>
         </div>
 

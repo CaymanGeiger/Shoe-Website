@@ -23,7 +23,7 @@ function AccountForm() {
     useEffect(() => {
         const fetchCsrfToken = async () => {
         try {
-            const response = await fetch('http://localhost:8070/api/csrf-token/', {
+            const response = await fetch('http://localhost:8000/api/csrf-token/', {
                 method: 'GET',
                 credentials: 'include',
             });
@@ -44,7 +44,7 @@ function AccountForm() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const accountUrl = 'http://localhost:8070/api/accounts/';
+        const accountUrl = 'http://localhost:8000/api/accounts/';
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(formData),
@@ -89,23 +89,23 @@ function AccountForm() {
     }
 
     return (
-            <div className="mt-4 p-4 mainDivSignIn" >
-                <div className="shadow p-5 mt-2 form2">
-                    <form onSubmit={handleSubmit} id="create-account-form">
+            <div className="mt-4 p-4 pt-3 mainDivSignIn" >
+                <div className="p-5 mt-2 form2">
+                    <form onSubmit={handleSubmit} id="create-account-form" className='formDiv'>
                         <div className="mb-3 mt-0 pt-0 formHeaderContainer" >
-                            <h1 className='text-center mb-3 formHeader'>Create an Account With Us</h1>
+                            <h1 className='text-center mb-3 formHeader'>Create an Account</h1>
                         </div>
-                        <div className="row" >
-                        <div className="col-12 mb-2">
+                        <div className="row inputs" >
+                        <div className="col-12">
                             <input placeholder="Username..." className="text-center form-control" onChange={handleFormChange} value={formData.username} required type="text" name="username" id="username"/>
                         </div>
-                        <div className="col-6 mt-4 mb-2 inputField1">
+                        <div className="col-6 mt-4 inputField1">
                             <input placeholder="First Name..." className="text-center form-control" onChange={handleFormChange} value={formData.first_name} required type="text" name="first_name" id="first_name"/>
                         </div>
-                        <div className="col-6 mt-4 mb-2 inputField2">
+                        <div className="col-6 mt-4 inputField2">
                             <input placeholder="Last Name..." className="text-center form-control" onChange={handleFormChange} value={formData.last_name} required type="text" name="last_name" id="last_name"/>
                         </div>
-                        <div className="col-12 mt-4 mb-2">
+                        <div className="col-12 mt-4">
                             <input placeholder="Email..." className="text-center form-control" onChange={handleFormChange} value={formData.email} required type="text" name="email" id="email"/>
                         </div>
                         <div className="col-6 mt-4 inputField1">
@@ -114,8 +114,8 @@ function AccountForm() {
                         <div className="col-6 mt-4 mb-2 inputField2">
                             <input placeholder="Password Confirmation..." className="text-center form-control" onChange={handlePasswordConfirmChange} value={passwordConfirm} required type="text" name="passwordConfirm" id="passwordConfirm"/>
                         </div>
-                        <div className="col">
-                        <button className="btn col-12 btn-primary mt-4 createButton">Create</button>
+                        <div className="col" style={{display: "flex", justifyContent: "center"}}>
+                        <button className="btn col-6 btn-primary mt-2 createButton">Submit</button>
                         </div>
                         </div>
                     </form>

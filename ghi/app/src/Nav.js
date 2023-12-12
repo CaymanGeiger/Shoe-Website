@@ -2,13 +2,14 @@ import { NavLink } from 'react-router-dom';
 import "./Nav.css"
 import { useAuth } from './Auth/AuthContext';
 import { useLogout } from './Accounts/AccountLogOut';
-import { AuthProvider } from './Auth/AuthContext';
 import LogoutButton from './Accounts/AccountLogOut';
 import { useNavigate } from 'react-router-dom';
 import { useModal } from './Accounts/SignInModal';
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
-import { faStar, faCartShopping, faShop } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faCartShopping, faShop, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import 'react-toastify/dist/ReactToastify.css';
+import { useToast } from './ToastContext';
 
 
 
@@ -17,10 +18,37 @@ function Nav() {
     const handleLogout = useLogout();
     const navigate = useNavigate();
     const { openModal } = useModal();
+    const { isActive } = useAuth();
+    const { userId } = useAuth();
+    const showToast = useToast();
 
 
     function handleFavoritesClick(){
+      if (!(userId)) {
+            openModal(true)
+            showToast("Please log in first!", "error");
+        } else {
         navigate('/shoes/favorites')
+        }
+    }
+
+    function handleCartClick(){
+      if (!(userId)) {
+            openModal(true)
+            showToast("Please log in first!", "error");
+        } else {
+        navigate('/cart')
+        }
+    }
+
+
+    function handlePersonClick() {
+      if (!(userId)) {
+            openModal(true)
+            showToast("Please log in first!", "error");
+        } else {
+        navigate('/accounts/detail')
+        }
     }
 
 
@@ -28,6 +56,17 @@ function Nav() {
     <div className='navMainDiv'>
       <div className='navTop'>
           <ul className="accountBarUL">
+            {userId === 1 && (
+              <NavLink to="sneakeradd"
+              style={
+                {color: "black",
+                position: "absolute",
+                top: "5px",
+                left: "0",
+                }}>
+                Admin Add
+              </NavLink>
+            )}
             {!isAuthenticated &&(
               <>
               <li className="nav-item">
@@ -39,6 +78,9 @@ function Nav() {
             )}
             {isAuthenticated &&(
               <>
+              <div className='dotDiv'>
+              <div className={`dot ${isActive === true ? 'filled' : ''}`}></div>
+              </div>
                 <li className="nav-item">
                     <LogoutButton/>
                 </li>
@@ -57,20 +99,11 @@ function Nav() {
               <div className="submenu">
                   <ul>
                       <li className="nav-item">
-                        <NavLink className="nav-link navLinks" to="/shoes/page">Catalog</NavLink>
+                        <NavLink className="nav-link navLinks" to="/shoes">Catalog</NavLink>
                       </li>
                         <li className="nav-item navLinksDiv">
                           <NavLink className="nav-link navLinks" to="/shoes/create">Create Shoe</NavLink>
                         </li>
-                        <li className="nav-item navLinksDiv">
-                          <NavLink className="nav-link navLinks" to="/shoes/new">New Create Shoe</NavLink>
-                        </li>
-                        <li className="nav-item">
-                          <NavLink className="nav-link navLinks" to="/bins">Create Store</NavLink>
-                        </li>
-                      <li className="nav-item">
-                        <NavLink className="nav-link navLinks" to="/shoes">Shoes List</NavLink>
-                      </li>
                   </ul>
               </div>
           </li>
@@ -80,9 +113,6 @@ function Nav() {
               Other
               <div className="submenu">
                   <ul>
-                      <li className="nav-item">
-                        <NavLink className="nav-link navLinks" to="/hats">Hats</NavLink>
-                      </li>
                       <li className="nav-item">
                         <NavLink className="nav-link navLinks" to="/accounts">Accounts</NavLink>
                       </li>
@@ -94,10 +124,13 @@ function Nav() {
       </div>
           <div className="heartIconDiv">
             <button className='navButtons'>
-          <FontAwesomeIcon onClick={handleFavoritesClick} className="heartIcon" icon={faHeart}/>
+                <FontAwesomeIcon onClick={handlePersonClick} className="personIcon"  icon={faUser} />
             </button>
             <button className='navButtons'>
-          <FontAwesomeIcon className="cartIcon" icon={faCartShopping} />
+                <FontAwesomeIcon onClick={handleFavoritesClick} className="heartIcon" icon={faHeart}/>
+            </button>
+            <button className='navButtons'>
+                <FontAwesomeIcon onClick={handleCartClick} className="cartIcon" icon={faCartShopping} />
             </button>
         </div>
     </nav>

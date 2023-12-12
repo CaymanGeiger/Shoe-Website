@@ -8,7 +8,7 @@ function MainPage() {
     const messages = [
         "MEMBERS: NEW FEATURES ADDED SOON+",
         "YOUR FAVORITE SHOES ALL IN ONE PLACE",
-        "NEW ARRIVALS: CHECK OUT OUR LATEST COLLECTION"
+        "NEW ARRIVALS: CHECK OUT OUR COLLECTION"
     ];
 
     const goNext = () => {
@@ -22,23 +22,27 @@ function MainPage() {
 
   return (
     <div className="text-center">
-      <div className="App h1Container">
-                <button onClick={goPrevious}>&lt;</button>
-                <span>{messages[currentIndex]}</span>
-                <button onClick={goNext}>&gt;</button>
-            </div>
+          <div className="App h1Container">
+              <button className="textBarButton" onClick={goPrevious}>&lt;</button>
+              <div className="textBarSpanDiv">
+              <span className="textBarSpan">{messages[currentIndex]}</span>
+              </div>
+              <button className="textBarButton"  onClick={goNext}>&gt;</button>
+          </div>
       <div className="image-container">
-      <img className="mainPageImg" src={'/images/mainimg.jpg'}/>
+      <img src={'/images/mainimg.jpg'}/>
       </div>
       <div className='mainPageBelowImage'>
       <h1 className="display-5 fw-bold mainPageTitle">WARDROBIFY!</h1>
       <div className="col-lg-6 mx-auto">
         <p className="lead mb-4">
-          Need to keep track of your shoes and hats? We have
+          Need to buy or sell shoes? We have
           the solution for you!
         </p>
         <div>
-          <button className="shop-button"><Link className='shopButtonLink' to="/shoes/page">Shop</Link></button>
+          <Link className='shopButtonLink' to="/shoes">
+              <button className="shop-button">Shop</button>
+          </Link>
         </div>
       </div>
       </div>

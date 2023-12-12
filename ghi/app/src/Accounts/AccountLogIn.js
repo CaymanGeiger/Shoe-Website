@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import "./AccountForm.css"
-import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Auth/AuthContext';
 import { useModal } from './SignInModal';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faX } from '@fortawesome/free-solid-svg-icons';
 import { useToast } from '../ToastContext';
+import { useNavigate } from 'react-router-dom';
 
 
 function AccountLogIn() {
@@ -14,45 +14,23 @@ function AccountLogIn() {
         username: '',
         password: '',
     });
-    const navigate = useNavigate();
     const { login } = useAuth();
-    const [csrfToken, setCsrfToken] = useState('');
     const { closeModal } = useModal();
     const showToast = useToast();
-    const { userFirstName } = useAuth();
+    const { userFirstName, isAuthenticated } = useAuth();
+    const [loginCompleted, setLoginCompleted] = useState(false);
+    const navigate = useNavigate();
 
-
-    useEffect(() => {
-        const fetchCsrfToken = async () => {
-        try {
-            const response = await fetch('http://localhost:8070/api/csrf-token/', {
-                method: 'GET',
-                credentials: 'include',
-            });
-        if (response.ok) {
-            const data = await response.json();
-            setCsrfToken(data.csrfToken);
-        } else {
-            console.error('Failed to fetch CSRF token.');
-        }
-        } catch (error) {
-            console.error('Error fetching CSRF token:', error);
-        }
-        };
-
-        fetchCsrfToken();
-    }, []);
 
     const handleSubmit = async (event) => {
 
         event.preventDefault();
-        const accountUrl = 'http://localhost:8070/api/account/login/';
+        const accountUrl = 'http://localhost:8000/api/account/login/';
         const fetchConfig = {
             method: "POST",
             body: JSON.stringify(formData),
             headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrfToken,
+                'Content-Type': 'application/json'
             },
             credentials: 'include',
             }
@@ -60,16 +38,14 @@ function AccountLogIn() {
             const response = await fetch(accountUrl, fetchConfig);
 
             if (response.ok) {
-
-                login();
-                // showToast(`Welcome, ${userFirstName}!`, "success");
-                showToast("Welcome!", "success");
-                setFormData({
+                login().then(() => {
+                    setLoginCompleted(true);
+                    setFormData({
                     username: '',
                     password: '',
+                    });
+                    closeModal();
                 });
-                navigate("/")
-                closeModal()
             } else {
                 console.error('Login failed');
             }
@@ -77,7 +53,14 @@ function AccountLogIn() {
             console.error('Error during Login:', error);
         }
     }
-
+    useEffect(() => {
+        if (loginCompleted && userFirstName) {
+            showToast(`Welcome, ${userFirstName}!`, "success");
+        } else if (loginCompleted) {
+            showToast("Welcome!", "success");
+        }
+        setLoginCompleted(false);
+    }, [userFirstName, loginCompleted]);
 
 
     const handleFormChange = (e) => {
@@ -88,6 +71,14 @@ function AccountLogIn() {
             [inputName]: value
         });
     }
+
+
+
+    function handleSignUpClick(){
+            closeModal(false)
+            navigate('/accounts/form')
+        }
+
 
     return (
             <div className='mainDivSignIn1'>
@@ -113,9 +104,7 @@ function AccountLogIn() {
                         <div className='row'>
                             <div className='col buttonDiv8'>
                                 <button className="btn mt-2 baseButton createButton1 ">Login</button>
-                                <button onClick={closeModal} className='baseButton signUpButton btn mt-2'>
-                                    <Link to='/accounts/form' className="signUpLink">Sign Up</Link>
-                                </button>
+                                <button onClick={handleSignUpClick} className='baseButton signUpButton btn mt-2'>Signup</button>
                             </div>
                         </div>
                     </div>
